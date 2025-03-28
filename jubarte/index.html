@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+  <!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- jQuery (required by Select2) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Flat Jubarte</title>
@@ -186,16 +195,89 @@
       font-weight: bold;
       cursor: pointer;
     }
+
+
+    /* 🧼 Clean base */
+.select2-container--default .select2-selection--single {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  height: auto;
+  padding: 6px 10px;
+  border-radius: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
+/* 🏷️ Text & icon alignment */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #000;
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* 🖼️ Remove default arrow icon spacing */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+}
+
+/* 📃 Dropdown menu styling */
+.select2-container--default .select2-results > .select2-results__options {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  color: #000;
+}
+
+/* 🏳️ Flag + Text inside dropdown */
+.select2-results__option img {
+  border-radius: 0 !important;       /* no rounding */
+  width: 20px;
+  height: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* 🏁 Flag in selected box */
+.select2-selection__rendered img {
+  border-radius: 0 !important;       /* no rounding */
+  width: 20px;
+  height: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Hover effect (optional) */
+.select2-results__option--highlighted {
+  background-color: #f0f0f0 !important;
+  color: #000 !important;
+}
+
+.language-wrapper {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+
   </style>
   
 </head>
 <body>
   <header>
-    <select class="language-selector" onchange="switchLanguage(this.value)">
-      <option value="pt">Português</option>
-      <option value="en">English</option>
-      <option value="he">עברית</option>
-    </select>
+    <div class="language-wrapper">
+      <select id="language-selector" style="width: 160px;">
+        <option value="pt" data-flag="https://flagcdn.com/w80/br.png">Português</option>
+        <option value="en" data-flag="https://flagcdn.com/w80/us.png">English</option>
+        <option value="he" data-flag="https://flagcdn.com/w80/il.png">עברית</option>
+      </select>
+    </div>
+    
   
     <!-- ✅ Logo added here -->
     <img src="logo2.png" alt="Logo Jubarte" style="width: 80px; height: auto; margin-bottom: 10px;" />
@@ -427,6 +509,8 @@
     btn.textContent = visible ? '🙈' : '👁️';
   }
 
+
+  //language selection 
     function switchLanguage(lang) {
       const langs = ['pt', 'en', 'he'];
       langs.forEach(l => {
@@ -435,6 +519,35 @@
       });
     }
 
+    function formatLanguage(option) {
+  if (!option.id) return option.text;
+
+  const flagUrl = $(option.element).data('flag');
+  return $(
+    `<span><img src="${flagUrl}" style="width:20px; height:auto; margin-right:8px;"> ${option.text}</span>`
+  );
+}
+
+$(document).ready(function () {
+  $('#language-selector').select2({
+    templateResult: formatLanguage,
+    templateSelection: formatLanguage,
+    minimumResultsForSearch: Infinity // hides search box
+  });
+
+  // Call your switchLanguage function when changed
+  $('#language-selector').on('change', function () {
+    const selectedLang = $(this).val();
+    switchLanguage(selectedLang);
+  });
+
+  // Optional: preload saved language
+  const savedLang = localStorage.getItem('language') || 'pt';
+  $('#language-selector').val(savedLang).trigger('change');
+});
+
+
+    //galery
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modal-img');
 
