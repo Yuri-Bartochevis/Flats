@@ -14,260 +14,179 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Flat Jubarte</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap&subset=latin,hebrew" rel="stylesheet">
-  <style>
-    :root {
-      --primary-color: #2e8bc0;   /* ocean blue */
-      --accent-color: #145da0;    /* deeper sea blue */
-      --bg-color: #e0f7fa;        /* light aqua */
-      --text-color: #022c43;      /* dark navy */
-      --sand-color: #fef9ef;      /* soft sand */
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Flat Jubarte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap&subset=latin,hebrew" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <style>
+      :root {
+        --primary-color: #1E88E5;
+        --accent-color: #1565C0;
+        --bg-color: #F5F5F5;
+        --text-color: #1A1A1A;
+        --highlight-color: #E3F2FD;
+        --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
   
-    body {
-      font-family: 'Quicksand', sans-serif;
-      margin: 0;
-      background: var(--bg-color);
-      color: var(--text-color);
-    }
+      * {
+        box-sizing: border-box;
+      }
   
-    header {
-      background: linear-gradient(135deg, #2e8bc0, #145da0);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-      position: relative;
-    }
+      body {
+        font-family: 'Quicksand', sans-serif;
+        margin: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
   
-    header h1 {
-      margin: 0;
-      font-size: 2.2em;
-    }
+      header {
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        color: white;
+        text-align: center;
+        padding: 50px 20px;
+        position: relative;
+      }
   
-    header p {
-      font-size: 1.1em;
-      margin-top: 10px;
-    }
-  
-    .language-selector {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: white;
-      color: var(--text-color);
-      border: none;
-      padding: 6px 10px;
-      border-radius: 4px;
-      font-size: 1em;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-  
-    section {
-      padding: 20px;
-      max-width: 800px;
-      margin: 20px auto;
-      background: var(--sand-color);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-  
-    h2 {
-      color: var(--accent-color);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-  
-    ul {
-      padding-left: 20px;
-    }
-  
-    img {
-      width: 100%;
-      border-radius: 8px;
-      margin: 15px 0;
-    }
-  
-    .wifi-box {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-  
-    .qr {
-      width: 120px;
-    }
-  
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #777;
-      padding: 30px 10px;
-    }
-  
-    .contact {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-  
-    .contact img {
-      width: 20px;
-      height: 20px;
-    }
-  
-    .rtl {
-      direction: rtl;
-      text-align: right;
-    }
-  
-    @media (max-width: 600px) {
       header h1 {
-        font-size: 1.8em;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
       }
   
       header p {
-        font-size: 1em;
+        font-size: 1.2rem;
+        margin: 0.5rem 0;
+      }
+  
+      .language-wrapper {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+  
+      select {
+        padding: 6px 12px;
+        font-size: 1rem;
       }
   
       section {
-        margin: 10px;
-        padding: 15px;
+        background: white;
+        margin: 20px auto;
+        padding: 30px;
+        max-width: 900px;
+        border-radius: 10px;
+        box-shadow: var(--box-shadow);
+      }
+  
+      h2 {
+        color: var(--accent-color);
+        margin-top: 0;
+      }
+  
+      ul {
+        padding-left: 20px;
+      }
+  
+      img {
+        max-width: 100%;
+        border-radius: 8px;
+      }
+  
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 12px;
+        margin-top: 20px;
+      }
+  
+      .gallery img {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+  
+      .gallery img:hover {
+        transform: scale(1.05);
       }
   
       .wifi-box {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        align-items: center;
       }
   
       .qr {
-        width: 100px;
+        width: 120px;
       }
-    }
   
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
-    }
+      .contact {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 15px;
+      }
   
-    .gallery img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+      footer {
+        text-align: center;
+        font-size: 0.9rem;
+        padding: 20px;
+        background: #e3f2fd;
+        color: #333;
+      }
   
-    .gallery img:hover {
-      transform: scale(1.03);
-    }
+      .rtl {
+        direction: rtl;
+        text-align: right;
+      }
   
-    .modal {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.8);
-    }
-  
-    .modal-content {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-    }
-  
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: #fff;
-      font-size: 30px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        section {
+          padding: 20px;
+        }
+      }
+      
+      .beach-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+    
+      .beach-item {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        text-align: center;
+      }
+    
+      .beach-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+    
+      .beach-item h3 {
+        margin: 10px 0 5px;
+        color: #1565C0;
+      }
+    
+      .beach-item p {
+        font-size: 0.95em;
+        color: #444;
+      }
 
-
-    /* 🧼 Clean base */
-.select2-container--default .select2-selection--single {
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  height: auto;
-  padding: 6px 10px;
-  border-radius: 0;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 14px;
-  color: #000;
-  display: flex;
-  align-items: center;
-}
-
-/* 🏷️ Text & icon alignment */
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-  color: #000;
-  padding-left: 0;
-  display: flex;
-  align-items: center;
-}
-
-/* 🖼️ Remove default arrow icon spacing */
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-  top: 50%;
-  right: 8px;
-  transform: translateY(-50%);
-}
-
-/* 📃 Dropdown menu styling */
-.select2-container--default .select2-results > .select2-results__options {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 14px;
-  color: #000;
-}
-
-/* 🏳️ Flag + Text inside dropdown */
-.select2-results__option img {
-  border-radius: 0 !important;       /* no rounding */
-  width: 20px;
-  height: auto;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-
-/* 🏁 Flag in selected box */
-.select2-selection__rendered img {
-  border-radius: 0 !important;       /* no rounding */
-  width: 20px;
-  height: auto;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-
-/* Hover effect (optional) */
-.select2-results__option--highlighted {
-  background-color: #f0f0f0 !important;
-  color: #000 !important;
-}
-
-.language-wrapper {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-}
-
-
-  </style>
-  
-</head>
+    </style>
+  </head>
 <body>
   <header>
     <div class="language-wrapper">
@@ -280,7 +199,7 @@
     
   
     <!-- ✅ Logo added here -->
-    <img src="logo2.png" alt="Logo Jubarte" style="width: 80px; height: auto; margin-bottom: 10px;" />
+    <img src="logo3.png" alt="Logo Jubarte" style="width: 150px; height: auto; margin-bottom: 5px;" />
   
     <h1>Flat Jubarte</h1>
     <p id="subtitle-pt">Sua estadia aconchegante no Edifício Paulo Diniz</p>
@@ -312,25 +231,78 @@
         <img src="img7.jpg" alt="Vista externa do prédio Papagaios">
       </div>
     </section>
+
     <section>
       <h2>📜 Regras da Casa</h2>
+      <p>Por gentileza, cuide do apartamento como se fosse seu. Estas regras ajudam a garantir uma estadia tranquila para todos:</p>
       <ul>
-        <li>🐶 Pet friendly (aceitamos animais)</li>
-        <li>🔇 Silêncio após as 22h</li>
-        <li>🚭 Proibido fumar dentro do flat (use a varanda)</li>
-        <li>⏰ Checkout ao meio-dia</li>
+        <li>👥 <strong>Hóspedes:</strong> Apenas o número de hóspedes aprovado é permitido. Consulte-nos previamente sobre visitas. Reuniões que causem incômodo aos vizinhos não são permitidas.</li>
+        <li>⏰ <strong>Check-in e Check-out:</strong> Respeite os horários combinados. Check-in fora do período definido precisa de autorização prévia.</li>
+        <li>🚭 <strong>Não Fumar Dentro do Apto:</strong> É permitido fumar apenas na varanda. Isso inclui cigarro comum, eletrônico e cannabis.</li>
+        <li>🐶 <strong>Animais de Estimação:</strong> São bem-vindos, salvo exceções informadas na sua reserva. Avise com antecedência.</li>
+        <li>🔇 <strong>Silêncio:</strong> Evite barulhos excessivos, especialmente após as 22h. Som alto não é permitido em nenhum horário.</li>
+        <li>⚠️ <strong>Danos:</strong> Qualquer dano causado deverá ser comunicado. Os hóspedes são responsáveis por reposição ou reparo.</li>
+        <li>🔌 <strong>Antes de Sair:</strong>
+          <ul>
+            <li>Desligue os eletrônicos (ar-condicionado, eletrodomésticos, luzes).</li>
+            <li>Deixe o apartamento organizado.</li>
+            <li>Lave a louça usada e limpe superfícies do banheiro e da cozinha.</li>
+            <li>Leve o lixo até a lixeira sinalizada próxima à entrada.</li>
+            <li>Devolva a chave na caixa indicada ao lado da porta.</li>
+          </ul>
+        </li>
       </ul>
     </section>
+    
     <section>
-      <h2>🌊 Praias Imperdíveis</h2>
-      <ul>
-        <li><strong>Praia da Concha:</strong> Central e relaxante, perfeita para o pôr do sol com água de coco ou caipirinha.</li>
-        <li><strong>Resende, Tiririca, Costa & Ribeira:</strong> Interligadas por trilhas curtas. Tiririca é ótima para surfistas.</li>
-        <li><strong>Havaizinho, Engenhoca & Itacarezinho:</strong> Um pouco mais distantes, selvagens e lindas. Itacarezinho tem clima de beach club sofisticado.</li>
-        <li><strong>Jeribucaçu:</strong> Trilha linda onde o rio encontra o mar. Uma das melhores vistas da região.</li>
-        <li><strong>Prainha:</strong> A praia mais icônica de Itacaré. Trilha de 40 minutos saindo da Ribeira. Vale muito a pena!</li>
-      </ul>
+      <h2>🌊 Praias e Cachoeiras que Você Precisa Conhecer</h2>
+      <p>Se você veio pra Itacaré, prepare-se: tem natureza pra todos os gostos! Aqui vão nossas dicas imperdíveis de praias e cachoeiras pra curtir ao máximo:</p>
+    
+      <div class="beach-list">
+        <!-- Praia da Concha -->
+        <div class="beach-item">
+          <img src="concha.jpg" alt="Praia da Concha" />
+          <h3>🐚 Praia da Concha</h3>
+          <p>Bem no centrinho, tranquila e ótima pra ver o pôr do sol tomando uma água de coco ou uma caipirinha. Puro charme!</p>
+        </div>
+    
+        <!-- Resende / Tiririca / Costa / Ribeira -->
+        <div class="beach-item">
+          <img src="rezende.jpg" alt="Praia do Resende" />
+          <h3>🏄 Resende, Tiririca, Costa & Ribeira</h3>
+          <p>Um combo de praias conectadas por trilhas curtas. Tiririca é point dos surfistas. Ideal pra quem curte explorar e variar o visual.</p>
+        </div>
+    
+        <!-- Havaizinho / Engenhoca / Itacarezinho -->
+        <div class="beach-item">
+          <img src="engenhoca.jpg" alt="Praia de Itacarezinho" />
+          <h3>🌴 Havaizinho, Engenhoca & Itacarezinho</h3>
+          <p>Mais afastadas, com aquele visual selvagem e lindo. Itacarezinho mistura vibe rústica com beach club chique. Vale cada minuto.</p>
+        </div>
+    
+        <!-- Jeribucaçu -->
+        <div class="beach-item">
+          <img src="jeri.jpg" alt="Praia de Jeribucaçu" />
+          <h3>🌅 Jeribucaçu</h3>
+          <p>Natureza total! Uma trilha linda leva até onde o rio encontra o mar. Uma das paisagens mais incríveis da região.</p>
+        </div>
+    
+        <!-- Prainha -->
+        <div class="beach-item">
+          <img src="prainha.jpg" alt="Prainha" />
+          <h3>🥾 Prainha</h3>
+          <p>A queridinha dos aventureiros! Pra chegar, é preciso encarar uma trilha de uns 40 min — mas o visual compensa demais.</p>
+        </div>
+    
+        <!-- Cachoeira do Tijuípe -->
+        <div class="beach-item">
+          <img src="tijuipe.jpg" alt="Cachoeira do Tijuípe" />
+          <h3>💧 Cachoeira do Tijuípe</h3>
+          <p>Quer trocar o sal por água doce? Essa cachoeira é perfeita! Fácil acesso, restaurante gostoso e águas cristalinas pra relaxar depois da praia.</p>
+        </div>
+      </div>
     </section>
+
     <section>
       <h2>📶 Wi-Fi</h2>
       <div class="wifi-box">
@@ -348,13 +320,16 @@
       </div>
     </section>
     <section>
-      <h2>📞 Precisa de Ajuda?</h2>
-      <p>Você pode me mandar mensagem a qualquer momento pelo Airbnb ou entrar em contato direto:</p>
-      <div class="contact">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        <span>+55 11 98296-4498</span>
+      <h2>📞 Precisa de ajuda?</h2>
+      <p>Se você tiver qualquer dúvida ou precisar de ajuda durante a estadia, sinta-se à vontade para me chamar a qualquer momento pelo chat do Airbnb ou diretamente pelo WhatsApp:</p>
+      <div class="contact" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Logo do WhatsApp" style="width: 24px; height: 24px;">
+        <a href="https://wa.me/5511982964498" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+          +55 11 98296-4498
+        </a>
       </div>
     </section>
+    
   </div>
   
 
@@ -385,23 +360,76 @@
     </section>
     <section>
       <h2>📜 House Rules</h2>
+      <p>Please treat the flat as if it were your own. These simple guidelines help ensure a smooth and pleasant stay for everyone:</p>
       <ul>
-        <li>🐶 Pet friendly</li>
-        <li>🔇 No loud noise after 10 PM</li>
-        <li>🚭 No smoking inside (please use the balcony)</li>
-        <li>⏰ Checkout at midday</li>
+        <li>👥 <strong>Guests:</strong> Only the approved number of guests is allowed. Please consult us in advance for visits. Gatherings that disturb neighbors are not permitted.</li>
+        <li>⏰ <strong>Check-in & Check-out:</strong> Respect the agreed check-in and check-out times. Check-in outside the defined period requires prior approval.</li>
+        <li>🚭 <strong>No Smoking Indoors:</strong> Smoking is only allowed on the balcony. This includes tobacco, cannabis, and electronic cigarettes.</li>
+        <li>🐶 <strong>Pets:</strong> Pets are welcome unless otherwise stated in your reservation. Please inform us in advance.</li>
+        <li>🔇 <strong>Noise:</strong> Keep noise to a minimum, especially after 10 PM. Avoid loud music or disturbances at any time.</li>
+        <li>⚠️ <strong>Damages:</strong> Guests are responsible for any damage caused. Please report incidents so we can resolve them together.</li>
+        <li>🔌 <strong>Before You Leave:</strong> 
+          <ul>
+            <li>Turn off all electronics (AC, appliances, lights).</li>
+            <li>Keep things organized and tidy.</li>
+            <li>Wash used dishes and clean surfaces in kitchen and bathroom.</li>
+            <li>Take out the trash to the designated bin near the entrance.</li>
+            <li>Return the key to the lockbox by the door.</li>
+          </ul>
+        </li>
       </ul>
     </section>
+    
     <section>
-      <h2>🌊 Must-See Beaches</h2>
-      <ul>
-        <li><strong>Praia da Concha:</strong> Central and relaxing, perfect for sunsets with coconut water or a caipirinha.</li>
-        <li><strong>Resende, Tiririca, Costa & Ribeira:</strong> Connected by short trails. Tiririca is great for surfers.</li>
-        <li><strong>Havaizinho, Engenhoca & Itacarezinho:</strong> A bit further, wild and beautiful. Itacarezinho has a chic beach club vibe.</li>
-        <li><strong>Jeribucaçu:</strong> Stunning trail, river meets the sea. One of the best views.</li>
-        <li><strong>Prainha:</strong> Iconic Itacaré beach. 40-min hike from Ribeira. Worth it!</li>
-      </ul>
+      <h2>🌊 Must-See Beaches & Waterfalls</h2>
+      <p>If you made it to Itacaré — get ready! This place is packed with natural beauty. From wild beaches to crystal-clear waterfalls, here are our favorite spots you really shouldn’t miss:</p>
+    
+      <div class="beach-list">
+        <!-- Praia da Concha -->
+        <div class="beach-item">
+          <img src="concha.jpg" alt="Praia da Concha" />
+          <h3>🐚 Praia da Concha</h3>
+          <p>Right in town and super chill — perfect for watching the sunset with a coconut water or caipirinha in hand. Total vibe!</p>
+        </div>
+    
+        <!-- Resende / Tiririca / Costa / Ribeira -->
+        <div class="beach-item">
+          <img src="rezende.jpg" alt="Praia do Resende" />
+          <h3>🏄 Resende, Tiririca, Costa & Ribeira</h3>
+          <p>A string of beaches connected by short trails. Tiririca is the go-to for surfers. Great for beach hopping and soaking in the views.</p>
+        </div>
+    
+        <!-- Havaizinho / Engenhoca / Itacarezinho -->
+        <div class="beach-item">
+          <img src="engenhoca.jpg" alt="Itacarezinho Beach" />
+          <h3>🌴 Havaizinho, Engenhoca & Itacarezinho</h3>
+          <p>A little further out and wilder — but totally worth it. Itacarezinho mixes tropical vibes with a fancy beach club feel.</p>
+        </div>
+    
+        <!-- Jeribucaçu -->
+        <div class="beach-item">
+          <img src="jeri.jpg" alt="Jeribucaçu Beach" />
+          <h3>🌅 Jeribucaçu</h3>
+          <p>Hidden paradise! Follow a scenic trail and you’ll find where the river meets the ocean. Unreal scenery.</p>
+        </div>
+    
+        <!-- Prainha -->
+        <div class="beach-item">
+          <img src="prainha.jpg" alt="Prainha" />
+          <h3>🥾 Prainha</h3>
+          <p>The most iconic beach in Itacaré. Takes a 40-minute hike through the forest — but the reward? Pure magic.</p>
+        </div>
+    
+        <!-- Cachoeira do Tijuípe -->
+        <div class="beach-item">
+          <img src="tijuipe.jpg" alt="Cachoeira do Tijuípe" />
+          <h3>💧 Tijuípe Waterfall</h3>
+          <p>Need a break from the beach? Tijuípe is perfect. Easy access, warm and clear water, and even a cozy restaurant right by the falls. Chill mode: on.</p>
+        </div>
+      </div>
     </section>
+    
+    
     <section>
       <h2>📶 Wi-Fi</h2>
       <div class="wifi-box">
@@ -449,25 +477,79 @@
   <img src="img7.jpg" alt="מבט חיצוני של בניין אדיפיסיו פאולו דיניז">
 </div>
     </section>
-    <section>
-      <h2>📜 כללי הבית</h2>
+<section dir="rtl" style="text-align: right;">
+  <h2>📜 כללי הבית</h2>
+  <p>אנא התייחסו לדירה כאילו הייתה שלכם. הכללים הבאים עוזרים לשמור על חוויה נעימה ונוחה לכולם:</p>
+  <ul>
+    <li>👥 <strong>אורחים:</strong> ניתן לארח רק את מספר האורחים המאושר. נא לעדכן מראש על מבקרים. לא ניתן לערוך מסיבות או מפגשים שמפריעים לשכנים.</li>
+    <li>⏰ <strong>צ׳ק-אין וצ׳ק-אאוט:</strong> יש לעמוד בזמנים שנקבעו מראש. הגעה או עזיבה מחוץ לשעות אלה דורשת אישור מראש.</li>
+    <li>🚭 <strong>עישון:</strong> אין לעשן בדירה. עישון מותר רק במרפסת (כולל טבק, קנאביס וסיגריות אלקטרוניות).</li>
+    <li>🐶 <strong>חיות מחמד:</strong> מותר להביא חיות מחמד, כל עוד זה אושר במסגרת ההזמנה. אנא עדכנו אותנו מראש.</li>
+    <li>🔇 <strong>שקט:</strong> נא לשמור על שקט, במיוחד אחרי השעה 22:00. אין להשמיע מוזיקה רועשת בשום שעה.</li>
+    <li>⚠️ <strong>נזקים:</strong> במקרה של נזק, יש להודיע לנו. האורחים אחראים לתיקון או פיצוי בהתאם לצורך.</li>
+    <li>🔌 <strong>לפני העזיבה:</strong>
       <ul>
-        <li>🐶 מותר להביא חיות מחמד</li>
-        <li>🔇 אין רעש אחרי 22:00</li>
-        <li>🚭 אין לעשן בתוך הדירה (מותר במרפסת)</li>
-        <li>⏰ צ'ק אאוט בצהריים</li>
+        <li>כבו את כל המכשירים החשמליים (מזגן, מכשירי חשמל, אורות).</li>
+        <li>השאירו את הדירה מסודרת ונקייה.</li>
+        <li>שטפו כלים והנקו את משטחי המטבח והאמבטיה.</li>
+        <li>זרקו את האשפה לפח המסומן בכניסה לבניין.</li>
+        <li>החזירו את המפתח לתיבת הנעילה שליד הדלת.</li>
       </ul>
-    </section>
-    <section>
-      <h2>🌊 חופים מומלצים</h2>
-      <ul>
-        <li><strong>Praia da Concha:</strong> חוף מרכזי ומושלם לשקיעות עם קוקוס או קאיפיריניה.</li>
-        <li><strong>Resende, Tiririca, Costa & Ribeira:</strong> חופים מחוברים בשבילי הליכה קצרים. Tiririca מתאים לגלישה.</li>
-        <li><strong>Havaizinho, Engenhoca & Itacarezinho:</strong> חופים פראיים ונגישים ברכב או הליכה. Itacarezinho עם אווירה שיקית.</li>
-        <li><strong>Jeribucaçu:</strong> הליכה בטבע, נהר פוגש ים. נוף מדהים.</li>
-        <li><strong>Prainha:</strong> טרק של 40 דקות. קלאסיקה של איטאקארה. שווה כל רגע!</li>
-      </ul>
-    </section>
+    </li>
+  </ul>
+  <p>נשמח לשמוע את דעתכם – כל פידבק עוזר לנו להשתפר! תודה שבחרתם ב-Flat Jubarte Itacaré.</p>
+  <p>עקבו אחרינו באינסטגרם: <a href="https://instagram.com/flat_jubarte_itacare" target="_blank">@flat_jubarte_itacare</a></p>
+</section>
+
+<section dir="rtl" class="rtl">
+  <h2>🌊 חופים ומפלים שאסור לפספס</h2>
+  <p>הגעתם לאיטאקארה? אז תתכוננו להתאהב! הנה כמה מקומות מהממים שאסור לכם לוותר עליהם – חופים, טרקים ומפלים שכל אחד מהם קסום בדרכו:</p>
+
+  <div class="beach-list">
+    <!-- Praia da Concha -->
+    <div class="beach-item">
+      <img src="concha.jpg" alt="Praia da Concha" />
+      <h3>🐚 Praia da Concha</h3>
+      <p>חוף רגוע במרכז העיר – מושלם לשבת מול השקיעה עם קוקוס טרי או קאיפיריניה ביד. אווירה קסומה!</p>
+    </div>
+
+    <!-- Resende / Tiririca / Costa / Ribeira -->
+    <div class="beach-item">
+      <img src="rezende.jpg" alt="Praia do Resende" />
+      <h3>🏄 Resende, Tiririca, Costa & Ribeira</h3>
+      <p>קבוצה של חופים קרובים שמחוברים בשבילי הליכה קצרים. Tiririca הוא מקום לגלישה. מושלם לסיבוב חופים ביום אחד!</p>
+    </div>
+
+    <!-- Havaizinho / Engenhoca / Itacarezinho -->
+    <div class="beach-item">
+      <img src="engenhoca.jpg" alt="Praia de Itacarezinho" />
+      <h3>🌴 Havaizinho, Engenhoca & Itacarezinho</h3>
+      <p>טבע פראי עם אווירה יוקרתית. חופים מרוחקים, שקטים ומדהימים ביופיים. Itacarezinho כולל גם מסעדות וביץ' קלאב.</p>
+    </div>
+
+    <!-- Jeribucaçu -->
+    <div class="beach-item">
+      <img src="jeri.jpg" alt="Praia de Jeribucaçu" />
+      <h3>🌅 Jeribucaçu</h3>
+      <p>חוף נסתר שאליו מגיעים דרך טרק קסום בתוך יער. נחל זורם אל תוך הים – נוף שיגרום לכם לעצור הכל ולבהות.</p>
+    </div>
+
+    <!-- Prainha -->
+    <div class="beach-item">
+      <img src="prainha.jpg" alt="Prainha" />
+      <h3>🥾 Prainha</h3>
+      <p>החוף הכי אייקוני באיטאקארה. הולכים בערך 40 דקות בתוך יער עד שמגיעים לאחת הפינות הכי יפות שתראו בברזיל.</p>
+    </div>
+
+    <!-- Cachoeira do Tijuípe -->
+    <div class="beach-item">
+      <img src="tijuipe.jpg" alt="Cachoeira do Tijuípe" />
+      <h3>💧 מפל Tijuípe</h3>
+      <p>מחפשים להתפנק במים מתוקים? זה המקום! נגיש בקלות, מים חמימים וצלולים, ובצד מסעדה עם אווירה מקומית וטעמים מעולים.</p>
+    </div>
+  </div>
+</section>
+
     <section>
       <h2>📶 אינטרנט אלחוטי</h2>
       <div class="wifi-box">
@@ -478,14 +560,17 @@
         <img src="JubarteGuest-qrcode.png" alt="Wi-Fi QR Code" class="qr"/>
       </div>
     </section>
-    <section>
+    <section dir="rtl" class="rtl">
       <h2>📞 צריכים עזרה?</h2>
-      <p>אפשר לשלוח לי הודעה דרך Airbnb או ליצור קשר ישיר:</p>
-      <div class="contact">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        <span>+55 11 98296-4498</span>
+      <p>אם יש לכם שאלות או שאתם זקוקים לעזרה במהלך השהייה, אפשר לפנות אליי בכל עת דרך ההודעות ב-Airbnb או ישירות ב-WhatsApp:</p>
+      <div class="contact" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="לוגו WhatsApp" style="width: 24px; height: 24px;">
+        <a href="https://wa.me/5511982964498" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+          +55 11 98296-4498
+        </a>
       </div>
     </section>
+    
   </div>
 
   <footer>
