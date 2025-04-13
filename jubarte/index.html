@@ -185,12 +185,19 @@
         color: #444;
       }
 
+      #language-selector {
+        width: 160px;
+      }
+
+      #language-selector option {
+        border-radius: 0px;
+      }
     </style>
   </head>
 <body>
   <header>
     <div class="language-wrapper">
-      <select id="language-selector" style="width: 160px;">
+      <select id="language-selector">
         <option value="pt" data-flag="https://flagcdn.com/w80/br.png">Português</option>
         <option value="en" data-flag="https://flagcdn.com/w80/us.png">English</option>
         <option value="he" data-flag="https://flagcdn.com/w80/il.png">עברית</option>
@@ -199,7 +206,7 @@
     
   
     <!-- ✅ Logo added here -->
-    <img src="logo3.png" alt="Logo Jubarte" style="width: 150px; height: auto; margin-bottom: 5px;" />
+    <img src="logo3.png" alt="Logo Jubarte" style="width: 200px; height: auto" />
   
     <h1>Flat Jubarte</h1>
     <p id="subtitle-pt">Sua estadia aconchegante no Edifício Paulo Diniz</p>
