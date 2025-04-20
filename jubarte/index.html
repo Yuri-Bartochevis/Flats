@@ -46,28 +46,52 @@
         line-height: 1.6;
       }
   
+      /* App bar header using flex pattern */
       header {
         background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
         color: white;
-        text-align: center;
-        padding: 50px 20px;
         position: relative;
       }
-  
-      header h1 {
-        font-size: 2.5rem;
+      header .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        /* reduce left padding to bring logo closer to viewport edge */
+        /* reduced left padding to bring logo further left */
+        /* minimal left padding; flush to container edge */
+        padding: 10px 20px 10px 0;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .header-text h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      }
+      .header-text p {
+        font-size: 0.875rem;
+        margin: 0;
+      }
+      .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      /* Logo styling */
+      .logo {
+        width: 150px;
+        height: auto;
         margin-bottom: 0.5rem;
       }
   
-      header p {
-        font-size: 1.2rem;
-        margin: 0.5rem 0;
-      }
-  
       .language-wrapper {
-        position: absolute;
-        top: 20px;
-        right: 20px;
+        position: static;
       }
   
       select {
@@ -146,8 +170,9 @@
       }
   
       @media (max-width: 600px) {
-        header h1 {
-          font-size: 2rem;
+        /* Mobile: add side padding to keep logo off edge */
+        header .header-inner {
+          padding: 10px 20px;
         }
         section {
           padding: 20px;
@@ -259,10 +284,7 @@
       }
       /* Theme toggle button */
       .theme-wrapper {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        z-index: 1100;
+        position: static;
       }
       #theme-toggle {
         background: rgba(255, 255, 255, 0.2);
@@ -339,27 +361,31 @@
   <!-- Live announcer for accessibility -->
   <div id="aria-announcer" aria-live="polite" class="sr-only"></div>
   <header>
-    <div class="language-wrapper">
-      <select id="language-selector">
-        <option value="pt" data-flag="https://flagcdn.com/w80/br.png">Português</option>
-        <option value="en" data-flag="https://flagcdn.com/w80/us.png">English</option>
-        <option value="he" data-flag="https://flagcdn.com/w80/il.png">עברית</option>
-      </select>
+    <div class="header-inner">
+      <div class="header-left">
+        <img src="logo3.png" alt="Logo Jubarte" class="logo" />
+        <div class="header-text">
+          <h1>Flat Jubarte</h1>
+          <p id="subtitle-pt">Sua estadia aconchegante no Edifício Paulo Diniz</p>
+          <p id="subtitle-en" style="display:none;">Your cozy stay in Edifício Paulo Diniz</p>
+          <p id="subtitle-he" style="display:none;" class="rtl">השְּׁהִיָּה הנעימה שלך באדיפיסיו פאולו דיניז</p>
+        </div>
+      </div>
+      <div class="header-controls">
+        <div class="language-wrapper">
+          <select id="language-selector">
+            <option value="pt" data-flag="https://flagcdn.com/w80/br.png">Português</option>
+            <option value="en" data-flag="https://flagcdn.com/w80/us.png">English</option>
+            <option value="he" data-flag="https://flagcdn.com/w80/il.png">עברית</option>
+          </select>
+        </div>
+        <div class="theme-wrapper">
+          <button id="theme-toggle" aria-label="Switch to dark mode">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="theme-wrapper">
-      <button id="theme-toggle" aria-label="Switch to dark mode">
-        <i class="fas fa-moon" aria-hidden="true"></i>
-      </button>
-    </div>
-    
-  
-    <!-- ✅ Logo added here -->
-    <img src="logo3.png" alt="Logo Jubarte" style="width: 200px; height: auto" />
-  
-    <h1>Flat Jubarte</h1>
-    <p id="subtitle-pt">Sua estadia aconchegante no Edifício Paulo Diniz</p>
-    <p id="subtitle-en" style="display:none;">Your cozy stay in Edifício Paulo Diniz</p>
-    <p id="subtitle-he" style="display:none;" class="rtl">השְּׁהִיָּה הנעימה שלך באדיפיסיו פאולו דיניז</p>
   </header>
   <main id="main-content">
   <div id="lang-pt">
