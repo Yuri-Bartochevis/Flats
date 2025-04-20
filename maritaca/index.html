@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+  <!-- SEO & PWA -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Flat Maritaca in Itacaré offers modern and cozy accommodation with full amenities, gallery, house rules, and top beaches & waterfalls." />
+  <meta property="og:title" content="Flat Maritaca" />
+  <meta property="og:description" content="Cozy flat in Itacaré with modern decor, full amenities, gallery, house rules, and best local spots." />
+  <meta property="og:image" content="images/maritaca.png" />
+  <meta property="og:url" content="./index.html" />
+  <link rel="icon" href="images/maritaca.png" />
+  <link rel="manifest" href="manifest.json" />
+  <!-- Font Awesome for professional icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <title>Flat Maritaca</title>
+  <!-- Typography -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap&subset=latin,hebrew" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <style>
       html { scroll-behavior: smooth; }
+      /* Accessibility helpers */
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+      }
+      .skip-link {
+        position: absolute; top: -40px; left: 0;
+        background: var(--primary-color); color: white;
+        padding: 8px 16px; z-index: 1000;
+        transition: top 0.3s ease;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
       :root {
         --primary-color: #388E3C;        /* rich jungle green */
         --accent-color: #66BB6A;         /* vibrant light green */
@@ -269,6 +293,34 @@
       #theme-toggle:focus {
         outline: 2px solid var(--accent-color);
       }
+      /* Table of Contents nav */
+      .toc {
+        display: block;
+        background: var(--section-bg);
+        padding: 0.5em 1em;
+        margin: 1em auto;
+        border-radius: 8px;
+        box-shadow: var(--box-shadow);
+        max-width: 900px;
+      }
+      .toc ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1em;
+        padding: 0;
+        margin: 0;
+      }
+      .toc a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .toc a:hover,
+      .toc a:focus {
+        text-decoration: underline;
+      }
       /* Back-to-top button */
       #back-to-top {
         position: fixed;
@@ -280,12 +332,14 @@
         border-radius: 50%;
         width: 44px;
         height: 44px;
-        display: none;
         align-items: center;
         justify-content: center;
         font-size: 1.5rem;
         cursor: pointer;
         z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
       }
       #back-to-top:focus {
         outline: 2px solid var(--accent-color);
@@ -327,16 +381,19 @@
       .floating-whatsapp:hover {
         background: var(--accent-color);
       }
-      .floating-whatsapp img {
-        width: 32px;
-        height: 32px;
+      .floating-whatsapp i {
+        font-size: 1.5rem;
+        color: white;
       }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Removed jQuery/Select2 for performance; using vanilla JS instead -->
     
   </head>
 <body>
+  <!-- Skip to content for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- Live announcer for accessibility -->
+  <div id="aria-announcer" aria-live="polite" class="sr-only"></div>
   <header>
     <div class="language-wrapper">
       <select id="language-selector">
@@ -346,7 +403,9 @@
       </select>
     </div>
     <div class="theme-wrapper">
-      <button id="theme-toggle" aria-label="Switch to dark mode">🌙</button>
+      <button id="theme-toggle" aria-label="Switch to dark mode">
+        <i class="fas fa-moon" aria-hidden="true"></i>
+      </button>
     </div>
     
   
@@ -358,15 +417,27 @@
     <p id="subtitle-en" style="display:none;">Your cozy stay in Edifício Papagaios</p>
     <p id="subtitle-he" style="display:none;" class="rtl">השְּׁהִיָּה הנעימה שלך באדיפיסיו פאולו דיניז</p>
   </header>
+  <main id="main-content">
   <div id="lang-pt">
-    <section>
+    <!-- Table of Contents (PT) -->
+    <nav class="toc" aria-label="Índice">
+      <ul>
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#gallery">Galeria</a></li>
+        <li><a href="#rules">Regras da Casa</a></li>
+        <li><a href="#beaches">Praias</a></li>
+        <li><a href="#wifi">Wi-Fi</a></li>
+        <li><a href="#help">Ajuda</a></li>
+      </ul>
+    </nav>
+    <section id="about">
       <div class="notice">
-        <h2>🦜 Você sabia?</h3>
+      <h2><i class="fas fa-info-circle" aria-hidden="true"></i> Você sabia?</h2>
         <p>Apesar do nome <strong>Flat Maritaca</strong>, o belo papagaio no quadro da sala é, na verdade, um <strong>Papagaio-real</strong> — e não uma maritaca! 😱</p>
         <p>Enquanto a maritaca grita, voa em bando e rouba fruta sem vergonha, o papagaio-real observa tudo com elegância... e talvez esteja te julgando em silêncio. 👀💅</p>
       </div>
 
-      <h2>✨ Sobre o Flat</h2>
+      <h2><i class="fas fa-home" aria-hidden="true"></i> Sobre o Flat</h2>
       <p><strong>Flat Maritaca</strong>, localizado em Itacaré, é o refúgio perfeito para quem busca conforto e praticidade. Com uma decoração moderna e acolhedora, o flat oferece uma ampla gama de comodidades para garantir uma estadia agradável.</p>
       <p>É a escolha ideal para curtir Itacaré com conforto e uma localização privilegiada.</p>
       <ul>
@@ -381,20 +452,20 @@
       </ul>
     </section>
     
-      <section>
-      <h2>🖼️ Galeria</h2>
+      <section id="gallery">
+      <h2><i class="fas fa-images" aria-hidden="true"></i> Galeria</h2>
       <div class="gallery">
-        <img src="images/apartment/img1.jpg" alt="Sala de estar do Flat Maritaca">
-        <img src="images/apartment/img2.jpg" alt="Quarto com cama queen size">
-        <img src="images/apartment/img3.jpg" alt="Cozinha equipada">
-        <img src="images/apartment/img5.jpg" alt="Varanda com rede">
-        <img src="images/apartment/img6.jpg" alt="Banheiro moderno">
-        <img src="images/apartment/img7.jpg" alt="Vista externa do prédio Papagaios">
+        <img loading="lazy" src="images/apartment/img1.jpg" alt="Sala de estar do Flat Maritaca">
+        <img loading="lazy" src="images/apartment/img2.jpg" alt="Quarto com cama queen size">
+        <img loading="lazy" src="images/apartment/img3.jpg" alt="Cozinha equipada">
+        <img loading="lazy" src="images/apartment/img5.jpg" alt="Varanda com rede">
+        <img loading="lazy" src="images/apartment/img6.jpg" alt="Banheiro moderno">
+        <img loading="lazy" src="images/apartment/img7.jpg" alt="Vista externa do prédio Papagaios">
       </div>
     </section>
 
-    <section>
-      <h2>📜 Regras da Casa</h2>
+    <section id="rules">
+      <h2><i class="fas fa-file-alt" aria-hidden="true"></i> Regras da Casa</h2>
       <p>Por gentileza, cuide do apartamento como se fosse seu. Estas regras ajudam a garantir uma estadia tranquila para todos:</p>
       <ul>
         <li>👥 <strong>Hóspedes:</strong> Apenas o número de hóspedes aprovado é permitido. Consulte-nos previamente sobre visitas. Reuniões que causem incômodo aos vizinhos não são permitidas.</li>
@@ -415,57 +486,57 @@
       </ul>
     </section>
     
-    <section>
-      <h2>🌊 Praias e Cachoeiras que Você Precisa Conhecer</h2>
+    <section id="beaches">
+      <h2><i class="fas fa-water" aria-hidden="true"></i> Praias e Cachoeiras Imperdíveis</h2>
       <p>Se você veio pra Itacaré, prepare-se: tem natureza pra todos os gostos! Aqui vão nossas dicas imperdíveis de praias e cachoeiras pra curtir ao máximo:</p>
     
       <div class="beach-list">
         <!-- Praia da Concha -->
         <div class="beach-item">
-          <img src="images/must-see/concha.jpg" alt="Praia da Concha" />
+          <img loading="lazy" src="images/must-see/concha.jpg" alt="Praia da Concha" />
           <h3>🐚 Praia da Concha</h3>
           <p>Bem no centrinho, tranquila e ótima pra ver o pôr do sol tomando uma água de coco ou uma caipirinha. Puro charme!</p>
         </div>
     
         <!-- Resende / Tiririca / Costa / Ribeira -->
         <div class="beach-item">
-          <img src="images/must-see/rezende.jpg" alt="Praia do Resende" />
+          <img loading="lazy" src="images/must-see/rezende.jpg" alt="Praia do Resende" />
           <h3>🏄 Resende, Tiririca, Costa & Ribeira</h3>
           <p>Um combo de praias conectadas por trilhas curtas. Tiririca é point dos surfistas. Ideal pra quem curte explorar e variar o visual.</p>
         </div>
     
         <!-- Havaizinho / Engenhoca / Itacarezinho -->
         <div class="beach-item">
-          <img src="images/must-see/engenhoca.jpg" alt="Praia de Itacarezinho" />
+          <img loading="lazy" src="images/must-see/engenhoca.jpg" alt="Praia de Itacarezinho" />
           <h3>🌴 Havaizinho, Engenhoca & Itacarezinho</h3>
           <p>Mais afastadas, com aquele visual selvagem e lindo. Itacarezinho mistura vibe rústica com beach club chique. Vale cada minuto.</p>
         </div>
     
         <!-- Jeribucaçu -->
         <div class="beach-item">
-          <img src="images/must-see/jeri.jpg" alt="Praia de Jeribucaçu" />
+          <img loading="lazy" src="images/must-see/jeri.jpg" alt="Praia de Jeribucaçu" />
           <h3>🌅 Jeribucaçu</h3>
           <p>Natureza total! Uma trilha linda leva até onde o rio encontra o mar. Uma das paisagens mais incríveis da região.</p>
         </div>
     
         <!-- Prainha -->
         <div class="beach-item">
-          <img src="images/must-see/prainha.jpg" alt="Prainha" />
+          <img loading="lazy" src="images/must-see/prainha.jpg" alt="Prainha" />
           <h3>🥾 Prainha</h3>
           <p>A queridinha dos aventureiros! Pra chegar, é preciso encarar uma trilha de uns 40 min — mas o visual compensa demais.</p>
         </div>
     
         <!-- Cachoeira do Tijuípe -->
         <div class="beach-item">
-          <img src="images/must-see/tijuipe.jpg" alt="Cachoeira do Tijuípe" />
+          <img loading="lazy" src="images/must-see/tijuipe.jpg" alt="Cachoeira do Tijuípe" />
           <h3>💧 Cachoeira do Tijuípe</h3>
           <p>Quer trocar o sal por água doce? Essa cachoeira é perfeita! Fácil acesso, restaurante gostoso e águas cristalinas pra relaxar depois da praia.</p>
         </div>
       </div>
     </section>
 
-    <section>
-      <h2>📶 Wi-Fi</h2>
+    <section id="wifi">
+      <h2><i class="fas fa-wifi" aria-hidden="true"></i> Wi-Fi</h2>
       <div class="wifi-box">
         <div>
           <p><strong>Rede:</strong> MaritacaGuest</p>
@@ -480,25 +551,37 @@
         <img src="images/MaritacaGuest-qrcode.png" alt="Wi-Fi QR Code" class="qr"/>
       </div>
     </section>
-    <section>
-      <h2>📞 Precisa de ajuda?</h2>
+    <section id="help">
+      <h2><i class="fas fa-headset" aria-hidden="true"></i> Precisa de ajuda?</h2>
       <p>Para suporte imediato, clique no ícone do WhatsApp no canto inferior direito para iniciar um chat comigo a qualquer momento. Se preferir, você também pode usar o chat do Airbnb.</p>
     </section>
     
   </div>
+  <!-- main continues to wrap all language sections -->
   
 
   <div id="lang-en" style="display:none;">
-    <section>
+    <!-- Table of Contents (EN) -->
+    <nav class="toc" aria-label="Table of Contents">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#rules">House Rules</a></li>
+        <li><a href="#beaches">Beaches</a></li>
+        <li><a href="#wifi">Wi-Fi</a></li>
+        <li><a href="#help">Help</a></li>
+      </ul>
+    </nav>
+    <section id="about">
       <div class="notice">
-        <h2>🦜 Did you know?</h2>
+        <h2><i class="fas fa-info-circle" aria-hidden="true"></i> Did you know?</h2>
         <p>The word <strong>"Maritaca"</strong> is commonly used in Brazil to refer to large parakeets or small parrots, known for their loud voices and playful attitude.</p>
         <p>In fact, in Brazilian Portuguese, calling someone a "maritaca" means they talk too much — like: “That guy talks more than a maritaca!”</p>
         <p>That said, despite the name <strong>Flat Maritaca</strong>, the beautiful bird in the living room painting is actually a <strong>Blue-fronted Amazon</strong> — not a maritaca! 😱</p>
         <p>While maritacas scream, fly in noisy flocks, and shamelessly steal fruit, the Amazon parrot watches everything with elegance... and might just be silently judging your outfit. 👀💅</p>
       </div>
     
-      <h2>✨ About the Flat</h2>
+      <h2><i class="fas fa-home" aria-hidden="true"></i> About the Flat</h2>
       <p><strong>Flat Maritaca</strong>, located in Itacaré, is the perfect getaway for those seeking comfort and convenience. With modern and cozy decor, the flat offers a wide range of amenities to ensure a pleasant stay.</p>
       <p>It’s the ideal choice to enjoy Itacaré with both comfort and a privileged location.</p>
       <ul>
@@ -513,20 +596,20 @@
       </ul>
     </section>
 
-    <section>
-      <h2>🖼️ Gallery</h2>
+    <section id="gallery">
+      <h2><i class="fas fa-images" aria-hidden="true"></i> Gallery</h2>
       <div class="gallery">
-        <img src="images/apartment/img1.jpg" alt="Sala de estar do Flat Maritaca">
-        <img src="images/apartment/img2.jpg" alt="Quarto com cama queen size">
-        <img src="images/apartment/img3.jpg" alt="Cozinha equipada">
-        <img src="images/apartment/img5.jpg" alt="Varanda com rede">
-        <img src="images/apartment/img6.jpg" alt="Banheiro moderno">
-        <img src="images/apartment/img7.jpg" alt="Vista externa do prédio Papagaios">
+        <img loading="lazy" src="images/apartment/img1.jpg" alt="Living room at Flat Maritaca">
+        <img loading="lazy" src="images/apartment/img2.jpg" alt="Bedroom with queen size bed">
+        <img loading="lazy" src="images/apartment/img3.jpg" alt="Fully equipped kitchen">
+        <img loading="lazy" src="images/apartment/img5.jpg" alt="Balcony with hammock">
+        <img loading="lazy" src="images/apartment/img6.jpg" alt="Modern bathroom">
+        <img loading="lazy" src="images/apartment/img7.jpg" alt="External view of Papagaios building">
       </div>
     </section>
     
-    <section>
-      <h2>📜 House Rules</h2>
+    <section id="rules">
+      <h2><i class="fas fa-file-alt" aria-hidden="true"></i> House Rules</h2>
       <p>Please treat the flat as if it were your own. These simple guidelines help ensure a smooth and pleasant stay for everyone:</p>
       <ul>
         <li>👥 <strong>Guests:</strong> Only the approved number of guests is allowed. Please consult us in advance for visits. Gatherings that disturb neighbors are not permitted.</li>
@@ -547,49 +630,49 @@
       </ul>
     </section>
     
-    <section>
-      <h2>🌊 Must-See Beaches & Waterfalls</h2>
+    <section id="beaches">
+      <h2><i class="fas fa-water" aria-hidden="true"></i> Must-See Beaches & Waterfalls</h2>
       <p>If you made it to Itacaré — get ready! This place is packed with natural beauty. From wild beaches to crystal-clear waterfalls, here are our favorite spots you really shouldn’t miss:</p>
     
       <div class="beach-list">
         <!-- Praia da Concha -->
         <div class="beach-item">
-          <img src="images/must-see/concha.jpg" alt="Praia da Concha" />
+          <img loading="lazy" src="images/must-see/concha.jpg" alt="Praia da Concha" />
           <h3>🐚 Praia da Concha</h3>
           <p>Right in town and super chill — perfect for watching the sunset with a coconut water or caipirinha in hand. Total vibe!</p>
         </div>
     
         <!-- Resende / Tiririca / Costa / Ribeira -->
         <div class="beach-item">
-          <img src="images/must-see/rezende.jpg" alt="Praia do Resende" />
+          <img loading="lazy" src="images/must-see/rezende.jpg" alt="Praia do Resende" />
           <h3>🏄 Resende, Tiririca, Costa & Ribeira</h3>
           <p>A string of beaches connected by short trails. Tiririca is the go-to for surfers. Great for beach hopping and soaking in the views.</p>
         </div>
     
         <!-- Havaizinho / Engenhoca / Itacarezinho -->
         <div class="beach-item">
-          <img src="images/must-see/engenhoca.jpg" alt="Itacarezinho Beach" />
+          <img loading="lazy" src="images/must-see/engenhoca.jpg" alt="Itacarezinho Beach" />
           <h3>🌴 Havaizinho, Engenhoca & Itacarezinho</h3>
           <p>A little further out and wilder — but totally worth it. Itacarezinho mixes tropical vibes with a fancy beach club feel.</p>
         </div>
     
         <!-- Jeribucaçu -->
         <div class="beach-item">
-          <img src="images/must-see/jeri.jpg" alt="Jeribucaçu Beach" />
+          <img loading="lazy" src="images/must-see/jeri.jpg" alt="Jeribucaçu Beach" />
           <h3>🌅 Jeribucaçu</h3>
           <p>Hidden paradise! Follow a scenic trail and you’ll find where the river meets the ocean. Unreal scenery.</p>
         </div>
     
         <!-- Prainha -->
         <div class="beach-item">
-          <img src="images/must-see/prainha.jpg" alt="Prainha" />
+          <img loading="lazy" src="images/must-see/prainha.jpg" alt="Prainha" />
           <h3>🥾 Prainha</h3>
           <p>The most iconic beach in Itacaré. Takes a 40-minute hike through the forest — but the reward? Pure magic.</p>
         </div>
     
         <!-- Cachoeira do Tijuípe -->
         <div class="beach-item">
-          <img src="images/must-see/tijuipe.jpg" alt="Cachoeira do Tijuípe" />
+          <img loading="lazy" src="images/must-see/tijuipe.jpg" alt="Cachoeira do Tijuípe" />
           <h3>💧 Tijuípe Waterfall</h3>
           <p>Need a break from the beach? Tijuípe is perfect. Easy access, warm and clear water, and even a cozy restaurant right by the falls. Chill mode: on.</p>
         </div>
@@ -597,8 +680,8 @@
     </section>
     
     
-    <section>
-      <h2>📶 Wi-Fi</h2>
+    <section id="wifi">
+      <h2><i class="fas fa-wifi" aria-hidden="true"></i> Wi-Fi</h2>
       <div class="wifi-box">
         <div>
           <p><strong>Network:</strong> MaritacaGuest</p>
@@ -607,24 +690,35 @@
         <img src="images/MaritacaGuest-qrcode.png" alt="Wi-Fi QR Code" class="qr"/>
       </div>
     </section>
-    <section>
-      <h2>📞 Need Help?</h2>
+    <section id="help">
+      <h2><i class="fas fa-headset" aria-hidden="true"></i> Need Help?</h2>
       <p>For instant support, tap the WhatsApp icon at the bottom right corner of your screen to start a chat with me anytime. You can also use Airbnb messaging if you prefer.</p>
     </section>
     
   </div>
 
   <div id="lang-he" class="rtl" style="display:none;" dir="rtl">
-    <section>
+    <!-- Table of Contents (HE) -->
+    <nav class="toc" aria-label="תוכן העניינים">
+      <ul>
+        <li><a href="#about">על הדירה</a></li>
+        <li><a href="#gallery">גלריה</a></li>
+        <li><a href="#rules">כללי הבית</a></li>
+        <li><a href="#beaches">חופים</a></li>
+        <li><a href="#wifi">אינטרנט אלחוטי</a></li>
+        <li><a href="#help">עזרה</a></li>
+      </ul>
+    </nav>
+    <section id="about">
       <div class="notice rtl">
-        <h2>🦜 ?ידעת</h2>
+        <h2><i class="fas fa-info-circle" aria-hidden="true"></i> ?ידעת</h2>
         <p>המילה <strong>"Maritaca"</strong> נפוצה בברזיל ומשמשת לתיאור סוגים של דררות או תוכיים קטנים — ציפורים רועשות, חברותיות וערמומיות.</p>
         <p>בברזילית, אפילו נהוג לקרוא למישהו שמדבר יותר מדי "מריטקה" — כמו: “הוא מדבר יותר ממריטקה!”</p>
         <p>אבל שים לב — למרות השם <strong>Flat Maritaca</strong>, התוכי שבתמונה בסלון הוא בעצם <strong>תוכי אמזונס כחול-מצח</strong>, ולא מריטקה! 😱</p>
         <p>בעוד המריטקות צורחות, עפות בלהקות וגונבות פירות בלי בושה, תוכי האמזונס משקיף בשקט... ואולי אפילו שופט אותך בלב. 👀💅</p>
       </div>
     
-      <h2 style="direction: rtl;">✨ על הדירה</h2>
+      <h2 style="direction: rtl;"><i class="fas fa-home" aria-hidden="true"></i> על הדירה</h2>
       <p style="direction: rtl;"><strong>Flat Maritaca</strong>, הממוקמת באיטאקרה, היא המקום המושלם למי שמחפש נוחות ונעימות. עם עיצוב מודרני וחמים, הדירה מציעה מגוון שירותים שיהפכו את השהות שלכם לנעימה במיוחד.</p>
       <p style="direction: rtl;">זוהי הבחירה האידיאלית ליהנות מאיטאקרה עם נוחות ומיקום מצוין.</p>
       <ul style="direction: rtl;">
@@ -639,19 +733,19 @@
       </ul>
     </section>
 
-    <section>
+    <section id="gallery">
 <div class="gallery">
-  <h2>🖼️ Gallery</h2>
-  <img src="images/apartment/img1.jpg" alt="סלון של דירת ג'ובארט">
-  <img src="images/apartment/img2.jpg" alt="חדר שינה עם מיטת קווין">
-  <img src="images/apartment/img3.jpg" alt="מטבח מאובזר לגמרי">
-  <img src="images/apartment/img5.jpg" alt="מרפסת עם ערסל">
-  <img src="images/apartment/img6.jpg" alt="חדר רחצה מודרני">
-  <img src="images/apartment/img7.jpg" alt="מבט חיצוני של בניין אדיפיסיו פאולו דיניז">
+  <h2><i class="fas fa-images" aria-hidden="true"></i> Gallery</h2>
+  <img loading="lazy" src="images/apartment/img1.jpg" alt="סלון של דירת ג'ובארט">
+  <img loading="lazy" src="images/apartment/img2.jpg" alt="חדר שינה עם מיטת קווין">
+  <img loading="lazy" src="images/apartment/img3.jpg" alt="מטבח מאובזר לגמרי">
+  <img loading="lazy" src="images/apartment/img5.jpg" alt="מרפסת עם ערסל">
+  <img loading="lazy" src="images/apartment/img6.jpg" alt="חדר רחצה מודרני">
+  <img loading="lazy" src="images/apartment/img7.jpg" alt="מבט חיצוני של בניין אדיפיסיו פאולו דיניז">
 </div>
     </section>
-<section dir="rtl" style="text-align: right;">
-  <h2>📜 כללי הבית</h2>
+  <section id="rules" dir="rtl" style="text-align: right;">
+  <h2><i class="fas fa-file-alt" aria-hidden="true"></i> כללי הבית</h2>
   <p>אנא התייחסו לדירה כאילו הייתה שלכם. הכללים הבאים עוזרים לשמור על חוויה נעימה ונוחה לכולם:</p>
   <ul>
     <li>👥 <strong>אורחים:</strong> ניתן לארח רק את מספר האורחים המאושר. נא לעדכן מראש על מבקרים. לא ניתן לערוך מסיבות או מפגשים שמפריעים לשכנים.</li>
@@ -674,57 +768,57 @@
   <p>עקבו אחרינו באינסטגרם: <a href="https://instagram.com/flat_maritaca" target="_blank">@flat_maritaca</a></p>
 </section>
 
-<section dir="rtl" class="rtl">
-  <h2>🌊 חופים ומפלים שאסור לפספס</h2>
+  <section id="beaches" dir="rtl" class="rtl">
+  <h2><i class="fas fa-water" aria-hidden="true"></i> חופים ומפלים שאסור לפספס</h2>
   <p>הגעתם לאיטאקארה? אז תתכוננו להתאהב! הנה כמה מקומות מהממים שאסור לכם לוותר עליהם – חופים, טרקים ומפלים שכל אחד מהם קסום בדרכו:</p>
 
   <div class="beach-list">
     <!-- Praia da Concha -->
     <div class="beach-item">
-      <img src="images/must-see/concha.jpg" alt="Praia da Concha" />
+      <img loading="lazy" src="images/must-see/concha.jpg" alt="Praia da Concha" />
       <h3>🐚 Praia da Concha</h3>
       <p>חוף רגוע במרכז העיר – מושלם לשבת מול השקיעה עם קוקוס טרי או קאיפיריניה ביד. אווירה קסומה!</p>
     </div>
 
     <!-- Resende / Tiririca / Costa / Ribeira -->
     <div class="beach-item">
-      <img src="images/must-see/rezende.jpg" alt="Praia do Resende" />
+      <img loading="lazy" src="images/must-see/rezende.jpg" alt="Praia do Resende" />
       <h3>🏄 Resende, Tiririca, Costa & Ribeira</h3>
       <p>קבוצה של חופים קרובים שמחוברים בשבילי הליכה קצרים. Tiririca הוא מקום לגלישה. מושלם לסיבוב חופים ביום אחד!</p>
     </div>
 
     <!-- Havaizinho / Engenhoca / Itacarezinho -->
     <div class="beach-item">
-      <img src="images/must-see/engenhoca.jpg" alt="Praia de Itacarezinho" />
+      <img loading="lazy" src="images/must-see/engenhoca.jpg" alt="Praia de Itacarezinho" />
       <h3>🌴 Havaizinho, Engenhoca & Itacarezinho</h3>
       <p>טבע פראי עם אווירה יוקרתית. חופים מרוחקים, שקטים ומדהימים ביופיים. Itacarezinho כולל גם מסעדות וביץ' קלאב.</p>
     </div>
 
     <!-- Jeribucaçu -->
     <div class="beach-item">
-      <img src="images/must-see/jeri.jpg" alt="Praia de Jeribucaçu" />
+      <img loading="lazy" src="images/must-see/jeri.jpg" alt="Praia de Jeribucaçu" />
       <h3>🌅 Jeribucaçu</h3>
       <p>חוף נסתר שאליו מגיעים דרך טרק קסום בתוך יער. נחל זורם אל תוך הים – נוף שיגרום לכם לעצור הכל ולבהות.</p>
     </div>
 
     <!-- Prainha -->
     <div class="beach-item">
-      <img src="images/must-see/prainha.jpg" alt="Prainha" />
+      <img loading="lazy" src="images/must-see/prainha.jpg" alt="Prainha" />
       <h3>🥾 Prainha</h3>
       <p>החוף הכי אייקוני באיטאקארה. הולכים בערך 40 דקות בתוך יער עד שמגיעים לאחת הפינות הכי יפות שתראו בברזיל.</p>
     </div>
 
     <!-- Cachoeira do Tijuípe -->
     <div class="beach-item">
-      <img src="images/must-see/tijuipe.jpg" alt="Cachoeira do Tijuípe" />
+      <img loading="lazy" src="images/must-see/tijuipe.jpg" alt="Cachoeira do Tijuípe" />
       <h3>💧 מפל Tijuípe</h3>
       <p>מחפשים להתפנק במים מתוקים? זה המקום! נגיש בקלות, מים חמימים וצלולים, ובצד מסעדה עם אווירה מקומית וטעמים מעולים.</p>
     </div>
   </div>
 </section>
 
-    <section>
-      <h2>📶 אינטרנט אלחוטי</h2>
+    <section id="wifi">
+      <h2><i class="fas fa-wifi" aria-hidden="true"></i> אינטרנט אלחוטי</h2>
       <div class="wifi-box">
         <div>
           <p><strong>שם הרשת:</strong> MaritacaGuest</p>
@@ -733,38 +827,52 @@
         <img src="images/MaritacaGuest-qrcode.png" alt="Wi-Fi QR Code" class="qr"/>
       </div>
     </section>
-    <section dir="rtl" class="rtl">
-      <h2>📞 צריכים עזרה?</h2>
+    <section id="help" dir="rtl" class="rtl">
+      <h2><i class="fas fa-headset" aria-hidden="true"></i> צריכים עזרה?</h2>
       <p>לקבלת תמיכה מיידית, לחצו על סמל ה-WhatsApp בפינה הימנית התחתונה כדי לשוחח איתי בכל עת. ניתן גם להשתמש בהודעות Airbnb אם תעדיפו.</p>
     </section>
     
   </div>
 
+  </main>
   <footer>
     &copy; 2025 Maritaca @ Edifício Papagaios – Obrigado, תודה רבה, and enjoy your stay! ☀️<br>
     <a href="https://www.instagram.com/flat_maritaca" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width: 20px; height: 20px;">
-      @flat_maritaca
+      <i class="fab fa-instagram" aria-hidden="true"></i>
+      <span class="sr-only">Instagram @flat_maritaca</span>
+      <span>@flat_maritaca</span>
     </a>
   </footer>
   <!-- Floating WhatsApp Chat Button -->
-  <a href="https://wa.me/5511982964498" class="whatsapp-button floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" />
+  <a href="https://wa.me/5511982964498" class="floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
   </a>
+  <!-- Back to Top Button -->
+  <button id="back-to-top" aria-label="Back to top">↑</button>
 
   <script>
   // Theme toggle setup
   const themeToggle = document.getElementById('theme-toggle');
-  const currentTheme = localStorage.getItem('theme') || 'light';
+  // Determine initial theme: saved preference or OS setting, default to light
+  const savedTheme = localStorage.getItem('theme');
+  let currentTheme;
+  if (savedTheme) {
+    currentTheme = savedTheme;
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    currentTheme = 'dark';
+  } else {
+    currentTheme = 'light';
+  }
   if (currentTheme === 'dark') {
     document.documentElement.classList.add('dark-mode');
     if (themeToggle) {
-      themeToggle.textContent = '☀️';
+      themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
       themeToggle.setAttribute('aria-label', 'Switch to light mode');
     }
   } else {
+    document.documentElement.classList.remove('dark-mode');
     if (themeToggle) {
-      themeToggle.textContent = '🌙';
+      themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
       themeToggle.setAttribute('aria-label', 'Switch to dark mode');
     }
   }
@@ -773,11 +881,13 @@
       document.documentElement.classList.toggle('dark-mode');
       const newMode = document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
       localStorage.setItem('theme', newMode);
+      document.getElementById('aria-announcer').textContent =
+        `Theme changed to ${newMode} mode`;
       if (newMode === 'dark') {
-        themeToggle.textContent = '☀️';
+        themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
         themeToggle.setAttribute('aria-label', 'Switch to light mode');
       } else {
-        themeToggle.textContent = '🌙';
+        themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
         themeToggle.setAttribute('aria-label', 'Switch to dark mode');
       }
     });
@@ -807,50 +917,64 @@
       document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
     }
 
-    function formatLanguage(option) {
-  if (!option.id) return option.text;
+    // Removed Select2 formatting (using vanilla JS)
 
-  const flagUrl = $(option.element).data('flag');
-  return $(
-    `<span><img src="${flagUrl}" style="width:20px; height:auto; margin-right:8px;"> ${option.text}</span>`
-  );
-}
-
-$(document).ready(function () {
-  $('#language-selector').select2({
-    templateResult: formatLanguage,
-    templateSelection: formatLanguage,
-    minimumResultsForSearch: Infinity // hides search box
-  });
-
-  // Call your switchLanguage function when changed
-  $('#language-selector').on('change', function () {
-    const selectedLang = $(this).val();
-    switchLanguage(selectedLang);
-    localStorage.setItem('language', selectedLang);
-  });
-
-  // Optional: preload saved language
-  const savedLang = localStorage.getItem('language') || 'pt';
-  $('#language-selector').val(savedLang).trigger('change');
+// Language selection: vanilla JS
+const languageSelector = document.getElementById('language-selector');
+languageSelector.addEventListener('change', () => {
+  const selectedLang = languageSelector.value;
+  switchLanguage(selectedLang);
+  document.getElementById('aria-announcer').textContent =
+    `Language changed to ${languageSelector.options[languageSelector.selectedIndex].text}`;
+  localStorage.setItem('language', selectedLang);
 });
+// Preload saved language
+const savedLang = localStorage.getItem('language') || 'pt';
+languageSelector.value = savedLang;
+switchLanguage(savedLang);
 
 
-    //galery
+    // Gallery modal accessibility and focus trap
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modal-img');
-
+    const modalClose = modal.querySelector('.modal-close');
+    let lastFocused = null;
     document.querySelectorAll('.gallery img').forEach(img => {
       img.addEventListener('click', () => {
+        lastFocused = document.activeElement;
         modal.style.display = 'flex';
         modalImg.src = img.src;
         modalImg.alt = img.alt;
+        modalClose.focus();
       });
     });
-
     function closeModal() {
       modal.style.display = 'none';
+      if (lastFocused) lastFocused.focus();
     }
+    // Close on backdrop click or Esc key
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
+        closeModal();
+      }
+    });
+    // Back-to-top functionality
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.style.visibility = 'visible';
+        backToTop.style.opacity = '1';
+      } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.visibility = 'hidden';
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
   <!-- Gallery Modal -->
   <div id="modal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true">
