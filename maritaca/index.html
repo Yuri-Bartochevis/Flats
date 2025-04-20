@@ -1,28 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <!-- Select2 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-<!-- jQuery (required by Select2) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Select2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Flat Maritaca</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap&subset=latin,hebrew" rel="stylesheet">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Flat Maritaca</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap&subset=latin,hebrew" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <style>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <style>
+      html { scroll-behavior: smooth; }
       :root {
         --primary-color: #388E3C;        /* rich jungle green */
         --accent-color: #66BB6A;         /* vibrant light green */
@@ -30,6 +15,9 @@
         --text-color: #1B3C2C;           /* deep forest text */
         --highlight-color: #DCEDC8;      /* fresh foliage highlight */
         --box-shadow: 0 4px 6px rgba(0, 64, 0, 0.1); /* deeper shadow tint */
+        --section-bg: white;             /* section background */
+        --card-bg: white;                /* card and beach-item background */
+        --notice-bg: #f4f4f4;            /* notice box background */
       }
     
       * {
@@ -48,17 +36,20 @@
         background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
         color: white;
         text-align: center;
-        padding: 50px 20px;
+        /* Reduced header padding for a more balanced look */
+        padding: 30px 20px;
         position: relative;
       }
     
       header h1 {
-        font-size: 2.5rem;
+        /* Slightly smaller heading to fit reduced header height */
+        font-size: 2rem;
         margin-bottom: 0.5rem;
       }
     
       header p {
-        font-size: 1.2rem;
+        /* Adjust subtitle size for consistency */
+        font-size: 1rem;
         margin: 0.5rem 0;
       }
     
@@ -74,7 +65,7 @@
       }
     
       section {
-        background: white;
+        background: var(--section-bg);
         margin: 20px auto;
         padding: 30px;
         max-width: 900px;
@@ -140,7 +131,7 @@
         font-size: 0.9rem;
         padding: 20px;
         background: var(--highlight-color);
-        color: #2E7D32;
+        color: var(--text-color);
       }
     
       .rtl {
@@ -150,7 +141,8 @@
     
       @media (max-width: 600px) {
         header h1 {
-          font-size: 2rem;
+          /* Mobile: further reduce header title size */
+          font-size: 1.75rem;
         }
         section {
           padding: 20px;
@@ -165,7 +157,7 @@
       }
     
       .beach-item {
-        background: white;
+        background: var(--card-bg);
         padding: 15px;
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0, 64, 0, 0.08);
@@ -189,6 +181,14 @@
         font-size: 0.95em;
         color: #2E7D32;
       }
+      /* Notice/info boxes */
+      .notice {
+        background: var(--notice-bg);
+        padding: 1em;
+        border-radius: 8px;
+        margin-bottom: 1.5em;
+        color: var(--text-color);
+      }
     
       #language-selector {
         width: 160px;
@@ -197,7 +197,143 @@
       #language-selector option {
         border-radius: 0px;
       }
+      .logo {
+        width: 200px;
+        height: auto;
+      }
+      /* Gallery modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+      .modal img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 8px;
+      }
+      .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 24px;
+        font-size: 2rem;
+        color: white;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .modal-close:focus {
+        outline: 2px solid var(--accent-color);
+      }
+      /* Dark Mode Variables */
+      .dark-mode {
+        --bg-color: #1e1e1e;
+        --text-color: #f5f5f5;
+        --highlight-color: #2a2a2a;
+        --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+        --section-bg: #2a2a2a;          /* dark section background */
+        --card-bg: #333333;             /* dark card background */
+        --notice-bg: #3a3a3a;           /* dark notice background */
+      }
+      /* Theme toggle button */
+      .theme-wrapper {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1100;
+      }
+      #theme-toggle {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease;
+      }
+      #theme-toggle:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
+      #theme-toggle:focus {
+        outline: 2px solid var(--accent-color);
+      }
+      /* Back-to-top button */
+      #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1000;
+      }
+      #back-to-top:focus {
+        outline: 2px solid var(--accent-color);
+      }
+      /* WhatsApp button style */
+      .whatsapp-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--primary-color);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .whatsapp-button:hover,
+      .whatsapp-button:focus {
+        background: var(--accent-color);
+      }
+      /* Floating WhatsApp button */
+      .floating-whatsapp {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1100;
+        width: 56px;
+        height: 56px;
+        padding: 0;
+        background: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: var(--box-shadow);
+        transition: background 0.3s ease;
+      }
+      .floating-whatsapp:hover {
+        background: var(--accent-color);
+      }
+      .floating-whatsapp img {
+        width: 32px;
+        height: 32px;
+      }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
   </head>
 <body>
@@ -209,10 +345,13 @@
         <option value="he" data-flag="https://flagcdn.com/w80/il.png">עברית</option>
       </select>
     </div>
+    <div class="theme-wrapper">
+      <button id="theme-toggle" aria-label="Switch to dark mode">🌙</button>
+    </div>
     
   
     <!-- ✅ Logo added here -->
-    <img src="images/maritaca.png" alt="Logo Maritaca" style="width: 200px; height: auto" />
+    <img src="images/maritaca.png" alt="Logo Maritaca" class="logo" />
   
     <h1>Flat Maritaca</h1>
     <p id="subtitle-pt">Sua estadia aconchegante no Edifício Papagaios</p>
@@ -221,7 +360,7 @@
   </header>
   <div id="lang-pt">
     <section>
-      <div style="margin-bottom: 1.5em; background-color: #f4f4f4; padding: 1em; border-radius: 8px;">
+      <div class="notice">
         <h2>🦜 Você sabia?</h3>
         <p>Apesar do nome <strong>Flat Maritaca</strong>, o belo papagaio no quadro da sala é, na verdade, um <strong>Papagaio-real</strong> — e não uma maritaca! 😱</p>
         <p>Enquanto a maritaca grita, voa em bando e rouba fruta sem vergonha, o papagaio-real observa tudo com elegância... e talvez esteja te julgando em silêncio. 👀💅</p>
@@ -343,13 +482,7 @@
     </section>
     <section>
       <h2>📞 Precisa de ajuda?</h2>
-      <p>Se você tiver qualquer dúvida ou precisar de ajuda durante a estadia, sinta-se à vontade para me chamar a qualquer momento pelo chat do Airbnb ou diretamente pelo WhatsApp:</p>
-      <div class="contact" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Logo do WhatsApp" style="width: 24px; height: 24px;">
-        <a href="https://wa.me/5511982964498" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-          +55 11 98296-4498
-        </a>
-      </div>
+      <p>Para suporte imediato, clique no ícone do WhatsApp no canto inferior direito para iniciar um chat comigo a qualquer momento. Se preferir, você também pode usar o chat do Airbnb.</p>
     </section>
     
   </div>
@@ -357,7 +490,7 @@
 
   <div id="lang-en" style="display:none;">
     <section>
-      <div style="margin-bottom: 1.5em; background-color: #f4f4f4; padding: 1em; border-radius: 8px;">
+      <div class="notice">
         <h2>🦜 Did you know?</h2>
         <p>The word <strong>"Maritaca"</strong> is commonly used in Brazil to refer to large parakeets or small parrots, known for their loud voices and playful attitude.</p>
         <p>In fact, in Brazilian Portuguese, calling someone a "maritaca" means they talk too much — like: “That guy talks more than a maritaca!”</p>
@@ -476,20 +609,14 @@
     </section>
     <section>
       <h2>📞 Need Help?</h2>
-      <p>If you have any questions or need assistance during your stay, feel free to reach out at any time. I'm available via Airbnb messaging or directly through WhatsApp:</p>
-      <div class="contact" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" style="width: 24px; height: 24px;">
-        <a href="https://wa.me/5511982964498" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-          +55 11 98296-4498
-        </a>
-      </div>
+      <p>For instant support, tap the WhatsApp icon at the bottom right corner of your screen to start a chat with me anytime. You can also use Airbnb messaging if you prefer.</p>
     </section>
     
   </div>
 
   <div id="lang-he" class="rtl" style="display:none;" dir="rtl">
     <section>
-      <div style="margin-bottom: 1.5em; background-color: #f4f4f4; padding: 1em; border-radius: 8px; direction: rtl;">
+      <div class="notice rtl">
         <h2>🦜 ?ידעת</h2>
         <p>המילה <strong>"Maritaca"</strong> נפוצה בברזיל ומשמשת לתיאור סוגים של דררות או תוכיים קטנים — ציפורים רועשות, חברותיות וערמומיות.</p>
         <p>בברזילית, אפילו נהוג לקרוא למישהו שמדבר יותר מדי "מריטקה" — כמו: “הוא מדבר יותר ממריטקה!”</p>
@@ -608,27 +735,54 @@
     </section>
     <section dir="rtl" class="rtl">
       <h2>📞 צריכים עזרה?</h2>
-      <p>אם יש לכם שאלות או שאתם זקוקים לעזרה במהלך השהייה, אפשר לפנות אליי בכל עת דרך ההודעות ב-Airbnb או ישירות ב-WhatsApp:</p>
-      <div class="contact" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="לוגו WhatsApp" style="width: 24px; height: 24px;">
-        <a href="https://wa.me/5511982964498" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-          +55 11 98296-4498
-        </a>
-      </div>
+      <p>לקבלת תמיכה מיידית, לחצו על סמל ה-WhatsApp בפינה הימנית התחתונה כדי לשוחח איתי בכל עת. ניתן גם להשתמש בהודעות Airbnb אם תעדיפו.</p>
     </section>
     
   </div>
 
   <footer>
     &copy; 2025 Maritaca @ Edifício Papagaios – Obrigado, תודה רבה, and enjoy your stay! ☀️<br>
-    <a href="https://www.instagram.com/flat_maritaca" target="_blank" style="color: #388e3c; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;">
+    <a href="https://www.instagram.com/flat_maritaca" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;">
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width: 20px; height: 20px;">
       @flat_maritaca
     </a>
   </footer>
+  <!-- Floating WhatsApp Chat Button -->
+  <a href="https://wa.me/5511982964498" class="whatsapp-button floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" />
+  </a>
 
   <script>
-
+  // Theme toggle setup
+  const themeToggle = document.getElementById('theme-toggle');
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  if (currentTheme === 'dark') {
+    document.documentElement.classList.add('dark-mode');
+    if (themeToggle) {
+      themeToggle.textContent = '☀️';
+      themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    }
+  } else {
+    if (themeToggle) {
+      themeToggle.textContent = '🌙';
+      themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+    }
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark-mode');
+      const newMode = document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
+      localStorage.setItem('theme', newMode);
+      if (newMode === 'dark') {
+        themeToggle.textContent = '☀️';
+        themeToggle.setAttribute('aria-label', 'Switch to light mode');
+      } else {
+        themeToggle.textContent = '🌙';
+        themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+      }
+    });
+  }
+  
   const actualPassword = 'wifiandwaves';
   let visible = false;
 
@@ -638,6 +792,7 @@
     visible = !visible;
     span.textContent = visible ? actualPassword : '•••••••••••••••••';
     btn.textContent = visible ? '🙈' : '👁️';
+    btn.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
   }
 
 
@@ -648,6 +803,8 @@
         document.getElementById('lang-' + l).style.display = l === lang ? 'block' : 'none';
         document.getElementById('subtitle-' + l).style.display = l === lang ? 'block' : 'none';
       });
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
     }
 
     function formatLanguage(option) {
@@ -670,6 +827,7 @@ $(document).ready(function () {
   $('#language-selector').on('change', function () {
     const selectedLang = $(this).val();
     switchLanguage(selectedLang);
+    localStorage.setItem('language', selectedLang);
   });
 
   // Optional: preload saved language
@@ -694,5 +852,10 @@ $(document).ready(function () {
       modal.style.display = 'none';
     }
   </script>
+  <!-- Gallery Modal -->
+  <div id="modal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true">
+    <button type="button" class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+    <img id="modal-img" alt="" />
+  </div>
 </body>
 </html>
