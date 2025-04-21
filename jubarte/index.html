@@ -329,6 +329,28 @@
         background: var(--section-bg);
         color: var(--text-color);
         border: 1px solid var(--accent-color);
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 1rem;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='%231A1A1A' height='10' viewBox='0 0 20 10' width='20' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,10'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+        transform: translateY(0);
+      }
+      #language-selector:hover {
+        background: var(--accent-color);
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+      }
+      #language-selector:focus {
+        outline: 2px solid var(--primary-color);
       }
       #language-selector option {
         background: var(--section-bg);
@@ -518,10 +540,6 @@
     <section>
       <h2><i class="fas fa-headset" aria-hidden="true"></i> Precisa de ajuda?</h2>
       <p>Para suporte imediato, clique no ícone do WhatsApp no canto inferior direito para iniciar um chat comigo a qualquer momento. Se preferir, você também pode usar o chat do Airbnb.</p>
-      <div class="contact" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Logo do WhatsApp" style="width: 24px; height: 24px;">
-        <a href="https://wa.me/5511982964498" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;"></a>
-      </div>
     </section>
     
   </div>
