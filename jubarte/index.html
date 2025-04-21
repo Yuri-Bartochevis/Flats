@@ -216,13 +216,6 @@
         color: var(--text-color);
       }
 
-      #language-selector {
-        width: 160px;
-      }
-
-      #language-selector option {
-        border-radius: 0px;
-      }
       /* Table of Contents navigation */
       .toc {
         display: block;
@@ -326,6 +319,8 @@
       }
       /* Language selector styling for dark/light modes */
       #language-selector {
+        /* ensure select is wide enough for option text */
+        width: 160px;
         background: var(--section-bg);
         color: var(--text-color);
         border: 1px solid var(--accent-color);
