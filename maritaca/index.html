@@ -688,8 +688,8 @@
           <p><strong>Rede:</strong> MaritacaGuest</p>
           <p>
             <strong>Senha:</strong>
-            <span id="wifi-password">•••••••••••</span>
-            <button id="toggle-password" onclick="togglePassword()" aria-label="Show password">
+            <span id="wifi-password-pt">•••••••••••</span>
+            <button id="toggle-password-pt" onclick="togglePassword('pt')" aria-label="Show password">
               👁️
             </button>
           </p>
@@ -831,7 +831,13 @@
       <div class="wifi-box">
         <div>
           <p><strong>Network:</strong> MaritacaGuest</p>
-          <p><strong>Password:</strong> wifiandwaves</p>
+          <p>
+            <strong>Password:</strong>
+            <span id="wifi-password-en">•••••••••••</span>
+            <button id="toggle-password-en" onclick="togglePassword('en')" aria-label="Show password">
+              👁️
+            </button>
+          </p>
         </div>
         <img src="images/MaritacaGuest-qrcode.png" alt="Wi-Fi QR Code" class="qr"/>
       </div>
@@ -963,14 +969,20 @@
   </div>
 </section>
 
-    <section id="wifi">
+    <section id="wifi" dir="rtl" class="rtl">
       <h2><i class="fas fa-wifi" aria-hidden="true"></i> אינטרנט אלחוטי</h2>
       <div class="wifi-box">
         <div>
           <p><strong>שם הרשת:</strong> MaritacaGuest</p>
-          <p><strong>סיסמה:</strong> wifiandwaves</p>
+          <p>
+            <strong>סיסמה:</strong>
+            <span id="wifi-password-he">•••••••••••</span>
+            <button id="toggle-password-he" onclick="togglePassword('he')" aria-label="הצג סיסמה">
+              👁️
+            </button>
+          </p>
         </div>
-        <img src="images/MaritacaGuest-qrcode.png" alt="Wi-Fi QR Code" class="qr"/>
+        <img src="images/MaritacaGuest-qrcode.png" alt="קוד QR לרשת האינטרנט" class="qr"/>
       </div>
     </section>
     <section id="help" dir="rtl" class="rtl">
@@ -1037,14 +1049,24 @@
       const actualPassword = 'wifiandwaves';
       let visible = false;
 
-      function togglePassword() {
-        const span = document.getElementById('wifi-password');
-        const btn = document.getElementById('toggle-password');
-        visible = !visible;
-        span.textContent = visible ? actualPassword : '•••••••••••••••••';
-        btn.textContent = visible ? '🙈' : '👁️';
-        btn.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
+      function togglePassword(lang) {
+        const span = document.getElementById(`wifi-password-${lang}`);
+        const btn = document.getElementById(`toggle-password-${lang}`);
+        if (span && btn) {
+          visible = !visible;
+          span.textContent = visible ? actualPassword : '•••••••••••••••••';
+          btn.textContent = visible ? '🙈' : '👁️';
+          btn.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
+        }
       }
+
+      // Add event listeners to all toggle buttons
+      ['pt', 'en', 'he'].forEach(lang => {
+        const toggleButton = document.getElementById(`toggle-password-${lang}`);
+        if (toggleButton) {
+          toggleButton.addEventListener('click', () => togglePassword(lang));
+        }
+      });
 
       // Language selection
       function switchLanguage(lang) {
@@ -1055,6 +1077,18 @@
         });
         document.documentElement.lang = lang;
         document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+        
+        // Reset password visibility when language changes
+        visible = false;
+        langs.forEach(l => {
+          const span = document.getElementById(`wifi-password-${l}`);
+          const btn = document.getElementById(`toggle-password-${l}`);
+          if (span && btn) {
+            span.textContent = '•••••••••••••••••';
+            btn.textContent = '👁️';
+            btn.setAttribute('aria-label', 'Show password');
+          }
+        });
       }
 
       // Language selector setup
@@ -1220,17 +1254,33 @@
         
         async fetchWeather() {
           try {
+            console.log('Fetching weather data...');
             const url = `https://api.open-meteo.com/v1/forecast?latitude=${this.latitude}&longitude=${this.longitude}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=America%2FBahia`;
+            console.log('API URL:', url);
+            
             const response = await fetch(url);
+            console.log('API Response status:', response.status);
             
             if (!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`);
             }
             
             const data = await response.json();
+            console.log('Weather data received:', data);
+            
+            // Verify if we have the required elements
+            const weatherTemp = document.getElementById('weather-temp');
+            const weatherIcon = document.getElementById('weather-icon');
+            const weatherDesc = document.getElementById('weather-desc');
+            
+            if (!weatherTemp || !weatherIcon || !weatherDesc) {
+              throw new Error('Weather widget elements not found in the DOM');
+            }
+            
             this.displayWeather(data);
           } catch (error) {
             console.error('Error in fetchWeather:', error);
+            // Display error state in the widget
             const weatherTemp = document.getElementById('weather-temp');
             const weatherIcon = document.getElementById('weather-icon');
             const weatherDesc = document.getElementById('weather-desc');
