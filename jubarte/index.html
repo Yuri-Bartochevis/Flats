@@ -378,6 +378,97 @@
         background: var(--accent-color);
         color: var(--text-color);
       }
+
+      /* Weather widget styles */
+      .weather-widget {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 12px;
+        border-radius: 20px;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 0.9rem;
+        position: relative;
+        cursor: pointer;
+      }
+
+      #weather-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      #weather-icon {
+        font-size: 1.2rem;
+      }
+
+      #weather-temp {
+        font-weight: 600;
+      }
+
+      #weather-desc {
+        display: none;
+      }
+
+      .weather-forecast {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 5px;
+        min-width: 200px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .weather-widget:hover .weather-forecast {
+        display: block;
+      }
+
+      .forecast-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .forecast-item:last-child {
+        border-bottom: none;
+      }
+
+      .forecast-day {
+        font-weight: 600;
+        color: var(--text-color);
+      }
+
+      .forecast-temp {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .dark-mode .weather-widget {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .dark-mode .weather-forecast {
+        background: rgba(30, 30, 30, 0.95);
+      }
+
+      .dark-mode .forecast-day {
+        color: var(--text-color);
+      }
+
+      @media (min-width: 768px) {
+        #weather-desc {
+          display: inline;
+        }
+      }
     </style>
   </head>
 <body>
@@ -397,6 +488,14 @@
         </div>
       </div>
       <div class="header-controls">
+        <div class="weather-widget">
+          <div id="weather-info">
+            <span id="weather-icon"></span>
+            <span id="weather-temp"></span>
+            <span id="weather-desc"></span>
+          </div>
+          <div class="weather-forecast" id="weather-forecast"></div>
+        </div>
         <div class="language-wrapper">
           <select id="language-selector">
             <option value="pt" data-flag="https://flagcdn.com/w80/br.png">Português</option>
@@ -620,6 +719,7 @@
           <h3>🐚 Praia da Concha</h3>
           <p>Right in town and super chill — perfect for watching the sunset with a coconut water or caipirinha in hand. Total vibe!</p>
         </div>
+      
     
         <!-- Resende / Tiririca / Costa / Ribeira -->
         <div class="beach-item">
@@ -825,123 +925,367 @@
   </footer>
 
   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Weather widget functionality
+      const weatherWidget = {
+        latitude: -14.2786,  // Itacaré coordinates
+        longitude: -38.9958,
+        currentLang: 'pt',
+        
+        translations: {
+          pt: {
+            days: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            weather: {
+              0: { icon: '☀️', desc: 'Céu limpo' },
+              1: { icon: '🌤️', desc: 'Parcialmente nublado' },
+              2: { icon: '⛅', desc: 'Parcialmente nublado' },
+              3: { icon: '☁️', desc: 'Nublado' },
+              45: { icon: '🌫️', desc: 'Neblina' },
+              48: { icon: '🌫️', desc: 'Neblina com geada' },
+              51: { icon: '🌦️', desc: 'Chuvisco leve' },
+              53: { icon: '🌦️', desc: 'Chuvisco moderado' },
+              55: { icon: '🌧️', desc: 'Chuvisco forte' },
+              61: { icon: '🌧️', desc: 'Chuva leve' },
+              63: { icon: '🌧️', desc: 'Chuva moderada' },
+              65: { icon: '🌧️', desc: 'Chuva forte' },
+              71: { icon: '🌨️', desc: 'Neve leve' },
+              73: { icon: '🌨️', desc: 'Neve moderada' },
+              75: { icon: '🌨️', desc: 'Neve forte' },
+              77: { icon: '🌨️', desc: 'Grãos de neve' },
+              80: { icon: '🌧️', desc: 'Pancadas de chuva leves' },
+              81: { icon: '🌧️', desc: 'Pancadas de chuva moderadas' },
+              82: { icon: '🌧️', desc: 'Pancadas de chuva fortes' },
+              85: { icon: '🌨️', desc: 'Pancadas de neve leves' },
+              86: { icon: '🌨️', desc: 'Pancadas de neve fortes' },
+              95: { icon: '⛈️', desc: 'Tempestade' },
+              96: { icon: '⛈️', desc: 'Tempestade com granizo leve' },
+              99: { icon: '⛈️', desc: 'Tempestade com granizo forte' }
+            }
+          },
+          en: {
+            days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            weather: {
+              0: { icon: '☀️', desc: 'Clear sky' },
+              1: { icon: '🌤️', desc: 'Mainly clear' },
+              2: { icon: '⛅', desc: 'Partly cloudy' },
+              3: { icon: '☁️', desc: 'Overcast' },
+              45: { icon: '🌫️', desc: 'Foggy' },
+              48: { icon: '🌫️', desc: 'Depositing rime fog' },
+              51: { icon: '🌦️', desc: 'Light drizzle' },
+              53: { icon: '🌦️', desc: 'Moderate drizzle' },
+              55: { icon: '🌧️', desc: 'Dense drizzle' },
+              61: { icon: '🌧️', desc: 'Slight rain' },
+              63: { icon: '🌧️', desc: 'Moderate rain' },
+              65: { icon: '🌧️', desc: 'Heavy rain' },
+              71: { icon: '🌨️', desc: 'Slight snow' },
+              73: { icon: '🌨️', desc: 'Moderate snow' },
+              75: { icon: '🌨️', desc: 'Heavy snow' },
+              77: { icon: '🌨️', desc: 'Snow grains' },
+              80: { icon: '🌧️', desc: 'Slight rain showers' },
+              81: { icon: '🌧️', desc: 'Moderate rain showers' },
+              82: { icon: '🌧️', desc: 'Violent rain showers' },
+              85: { icon: '🌨️', desc: 'Slight snow showers' },
+              86: { icon: '🌨️', desc: 'Heavy snow showers' },
+              95: { icon: '⛈️', desc: 'Thunderstorm' },
+              96: { icon: '⛈️', desc: 'Thunderstorm with slight hail' },
+              99: { icon: '⛈️', desc: 'Thunderstorm with heavy hail' }
+            }
+          },
+          he: {
+            days: ['א\'', 'ב\'', 'ג\'', 'ד\'', 'ה\'', 'ו\'', 'ש\''],
+            weather: {
+              0: { icon: '☀️', desc: 'שמיים בהירים' },
+              1: { icon: '🌤️', desc: 'בעיקר בהיר' },
+              2: { icon: '⛅', desc: 'מעונן חלקית' },
+              3: { icon: '☁️', desc: 'מעונן' },
+              45: { icon: '🌫️', desc: 'ערפל' },
+              48: { icon: '🌫️', desc: 'ערפל עם קרח' },
+              51: { icon: '🌦️', desc: 'טפטוף קל' },
+              53: { icon: '🌦️', desc: 'טפטוף בינוני' },
+              55: { icon: '🌧️', desc: 'טפטוף כבד' },
+              61: { icon: '🌧️', desc: 'גשם קל' },
+              63: { icon: '🌧️', desc: 'גשם בינוני' },
+              65: { icon: '🌧️', desc: 'גשם כבד' },
+              71: { icon: '🌨️', desc: 'שלג קל' },
+              73: { icon: '🌨️', desc: 'שלג בינוני' },
+              75: { icon: '🌨️', desc: 'שלג כבד' },
+              77: { icon: '🌨️', desc: 'פתיתי שלג' },
+              80: { icon: '🌧️', desc: 'ממטרים קלים' },
+              81: { icon: '🌧️', desc: 'ממטרים בינוניים' },
+              82: { icon: '🌧️', desc: 'ממטרים כבדים' },
+              85: { icon: '🌨️', desc: 'ממטרי שלג קלים' },
+              86: { icon: '🌨️', desc: 'ממטרי שלג כבדים' },
+              95: { icon: '⛈️', desc: 'סופת רעמים' },
+              96: { icon: '⛈️', desc: 'סופת רעמים עם ברד קל' },
+              99: { icon: '⛈️', desc: 'סופת רעמים עם ברד כבד' }
+            }
+          }
+        },
+        
+        async fetchWeather() {
+          try {
+            console.log('Fetching weather data...');
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${this.latitude}&longitude=${this.longitude}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=America%2FBahia`;
+            console.log('API URL:', url);
+            
+            const response = await fetch(url);
+            console.log('API Response status:', response.status);
+            
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('Weather data received:', data);
+            
+            // Verify if we have the required elements
+            const weatherTemp = document.getElementById('weather-temp');
+            const weatherIcon = document.getElementById('weather-icon');
+            const weatherDesc = document.getElementById('weather-desc');
+            
+            if (!weatherTemp || !weatherIcon || !weatherDesc) {
+              throw new Error('Weather widget elements not found in the DOM');
+            }
+            
+            this.displayWeather(data);
+          } catch (error) {
+            console.error('Error in fetchWeather:', error);
+            // Display error state in the widget
+            const weatherTemp = document.getElementById('weather-temp');
+            const weatherIcon = document.getElementById('weather-icon');
+            const weatherDesc = document.getElementById('weather-desc');
+            
+            if (weatherTemp) weatherTemp.textContent = '--°C';
+            if (weatherIcon) weatherIcon.textContent = '❌';
+            if (weatherDesc) weatherDesc.textContent = 'Error';
+          }
+        },
 
-  const actualPassword = 'wifiandwaves';
-  let visible = false;
+        setLanguage(lang) {
+          console.log('Setting language to:', lang);
+          this.currentLang = lang;
+          this.fetchWeather();
+        },
 
-  function togglePassword() {
-    const span = document.getElementById('wifi-password');
-    const btn = document.getElementById('toggle-password');
-    visible = !visible;
-    span.textContent = visible ? actualPassword : '•••••••••••••••••';
-    btn.textContent = visible ? '🙈' : '👁️';
-  }
+        displayWeather(data) {
+          try {
+            console.log('Starting displayWeather with data:', data);
+            
+            // Verify if we have the required data
+            if (!data.current || !data.daily) {
+              throw new Error('Invalid weather data structure');
+            }
+            
+            // Display current weather
+            const currentTemp = data.current.temperature_2m;
+            const currentWeatherCode = data.current.weather_code;
+            
+            console.log('Current temperature:', currentTemp);
+            console.log('Current weather code:', currentWeatherCode);
+            
+            const weatherTemp = document.getElementById('weather-temp');
+            const weatherIcon = document.getElementById('weather-icon');
+            const weatherDesc = document.getElementById('weather-desc');
+            
+            if (weatherTemp) weatherTemp.textContent = `${Math.round(currentTemp)}°C`;
+            
+            // Set current weather icon and description
+            const weather = this.getWeatherInfo(currentWeatherCode);
+            console.log('Weather info:', weather);
+            
+            if (weatherIcon) weatherIcon.textContent = weather.icon;
+            if (weatherDesc) weatherDesc.textContent = weather.desc;
 
+            // Display 7-day forecast
+            const forecastContainer = document.getElementById('weather-forecast');
+            if (!forecastContainer) {
+              console.error('Forecast container not found');
+              return;
+            }
+            
+            forecastContainer.innerHTML = '';
+            
+            const days = this.translations[this.currentLang].days;
+            const today = new Date();
+            
+            for (let i = 0; i < 7; i++) {
+              const date = new Date(today);
+              date.setDate(today.getDate() + i);
+              const dayName = days[date.getDay()];
+              
+              const maxTemp = Math.round(data.daily.temperature_2m_max[i]);
+              const minTemp = Math.round(data.daily.temperature_2m_min[i]);
+              const weatherCode = data.daily.weather_code[i];
+              const weather = this.getWeatherInfo(weatherCode);
+              
+              const forecastItem = document.createElement('div');
+              forecastItem.className = 'forecast-item';
+              forecastItem.innerHTML = `
+                <span class="forecast-day">${dayName}</span>
+                <div class="forecast-temp">
+                  <span>${weather.icon}</span>
+                  <span>${maxTemp}°</span>
+                  <span style="opacity: 0.7">${minTemp}°</span>
+                </div>
+              `;
+              
+              forecastContainer.appendChild(forecastItem);
+            }
+          } catch (error) {
+            console.error('Error in displayWeather:', error);
+          }
+        },
 
-  //language selection 
-    function switchLanguage(lang) {
-      const langs = ['pt', 'en', 'he'];
-      langs.forEach(l => {
-        document.getElementById('lang-' + l).style.display = l === lang ? 'block' : 'none';
-        document.getElementById('subtitle-' + l).style.display = l === lang ? 'block' : 'none';
-      });
-    }
+        getWeatherInfo(code) {
+          return this.translations[this.currentLang].weather[code] || { icon: '☀️', desc: this.translations[this.currentLang].weather[0].desc };
+        }
+      };
 
-    function formatLanguage(option) {
-  if (!option.id) return option.text;
-
-  const flagUrl = $(option.element).data('flag');
-  return $(
-    `<span><img src="${flagUrl}" style="width:20px; height:auto; margin-right:8px;"> ${option.text}</span>`
-  );
-}
-
-$(document).ready(function () {
-  $('#language-selector').select2({
-    minimumResultsForSearch: Infinity // hides search box
-  });
-
-  // Call your switchLanguage function when changed
-  $('#language-selector').on('change', function () {
-    const selectedLang = $(this).val();
-    switchLanguage(selectedLang);
-  });
-
-  // Optional: preload saved language
-  const savedLang = localStorage.getItem('language') || 'pt';
-  $('#language-selector').val(savedLang).trigger('change');
-});
-
-
-    //galery
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modal-img');
-
-    document.querySelectorAll('.gallery img').forEach(img => {
-      img.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        modalImg.src = img.src;
-        modalImg.alt = img.alt;
-      });
-    });
-
-    function closeModal() {
-      modal.style.display = 'none';
-    }
-    // Theme toggle setup
-    const themeToggle = document.getElementById('theme-toggle');
-    // Determine initial theme: saved preference or OS setting
-    const savedTheme = localStorage.getItem('theme');
-    let currentTheme;
-    if (savedTheme) {
-      currentTheme = savedTheme;
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      currentTheme = 'dark';
-    } else {
-      currentTheme = 'light';
-    }
-    if (currentTheme === 'dark') {
-      document.documentElement.classList.add('dark-mode');
-      if (themeToggle) {
-        themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
-        themeToggle.setAttribute('aria-label', 'Switch to light mode');
+      // Initialize weather widget
+      console.log('DOM loaded, initializing weather widget...');
+      
+      // Verify if the weather widget elements exist
+      const weatherWidgetEl = document.querySelector('.weather-widget');
+      if (!weatherWidgetEl) {
+        console.error('Weather widget container not found in the DOM');
+      } else {
+        console.log('Weather widget container found');
+        weatherWidget.fetchWeather();
+        
+        // Update weather every 30 minutes
+        setInterval(() => {
+          console.log('Updating weather data...');
+          weatherWidget.fetchWeather();
+        }, 1800000);
       }
-    } else {
-      document.documentElement.classList.remove('dark-mode');
-      if (themeToggle) {
-        themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
-        themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+
+      // Update weather language when site language changes
+      const languageSelector = document.getElementById('language-selector');
+      if (languageSelector) {
+        languageSelector.addEventListener('change', function() {
+          const selectedLang = this.value;
+          console.log('Language changed to:', selectedLang);
+          weatherWidget.setLanguage(selectedLang);
+        });
+      } else {
+        console.error('Language selector not found');
       }
-    }
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark-mode');
-        const newMode = document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
-        localStorage.setItem('theme', newMode);
-        document.getElementById('aria-announcer').textContent =
-          `Theme changed to ${newMode} mode`;
-        if (newMode === 'dark') {
+
+      const actualPassword = 'wifiandwaves';
+      let visible = false;
+
+      function togglePassword() {
+        const span = document.getElementById('wifi-password');
+        const btn = document.getElementById('toggle-password');
+        visible = !visible;
+        span.textContent = visible ? actualPassword : '•••••••••••••••••';
+        btn.textContent = visible ? '🙈' : '👁️';
+      }
+
+      //language selection 
+      function switchLanguage(lang) {
+        const langs = ['pt', 'en', 'he'];
+        langs.forEach(l => {
+          document.getElementById('lang-' + l).style.display = l === lang ? 'block' : 'none';
+          document.getElementById('subtitle-' + l).style.display = l === lang ? 'block' : 'none';
+        });
+      }
+
+      function formatLanguage(option) {
+        if (!option.id) return option.text;
+
+        const flagUrl = $(option.element).data('flag');
+        return $(
+          `<span><img src="${flagUrl}" style="width:20px; height:auto; margin-right:8px;"> ${option.text}</span>`
+        );
+      }
+
+      $(document).ready(function () {
+        $('#language-selector').select2({
+          minimumResultsForSearch: Infinity // hides search box
+        });
+
+        // Call your switchLanguage function when changed
+        $('#language-selector').on('change', function () {
+          const selectedLang = $(this).val();
+          switchLanguage(selectedLang);
+        });
+
+        // Optional: preload saved language
+        const savedLang = localStorage.getItem('language') || 'pt';
+        $('#language-selector').val(savedLang).trigger('change');
+      });
+
+      //galery
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+
+      document.querySelectorAll('.gallery img').forEach(img => {
+        img.addEventListener('click', () => {
+          modal.style.display = 'flex';
+          modalImg.src = img.src;
+          modalImg.alt = img.alt;
+        });
+      });
+
+      function closeModal() {
+        modal.style.display = 'none';
+      }
+      // Theme toggle setup
+      const themeToggle = document.getElementById('theme-toggle');
+      // Determine initial theme: saved preference or OS setting
+      const savedTheme = localStorage.getItem('theme');
+      let currentTheme;
+      if (savedTheme) {
+        currentTheme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        currentTheme = 'dark';
+      } else {
+        currentTheme = 'light';
+      }
+      if (currentTheme === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        if (themeToggle) {
           themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
           themeToggle.setAttribute('aria-label', 'Switch to light mode');
-        } else {
+        }
+      } else {
+        document.documentElement.classList.remove('dark-mode');
+        if (themeToggle) {
           themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
           themeToggle.setAttribute('aria-label', 'Switch to dark mode');
         }
-      });
-    }
+      }
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          document.documentElement.classList.toggle('dark-mode');
+          const newMode = document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
+          localStorage.setItem('theme', newMode);
+          document.getElementById('aria-announcer').textContent =
+            `Theme changed to ${newMode} mode`;
+          if (newMode === 'dark') {
+            themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
+            themeToggle.setAttribute('aria-label', 'Switch to light mode');
+          } else {
+            themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
+            themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+          }
+        });
+      }
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
       });
     });
   </script>

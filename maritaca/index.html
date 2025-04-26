@@ -429,6 +429,96 @@
         font-size: 1.5rem;
         color: white;
       }
+      /* Weather widget styles */
+      .weather-widget {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 12px;
+        border-radius: 20px;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 0.9rem;
+        position: relative;
+        cursor: pointer;
+      }
+
+      #weather-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      #weather-icon {
+        font-size: 1.2rem;
+      }
+
+      #weather-temp {
+        font-weight: 600;
+      }
+
+      #weather-desc {
+        display: none;
+      }
+
+      .weather-forecast {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 5px;
+        min-width: 200px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .weather-widget:hover .weather-forecast {
+        display: block;
+      }
+
+      .forecast-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .forecast-item:last-child {
+        border-bottom: none;
+      }
+
+      .forecast-day {
+        font-weight: 600;
+        color: var(--text-color);
+      }
+
+      .forecast-temp {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .dark-mode .weather-widget {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .dark-mode .weather-forecast {
+        background: rgba(30, 30, 30, 0.95);
+      }
+
+      .dark-mode .forecast-day {
+        color: var(--text-color);
+      }
+
+      @media (min-width: 768px) {
+        #weather-desc {
+          display: inline;
+        }
+      }
     </style>
     <!-- Removed jQuery/Select2 for performance; using vanilla JS instead -->
     
@@ -450,6 +540,14 @@
         </div>
       </div>
       <div class="header-controls">
+        <div class="weather-widget">
+          <div id="weather-info">
+            <span id="weather-icon"></span>
+            <span id="weather-temp"></span>
+            <span id="weather-desc"></span>
+          </div>
+          <div class="weather-forecast" id="weather-forecast"></div>
+        </div>
         <div class="language-wrapper">
           <select id="language-selector">
             <option value="pt" data-flag="https://flagcdn.com/w80/br.png">Português</option>
@@ -624,14 +722,14 @@
       <div class="notice">
         <h2><i class="fas fa-info-circle" aria-hidden="true"></i> Did you know?</h2>
         <p>The word <strong>"Maritaca"</strong> is commonly used in Brazil to refer to large parakeets or small parrots, known for their loud voices and playful attitude.</p>
-        <p>In fact, in Brazilian Portuguese, calling someone a "maritaca" means they talk too much — like: “That guy talks more than a maritaca!”</p>
+        <p>In fact, in Brazilian Portuguese, calling someone a "maritaca" means they talk too much — like: "That guy talks more than a maritaca!"</p>
         <p>That said, despite the name <strong>Flat Maritaca</strong>, the beautiful bird in the living room painting is actually a <strong>Blue-fronted Amazon</strong> — not a maritaca! 😱</p>
         <p>While maritacas scream, fly in noisy flocks, and shamelessly steal fruit, the Amazon parrot watches everything with elegance... and might just be silently judging your outfit. 👀💅</p>
       </div>
     
       <h2><i class="fas fa-home" aria-hidden="true"></i> About the Flat</h2>
       <p><strong>Flat Maritaca</strong>, located in Itacaré, is the perfect getaway for those seeking comfort and convenience. With modern and cozy decor, the flat offers a wide range of amenities to ensure a pleasant stay.</p>
-      <p>It’s the ideal choice to enjoy Itacaré with both comfort and a privileged location.</p>
+      <p>It's the ideal choice to enjoy Itacaré with both comfort and a privileged location.</p>
       <ul>
         <li><strong>Air Conditioning:</strong> For year-round comfort.</li>
         <li><strong>Bedroom:</strong> Queen-size bed with high-quality linens.</li>
@@ -680,7 +778,7 @@
     
     <section id="beaches">
       <h2><i class="fas fa-water" aria-hidden="true"></i> Must-See Beaches & Waterfalls</h2>
-      <p>If you made it to Itacaré — get ready! This place is packed with natural beauty. From wild beaches to crystal-clear waterfalls, here are our favorite spots you really shouldn’t miss:</p>
+      <p>If you made it to Itacaré — get ready! This place is packed with natural beauty. From wild beaches to crystal-clear waterfalls, here are our favorite spots you really shouldn't miss:</p>
     
       <div class="beach-list">
         <!-- Praia da Concha -->
@@ -708,7 +806,7 @@
         <div class="beach-item">
           <img loading="lazy" src="images/must-see/jeri.jpg" alt="Jeribucaçu Beach" />
           <h3>🌅 Jeribucaçu</h3>
-          <p>Hidden paradise! Follow a scenic trail and you’ll find where the river meets the ocean. Unreal scenery.</p>
+          <p>Hidden paradise! Follow a scenic trail and you'll find where the river meets the ocean. Unreal scenery.</p>
         </div>
     
         <!-- Prainha -->
@@ -761,7 +859,7 @@
       <div class="notice rtl">
         <h2><i class="fas fa-info-circle" aria-hidden="true"></i> ידעת?</h2>
         <p>המילה <strong>"Maritaca"</strong> משמשת בברזיל לתיאור תוכים קטנים — ציפורים רועשות, חברותיות ושובבות.</p>
-        <p>בברזילית, אפילו נהוג לקרוא למישהו שמדבר יותר מדי "מריטקה" — כמו: “הוא מדבר יותר ממריטקה!”</p>
+        <p>בברזילית, אפילו נהוג לקרוא למישהו שמדבר יותר מדי "מריטקה" — כמו: "הוא מדבר יותר ממריטקה!"</p>
         <p>אבל שימו לב — למרות השם <strong>Flat Maritaca</strong>, התוכי שבתמונה בסלון הוא למעשה <strong>תוכי אמזון מצח-כחול</strong>, ולא מריטקה! 😱</p>
         <p>בעוד המריטקות צורחות, עפות בלהקות וגונבות פירות בלי בושה, תוכי אמזון מצח-כחול משקיף בשקט... ואולי אפילו שופט אותך בלב. 👀💅</p>
       </div>
@@ -898,136 +996,339 @@
   <!-- Back to Top Button -->
   <button id="back-to-top" aria-label="Back to top">↑</button>
 
-  <script>
-  // Theme toggle setup
-  const themeToggle = document.getElementById('theme-toggle');
-  // Determine initial theme: saved preference or OS setting, default to light
-  const savedTheme = localStorage.getItem('theme');
-  let currentTheme;
-  if (savedTheme) {
-    currentTheme = savedTheme;
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    currentTheme = 'dark';
-  } else {
-    currentTheme = 'light';
-  }
-  if (currentTheme === 'dark') {
-    document.documentElement.classList.add('dark-mode');
-    if (themeToggle) {
-      themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
-      themeToggle.setAttribute('aria-label', 'Switch to light mode');
-    }
-  } else {
-    document.documentElement.classList.remove('dark-mode');
-    if (themeToggle) {
-      themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
-      themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-    }
-  }
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark-mode');
-      const newMode = document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
-      localStorage.setItem('theme', newMode);
-      document.getElementById('aria-announcer').textContent =
-        `Theme changed to ${newMode} mode`;
-      if (newMode === 'dark') {
-        themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
-        themeToggle.setAttribute('aria-label', 'Switch to light mode');
-      } else {
-        themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
-        themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-      }
-    });
-  }
-  
-  const actualPassword = 'wifiandwaves';
-  let visible = false;
-
-  function togglePassword() {
-    const span = document.getElementById('wifi-password');
-    const btn = document.getElementById('toggle-password');
-    visible = !visible;
-    span.textContent = visible ? actualPassword : '•••••••••••••••••';
-    btn.textContent = visible ? '🙈' : '👁️';
-    btn.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
-  }
-
-
-  //language selection 
-    function switchLanguage(lang) {
-      const langs = ['pt', 'en', 'he'];
-      langs.forEach(l => {
-        document.getElementById('lang-' + l).style.display = l === lang ? 'block' : 'none';
-        document.getElementById('subtitle-' + l).style.display = l === lang ? 'block' : 'none';
-      });
-      document.documentElement.lang = lang;
-      document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
-    }
-
-    // Removed Select2 formatting (using vanilla JS)
-
-// Language selection: vanilla JS
-const languageSelector = document.getElementById('language-selector');
-languageSelector.addEventListener('change', () => {
-  const selectedLang = languageSelector.value;
-  switchLanguage(selectedLang);
-  document.getElementById('aria-announcer').textContent =
-    `Language changed to ${languageSelector.options[languageSelector.selectedIndex].text}`;
-  localStorage.setItem('language', selectedLang);
-});
-// Preload saved language
-const savedLang = localStorage.getItem('language') || 'pt';
-languageSelector.value = savedLang;
-switchLanguage(savedLang);
-
-
-    // Gallery modal accessibility and focus trap
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modal-img');
-    const modalClose = modal.querySelector('.modal-close');
-    let lastFocused = null;
-    document.querySelectorAll('.gallery img').forEach(img => {
-      img.addEventListener('click', () => {
-        lastFocused = document.activeElement;
-        modal.style.display = 'flex';
-        modalImg.src = img.src;
-        modalImg.alt = img.alt;
-        modalClose.focus();
-      });
-    });
-    function closeModal() {
-      modal.style.display = 'none';
-      if (lastFocused) lastFocused.focus();
-    }
-    // Close on backdrop click or Esc key
-    modal.addEventListener('click', e => {
-      if (e.target === modal) closeModal();
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && modal.style.display === 'flex') {
-        closeModal();
-      }
-    });
-    // Back-to-top functionality
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        backToTop.style.visibility = 'visible';
-        backToTop.style.opacity = '1';
-      } else {
-        backToTop.style.opacity = '0';
-        backToTop.style.visibility = 'hidden';
-      }
-    });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
   <!-- Gallery Modal -->
   <div id="modal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true">
     <button type="button" class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
     <img id="modal-img" alt="" />
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Theme toggle setup
+      const themeToggle = document.getElementById('theme-toggle');
+      const savedTheme = localStorage.getItem('theme');
+      let currentTheme = savedTheme || 
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+      function updateThemeUI(isDark) {
+        if (themeToggle) {
+          themeToggle.innerHTML = isDark ? '<i class="fas fa-sun" aria-hidden="true"></i>' : '<i class="fas fa-moon" aria-hidden="true"></i>';
+          themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        }
+      }
+
+      // Set initial theme
+      if (currentTheme === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        updateThemeUI(true);
+      }
+
+      // Theme toggle event listener
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          document.documentElement.classList.toggle('dark-mode');
+          const isDark = document.documentElement.classList.contains('dark-mode');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+          document.getElementById('aria-announcer').textContent = `Theme changed to ${isDark ? 'dark' : 'light'} mode`;
+          updateThemeUI(isDark);
+        });
+      }
+
+      // Password toggle functionality
+      const actualPassword = 'wifiandwaves';
+      let visible = false;
+
+      function togglePassword() {
+        const span = document.getElementById('wifi-password');
+        const btn = document.getElementById('toggle-password');
+        visible = !visible;
+        span.textContent = visible ? actualPassword : '•••••••••••••••••';
+        btn.textContent = visible ? '🙈' : '👁️';
+        btn.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
+      }
+
+      // Language selection
+      function switchLanguage(lang) {
+        const langs = ['pt', 'en', 'he'];
+        langs.forEach(l => {
+          document.getElementById('lang-' + l).style.display = l === lang ? 'block' : 'none';
+          document.getElementById('subtitle-' + l).style.display = l === lang ? 'block' : 'none';
+        });
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+      }
+
+      // Language selector setup
+      const languageSelector = document.getElementById('language-selector');
+      if (languageSelector) {
+        languageSelector.addEventListener('change', () => {
+          const selectedLang = languageSelector.value;
+          switchLanguage(selectedLang);
+          document.getElementById('aria-announcer').textContent =
+            `Language changed to ${languageSelector.options[languageSelector.selectedIndex].text}`;
+          localStorage.setItem('language', selectedLang);
+        });
+
+        // Preload saved language
+        const savedLang = localStorage.getItem('language') || 'pt';
+        languageSelector.value = savedLang;
+        switchLanguage(savedLang);
+      }
+
+      // Gallery modal functionality
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      let lastFocused = null;
+
+      function closeModal() {
+        modal.style.display = 'none';
+        if (lastFocused) lastFocused.focus();
+      }
+
+      document.querySelectorAll('.gallery img').forEach(img => {
+        img.addEventListener('click', () => {
+          lastFocused = document.activeElement;
+          modal.style.display = 'flex';
+          modalImg.src = img.src;
+          modalImg.alt = img.alt;
+          modalClose.focus();
+        });
+      });
+
+      modal.addEventListener('click', e => {
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+          closeModal();
+        }
+      });
+
+      // Back-to-top functionality
+      const backToTop = document.getElementById('back-to-top');
+      if (backToTop) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) {
+            backToTop.style.visibility = 'visible';
+            backToTop.style.opacity = '1';
+          } else {
+            backToTop.style.opacity = '0';
+            backToTop.style.visibility = 'hidden';
+          }
+        });
+
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // Weather widget functionality
+      const weatherWidget = {
+        latitude: -14.2786,
+        longitude: -38.9958,
+        currentLang: 'pt',
+        
+        translations: {
+          pt: {
+            days: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            weather: {
+              0: { icon: '☀️', desc: 'Céu limpo' },
+              1: { icon: '🌤️', desc: 'Parcialmente nublado' },
+              2: { icon: '⛅', desc: 'Parcialmente nublado' },
+              3: { icon: '☁️', desc: 'Nublado' },
+              45: { icon: '🌫️', desc: 'Neblina' },
+              48: { icon: '🌫️', desc: 'Neblina com geada' },
+              51: { icon: '🌦️', desc: 'Chuvisco leve' },
+              53: { icon: '🌦️', desc: 'Chuvisco moderado' },
+              55: { icon: '🌧️', desc: 'Chuvisco forte' },
+              61: { icon: '🌧️', desc: 'Chuva leve' },
+              63: { icon: '🌧️', desc: 'Chuva moderada' },
+              65: { icon: '🌧️', desc: 'Chuva forte' },
+              71: { icon: '🌨️', desc: 'Neve leve' },
+              73: { icon: '🌨️', desc: 'Neve moderada' },
+              75: { icon: '🌨️', desc: 'Neve forte' },
+              77: { icon: '🌨️', desc: 'Grãos de neve' },
+              80: { icon: '🌧️', desc: 'Pancadas de chuva leves' },
+              81: { icon: '🌧️', desc: 'Pancadas de chuva moderadas' },
+              82: { icon: '🌧️', desc: 'Pancadas de chuva fortes' },
+              85: { icon: '🌨️', desc: 'Pancadas de neve leves' },
+              86: { icon: '🌨️', desc: 'Pancadas de neve fortes' },
+              95: { icon: '⛈️', desc: 'Tempestade' },
+              96: { icon: '⛈️', desc: 'Tempestade com granizo leve' },
+              99: { icon: '⛈️', desc: 'Tempestade com granizo forte' }
+            }
+          },
+          en: {
+            days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            weather: {
+              0: { icon: '☀️', desc: 'Clear sky' },
+              1: { icon: '🌤️', desc: 'Mainly clear' },
+              2: { icon: '⛅', desc: 'Partly cloudy' },
+              3: { icon: '☁️', desc: 'Overcast' },
+              45: { icon: '🌫️', desc: 'Foggy' },
+              48: { icon: '🌫️', desc: 'Depositing rime fog' },
+              51: { icon: '🌦️', desc: 'Light drizzle' },
+              53: { icon: '🌦️', desc: 'Moderate drizzle' },
+              55: { icon: '🌧️', desc: 'Dense drizzle' },
+              61: { icon: '🌧️', desc: 'Slight rain' },
+              63: { icon: '🌧️', desc: 'Moderate rain' },
+              65: { icon: '🌧️', desc: 'Heavy rain' },
+              71: { icon: '🌨️', desc: 'Slight snow' },
+              73: { icon: '🌨️', desc: 'Moderate snow' },
+              75: { icon: '🌨️', desc: 'Heavy snow' },
+              77: { icon: '🌨️', desc: 'Snow grains' },
+              80: { icon: '🌧️', desc: 'Slight rain showers' },
+              81: { icon: '🌧️', desc: 'Moderate rain showers' },
+              82: { icon: '🌧️', desc: 'Violent rain showers' },
+              85: { icon: '🌨️', desc: 'Slight snow showers' },
+              86: { icon: '🌨️', desc: 'Heavy snow showers' },
+              95: { icon: '⛈️', desc: 'Thunderstorm' },
+              96: { icon: '⛈️', desc: 'Thunderstorm with slight hail' },
+              99: { icon: '⛈️', desc: 'Thunderstorm with heavy hail' }
+            }
+          },
+          he: {
+            days: ['א\'', 'ב\'', 'ג\'', 'ד\'', 'ה\'', 'ו\'', 'ש\''],
+            weather: {
+              0: { icon: '☀️', desc: 'שמיים בהירים' },
+              1: { icon: '🌤️', desc: 'בעיקר בהיר' },
+              2: { icon: '⛅', desc: 'מעונן חלקית' },
+              3: { icon: '☁️', desc: 'מעונן' },
+              45: { icon: '🌫️', desc: 'ערפל' },
+              48: { icon: '🌫️', desc: 'ערפל עם קרח' },
+              51: { icon: '🌦️', desc: 'טפטוף קל' },
+              53: { icon: '🌦️', desc: 'טפטוף בינוני' },
+              55: { icon: '🌧️', desc: 'טפטוף כבד' },
+              61: { icon: '🌧️', desc: 'גשם קל' },
+              63: { icon: '🌧️', desc: 'גשם בינוני' },
+              65: { icon: '🌧️', desc: 'גשם כבד' },
+              71: { icon: '🌨️', desc: 'שלג קל' },
+              73: { icon: '🌨️', desc: 'שלג בינוני' },
+              75: { icon: '🌨️', desc: 'שלג כבד' },
+              77: { icon: '🌨️', desc: 'פתיתי שלג' },
+              80: { icon: '🌧️', desc: 'ממטרים קלים' },
+              81: { icon: '🌧️', desc: 'ממטרים בינוניים' },
+              82: { icon: '🌧️', desc: 'ממטרים כבדים' },
+              85: { icon: '🌨️', desc: 'ממטרי שלג קלים' },
+              86: { icon: '🌨️', desc: 'ממטרי שלג כבדים' },
+              95: { icon: '⛈️', desc: 'סופת רעמים' },
+              96: { icon: '⛈️', desc: 'סופת רעמים עם ברד קל' },
+              99: { icon: '⛈️', desc: 'סופת רעמים עם ברד כבד' }
+            }
+          }
+        },
+        
+        async fetchWeather() {
+          try {
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${this.latitude}&longitude=${this.longitude}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=America%2FBahia`;
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            this.displayWeather(data);
+          } catch (error) {
+            console.error('Error in fetchWeather:', error);
+            const weatherTemp = document.getElementById('weather-temp');
+            const weatherIcon = document.getElementById('weather-icon');
+            const weatherDesc = document.getElementById('weather-desc');
+            
+            if (weatherTemp) weatherTemp.textContent = '--°C';
+            if (weatherIcon) weatherIcon.textContent = '❌';
+            if (weatherDesc) weatherDesc.textContent = 'Error';
+          }
+        },
+
+        setLanguage(lang) {
+          this.currentLang = lang;
+          this.fetchWeather();
+        },
+
+        displayWeather(data) {
+          try {
+            if (!data.current || !data.daily) {
+              throw new Error('Invalid weather data structure');
+            }
+            
+            const currentTemp = data.current.temperature_2m;
+            const currentWeatherCode = data.current.weather_code;
+            const weather = this.getWeatherInfo(currentWeatherCode);
+            
+            const weatherTemp = document.getElementById('weather-temp');
+            const weatherIcon = document.getElementById('weather-icon');
+            const weatherDesc = document.getElementById('weather-desc');
+            
+            if (weatherTemp) weatherTemp.textContent = `${Math.round(currentTemp)}°C`;
+            if (weatherIcon) weatherIcon.textContent = weather.icon;
+            if (weatherDesc) weatherDesc.textContent = weather.desc;
+
+            const forecastContainer = document.getElementById('weather-forecast');
+            if (!forecastContainer) return;
+            
+            forecastContainer.innerHTML = '';
+            const days = this.translations[this.currentLang].days;
+            const today = new Date();
+            
+            for (let i = 0; i < 7; i++) {
+              const date = new Date(today);
+              date.setDate(today.getDate() + i);
+              const dayName = days[date.getDay()];
+              const maxTemp = Math.round(data.daily.temperature_2m_max[i]);
+              const minTemp = Math.round(data.daily.temperature_2m_min[i]);
+              const weather = this.getWeatherInfo(data.daily.weather_code[i]);
+              
+              const forecastItem = document.createElement('div');
+              forecastItem.className = 'forecast-item';
+              forecastItem.innerHTML = `
+                <span class="forecast-day">${dayName}</span>
+                <div class="forecast-temp">
+                  <span>${weather.icon}</span>
+                  <span>${maxTemp}°</span>
+                  <span style="opacity: 0.7">${minTemp}°</span>
+                </div>
+              `;
+              
+              forecastContainer.appendChild(forecastItem);
+            }
+          } catch (error) {
+            console.error('Error in displayWeather:', error);
+          }
+        },
+
+        getWeatherInfo(code) {
+          return this.translations[this.currentLang].weather[code] || { icon: '☀️', desc: this.translations[this.currentLang].weather[0].desc };
+        }
+      };
+
+      // Initialize weather widget
+      const weatherWidgetEl = document.querySelector('.weather-widget');
+      if (weatherWidgetEl) {
+        const savedLang = localStorage.getItem('language') || 'pt';
+        weatherWidget.currentLang = savedLang;
+        weatherWidget.fetchWeather();
+        
+        setInterval(() => {
+          weatherWidget.fetchWeather();
+        }, 1800000);
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
