@@ -626,11 +626,11 @@
       <h2><i class="fas fa-wifi" aria-hidden="true"></i> Wi-Fi</h2>
       <div class="wifi-box">
         <div>
-          <p><strong>Rede:</strong> JubarteGuest</p>
+          <p><strong>Network:</strong> JubarteGuest</p>
           <p>
-            <strong>Senha:</strong>
-            <span id="wifi-password">•••••••••••</span>
-            <button id="toggle-password" onclick="togglePassword()" aria-label="Show password">
+            <strong>Password:</strong>
+            <span id="wifi-password-en">•••••••••••</span>
+            <button id="toggle-password-en" onclick="togglePassword('en')" aria-label="Show password">
               👁️
             </button>
           </p>
@@ -893,14 +893,20 @@
       </div>
     </section>
 
-    <section>
+    <section id="wifi" dir="rtl" class="rtl">
       <h2><i class="fas fa-wifi" aria-hidden="true"></i> אינטרנט אלחוטי</h2>
       <div class="wifi-box">
         <div>
           <p><strong>שם הרשת:</strong> JubarteGuest</p>
-          <p><strong>סיסמה:</strong> wifiandwaves</p>
+          <p>
+            <strong>סיסמה:</strong>
+            <span id="wifi-password-he">•••••••••••</span>
+            <button id="toggle-password-he" onclick="togglePassword('he')" aria-label="הצג סיסמה">
+              👁️
+            </button>
+          </p>
         </div>
-        <img src="JubarteGuest-qrcode.png" alt="Wi-Fi QR Code" class="qr"/>
+        <img src="JubarteGuest-qrcode.png" alt="קוד QR לרשת האינטרנט" class="qr"/>
       </div>
     </section>
     <section id="help" dir="rtl" class="rtl">
@@ -1061,12 +1067,6 @@
           }
         },
 
-        setLanguage(lang) {
-          console.log('Setting language to:', lang);
-          this.currentLang = lang;
-          this.fetchWeather();
-        },
-
         displayWeather(data) {
           try {
             console.log('Starting displayWeather with data:', data);
@@ -1171,98 +1171,53 @@
         console.error('Language selector not found');
       }
 
-      const actualPassword = 'wifiandwaves';
-      let visible = false;
-
-      function togglePassword() {
-        const span = document.getElementById('wifi-password');
-        const btn = document.getElementById('toggle-password');
-        visible = !visible;
-        span.textContent = visible ? actualPassword : '•••••••••••••••••';
-        btn.textContent = visible ? '🙈' : '👁️';
-      }
-
-      //language selection 
-      function switchLanguage(lang) {
-        const langs = ['pt', 'en', 'he'];
-        langs.forEach(l => {
-          document.getElementById('lang-' + l).style.display = l === lang ? 'block' : 'none';
-          document.getElementById('subtitle-' + l).style.display = l === lang ? 'block' : 'none';
-        });
-      }
-
-      function formatLanguage(option) {
-        if (!option.id) return option.text;
-
-        const flagUrl = $(option.element).data('flag');
-        return $(
-          `<span><img src="${flagUrl}" style="width:20px; height:auto; margin-right:8px;"> ${option.text}</span>`
-        );
-      }
-
-      $(document).ready(function () {
-        $('#language-selector').select2({
-          minimumResultsForSearch: Infinity // hides search box
-        });
-
-        // Call your switchLanguage function when changed
-        $('#language-selector').on('change', function () {
-          const selectedLang = $(this).val();
-          switchLanguage(selectedLang);
-        });
-
-        // Optional: preload saved language
-        const savedLang = localStorage.getItem('language') || 'pt';
-        $('#language-selector').val(savedLang).trigger('change');
-      });
-
-      //galery
+      // Gallery modal functionality
       const modal = document.getElementById('modal');
       const modalImg = document.getElementById('modal-img');
+      const galleryImages = document.querySelectorAll('.gallery img');
 
-      document.querySelectorAll('.gallery img').forEach(img => {
-        img.addEventListener('click', () => {
-          modal.style.display = 'flex';
-          modalImg.src = img.src;
-          modalImg.alt = img.alt;
+      if (modal && modalImg && galleryImages.length > 0) {
+        galleryImages.forEach(img => {
+          img.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+          });
         });
-      });
-
-      function closeModal() {
-        modal.style.display = 'none';
       }
+
       // Theme toggle setup
       const themeToggle = document.getElementById('theme-toggle');
-      // Determine initial theme: saved preference or OS setting
-      const savedTheme = localStorage.getItem('theme');
-      let currentTheme;
-      if (savedTheme) {
-        currentTheme = savedTheme;
-      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        currentTheme = 'dark';
-      } else {
-        currentTheme = 'light';
-      }
-      if (currentTheme === 'dark') {
-        document.documentElement.classList.add('dark-mode');
-        if (themeToggle) {
+      if (themeToggle) {
+        // Determine initial theme: saved preference or OS setting
+        const savedTheme = localStorage.getItem('theme');
+        let currentTheme;
+        if (savedTheme) {
+          currentTheme = savedTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          currentTheme = 'dark';
+        } else {
+          currentTheme = 'light';
+        }
+
+        if (currentTheme === 'dark') {
+          document.documentElement.classList.add('dark-mode');
           themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
           themeToggle.setAttribute('aria-label', 'Switch to light mode');
-        }
-      } else {
-        document.documentElement.classList.remove('dark-mode');
-        if (themeToggle) {
+        } else {
+          document.documentElement.classList.remove('dark-mode');
           themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
           themeToggle.setAttribute('aria-label', 'Switch to dark mode');
         }
-      }
-      if (themeToggle) {
+
         themeToggle.addEventListener('click', () => {
           document.documentElement.classList.toggle('dark-mode');
           const newMode = document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
           localStorage.setItem('theme', newMode);
-          document.getElementById('aria-announcer').textContent =
-            `Theme changed to ${newMode} mode`;
+          const ariaAnnouncer = document.getElementById('aria-announcer');
+          if (ariaAnnouncer) {
+            ariaAnnouncer.textContent = `Theme changed to ${newMode} mode`;
+          }
           if (newMode === 'dark') {
             themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
             themeToggle.setAttribute('aria-label', 'Switch to light mode');
@@ -1274,19 +1229,68 @@
       }
 
       // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href');
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
+      const navLinks = document.querySelectorAll('a[href^="#"]');
+      if (navLinks.length > 0) {
+        navLinks.forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+      }
+
+      // Password toggle functionality
+      const actualPassword = 'wifiandwaves';
+      let visible = false;
+
+      function togglePassword(lang) {
+        const span = document.getElementById(`wifi-password-${lang}`);
+        const btn = document.getElementById(`toggle-password-${lang}`);
+        if (span && btn) {
+          visible = !visible;
+          span.textContent = visible ? actualPassword : '•••••••••••••••••';
+          btn.textContent = visible ? '🙈' : '👁️';
+          btn.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
+        }
+      }
+
+      // Add event listeners to all toggle buttons
+      ['pt', 'en', 'he'].forEach(lang => {
+        const toggleButton = document.getElementById(`toggle-password-${lang}`);
+        if (toggleButton) {
+          toggleButton.addEventListener('click', () => togglePassword(lang));
+        }
+      });
+
+      // Language selection
+      function switchLanguage(lang) {
+        const langs = ['pt', 'en', 'he'];
+        langs.forEach(l => {
+          document.getElementById('lang-' + l).style.display = l === lang ? 'block' : 'none';
+          document.getElementById('subtitle-' + l).style.display = l === lang ? 'block' : 'none';
+        });
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+        
+        // Reset password visibility when language changes
+        visible = false;
+        langs.forEach(l => {
+          const span = document.getElementById(`wifi-password-${l}`);
+          const btn = document.getElementById(`toggle-password-${l}`);
+          if (span && btn) {
+            span.textContent = '•••••••••••••••••';
+            btn.textContent = '👁️';
+            btn.setAttribute('aria-label', 'Show password');
           }
         });
-      });
+      }
     });
   </script>
   <!-- Floating WhatsApp Chat Button -->
