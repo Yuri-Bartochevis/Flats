@@ -35,23 +35,25 @@
         top: 0;
       }
       :root {
-        --primary-color: #2E7D32;        /* refined deep green */
-        --primary-dark: #1B5E20;         /* darker green for hover */
-        --accent-color: #4CAF50;         /* balanced accent green */
-        --accent-light: #81C784;         /* lighter accent */
-        --bg-color: #FAFAFA;             /* clean neutral background */
-        --text-color: #1A1A1A;           /* almost black for readability */
-        --text-muted: #666666;           /* muted text for secondary content */
-        --highlight-color: #E8F5E9;      /* subtle green tint */
-        --box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); /* refined shadow */
-        --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12); /* hover shadow */
-        --section-bg: #FFFFFF;           /* pure white sections */
-        --card-bg: #FFFFFF;              /* card background */
-        --card-border: rgba(0, 0, 0, 0.06); /* subtle card border */
-        --notice-bg: #F5F5F5;            /* notice box background */
-        --border-radius: 16px;           /* consistent border radius */
-        --border-radius-sm: 8px;         /* small border radius */
-        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* smooth transition */
+        /* Maritaca Beach Palette - Tropical & Coastal */
+        --primary-color: #0891B2;        /* ocean cyan */
+        --primary-dark: #0E7490;         /* deep sea teal */
+        --accent-color: #059669;         /* maritaca green */
+        --accent-light: #6EE7B7;         /* tropical mint */
+        --warm-accent: #F59E0B;          /* sunset amber */
+        --bg-color: #FEFDFB;             /* warm sand white */
+        --text-color: #1E293B;           /* deep slate */
+        --text-muted: #64748B;           /* ocean grey */
+        --highlight-color: #ECFEFF;      /* sky cyan tint */
+        --box-shadow: 0 2px 12px rgba(8, 145, 178, 0.08);
+        --box-shadow-hover: 0 8px 30px rgba(8, 145, 178, 0.15);
+        --section-bg: #FFFFFF;
+        --card-bg: #FFFFFF;
+        --card-border: rgba(8, 145, 178, 0.1);
+        --notice-bg: #F0FDFA;            /* light teal */
+        --border-radius: 16px;
+        --border-radius-sm: 8px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       * {
@@ -75,7 +77,7 @@
         height: 70vh;
         min-height: 500px;
         max-height: 800px;
-        background: linear-gradient(135deg, rgba(46, 125, 50, 0.85), rgba(76, 175, 80, 0.75)),
+        background: linear-gradient(135deg, rgba(8, 145, 178, 0.85), rgba(5, 150, 105, 0.75)),
                     url('images/apartment/img1.jpg');
         background-size: cover;
         background-position: center;
@@ -556,26 +558,26 @@
         font-size: 1.1em;
       }
 
-      /* Professional Notice Box */
+      /* Notice Box - Tropical Style */
       .notice {
-        background: linear-gradient(135deg, var(--highlight-color), #F1F8E9);
+        background: linear-gradient(135deg, #ECFEFF, #F0FDFA);
         padding: 24px;
         border-radius: var(--border-radius);
         margin-bottom: 28px;
         color: var(--text-color);
-        border-left: 4px solid var(--accent-color);
+        border-left: 4px solid var(--primary-color);
         position: relative;
         overflow: hidden;
       }
       .notice::before {
         content: '';
         position: absolute;
-        top: 0;
-        right: 0;
-        width: 100px;
-        height: 100px;
-        background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
-        opacity: 0.3;
+        top: -20px;
+        right: -20px;
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(circle, rgba(8, 145, 178, 0.15) 0%, transparent 70%);
+        opacity: 0.5;
       }
       .notice h2 {
         font-size: 1.1rem;
@@ -680,24 +682,24 @@
         outline: 2px solid white;
         outline-offset: 2px;
       }
-      /* Professional Dark Mode */
+      /* Dark Mode - Ocean Night */
       .dark-mode {
-        --bg-color: #121212;
-        --text-color: #E8E8E8;
-        --text-muted: #A0A0A0;
-        --highlight-color: #1E1E1E;
+        --bg-color: #0F172A;             /* deep ocean night */
+        --text-color: #E2E8F0;
+        --text-muted: #94A3B8;
+        --highlight-color: #1E293B;
         --box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
         --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.5);
-        --section-bg: #1E1E1E;
-        --card-bg: #252525;
-        --card-border: rgba(255, 255, 255, 0.08);
-        --notice-bg: #252525;
-        --primary-color: #4CAF50;
-        --accent-color: #66BB6A;
-        --accent-light: #81C784;
+        --section-bg: #1E293B;
+        --card-bg: #334155;
+        --card-border: rgba(148, 163, 184, 0.1);
+        --notice-bg: #1E293B;
+        --primary-color: #22D3EE;        /* bright cyan */
+        --accent-color: #34D399;         /* bright mint */
+        --accent-light: #6EE7B7;
       }
       .dark-mode .notice {
-        background: linear-gradient(135deg, #1E3A1E, #1E1E1E);
+        background: linear-gradient(135deg, #164E63, #1E293B);
       }
       .dark-mode .beach-item p {
         color: var(--text-muted);
