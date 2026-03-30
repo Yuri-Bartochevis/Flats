@@ -1,5 +1,5 @@
 /**
- * Weather Widget Module for Flat Maritaca
+ * Weather Widget Module for Flat Jubarte
  * Uses Open-Meteo API for weather data
  */
 

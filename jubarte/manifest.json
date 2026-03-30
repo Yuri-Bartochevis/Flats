@@ -1,0 +1,15 @@
+{
+  "name": "Flat Jubarte Itacaré",
+  "short_name": "Jubarte",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F0F8FF",
+  "theme_color": "#0077B6",
+  "icons": [
+    {
+      "src": "images/jubarte.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

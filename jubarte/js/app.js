@@ -1,5 +1,5 @@
 /**
- * Main Application for Flat Maritaca
+ * Main Application for Flat Jubarte
  * Initializes all modules and handles core functionality
  */
 

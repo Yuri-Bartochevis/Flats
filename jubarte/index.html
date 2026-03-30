@@ -1,1301 +1,172 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <!-- Select2 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-<!-- jQuery (required by Select2) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Select2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+  <!-- SEO & PWA -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flat Jubarte</title>
+  <meta name="description" content="Flat Jubarte em Itacaré oferece acomodação moderna e aconchegante com galeria, regras da casa, melhores praias e cachoeiras." />
+  <meta property="og:title" content="Flat Jubarte" />
+  <meta property="og:description" content="Flat aconchegante em Itacaré com decoração moderna, comodidades completas, galeria, regras da casa e os melhores spots locais." />
+  <meta property="og:image" content="images/jubarte.png" />
+  <meta property="og:url" content="./index.html" />
+  <link rel="icon" href="images/jubarte.png" />
+  <link rel="manifest" href="manifest.json" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Typography -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap&subset=latin,hebrew" rel="stylesheet">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Flat Jubarte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap&subset=latin,hebrew" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <link rel="icon" href="images/jubarte.png" />
-    <!-- Font Awesome for professional icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <style>
-      :root {
-        --primary-color: #1E88E5;
-        --accent-color: #1565C0;
-        --bg-color: #F5F5F5;
-        --text-color: #1A1A1A;
-        --highlight-color: #E3F2FD;
-        --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        --section-bg: #FFFFFF;
-        --card-bg: #FFFFFF;
-        --notice-bg: #F5F5F5;
-      }
-  
-      html {
-        scroll-behavior: smooth;
-      }
-  
-      * {
-        box-sizing: border-box;
-      }
-  
-      body {
-        font-family: 'Quicksand', sans-serif;
-        margin: 0;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        line-height: 1.6;
-      }
-  
-      /* App bar header using flex pattern */
-      header {
-        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-        color: white;
-        position: relative;
-      }
-      header .header-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        /* reduce left padding to bring logo closer to viewport edge */
-        /* reduced left padding to bring logo further left */
-        /* minimal left padding; flush to container edge */
-        padding: 10px 20px 10px 0;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      .header-left {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .header-text h1 {
-        font-size: 1.5rem;
-        margin: 0;
-      }
-      .header-text p {
-        font-size: 0.875rem;
-        margin: 0;
-      }
-      .header-controls {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      /* Logo styling */
-      .logo {
-        width: 150px;
-        height: auto;
-        margin-bottom: 0.5rem;
-      }
-  
-      .language-wrapper {
-        position: static;
-      }
-  
-      select {
-        padding: 6px 12px;
-        font-size: 1rem;
-      }
-  
-      section {
-        background: var(--section-bg);
-        margin: 20px auto;
-        padding: 30px;
-        max-width: 900px;
-        border-radius: 10px;
-        box-shadow: var(--box-shadow);
-      }
-  
-      h2 {
-        color: var(--accent-color);
-        margin-top: 0;
-      }
-  
-      ul {
-        padding-left: 20px;
-      }
-  
-      img {
-        max-width: 100%;
-        border-radius: 8px;
-      }
-  
-      .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 12px;
-        margin-top: 20px;
-      }
-  
-      .gallery img {
-        cursor: pointer;
-        transition: transform 0.3s ease;
-      }
-  
-      .gallery img:hover {
-        transform: scale(1.05);
-      }
-  
-      .wifi-box {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-  
-      .qr {
-        width: 120px;
-      }
-  
-      .contact {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-top: 15px;
-      }
-  
-      footer {
-        text-align: center;
-        font-size: 0.9rem;
-        padding: 20px;
-        background: var(--highlight-color);
-        color: var(--text-color);
-      }
-  
-      .rtl {
-        direction: rtl;
-        text-align: right;
-      }
-  
-      @media (max-width: 600px) {
-        /* Mobile: add side padding to keep logo off edge */
-        header .header-inner {
-          padding: 10px 20px;
-        }
-        section {
-          padding: 20px;
-        }
-      }
-      
-      .beach-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-        margin-top: 20px;
-      }
-    
-      .beach-item {
-        background: var(--card-bg);
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        text-align: center;
-      }
-    
-      .beach-item img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 10px;
-      }
-    
-      .beach-item h3 {
-        margin: 10px 0 5px;
-        color: #1565C0;
-      }
-    
-      .beach-item p {
-        font-size: 0.95em;
-        color: var(--text-color);
-      }
-
-      /* Table of Contents navigation */
-      .toc {
-        display: block;
-        background: var(--section-bg);
-        padding: 0.5em 1em;
-        margin: 1em auto;
-        border-radius: 8px;
-        box-shadow: var(--box-shadow);
-        max-width: 900px;
-      }
-      .toc ul {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1em;
-        padding: 0;
-        margin: 0;
-      }
-      .toc a {
-        color: var(--primary-color);
-        text-decoration: none;
-        font-weight: 600;
-      }
-      .toc a:hover,
-      .toc a:focus {
-        text-decoration: underline;
-      }
-      /* Floating WhatsApp button */
-      .floating-whatsapp {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 1100;
-        width: 56px;
-        height: 56px;
-        padding: 0;
-        background: var(--primary-color);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        box-shadow: var(--box-shadow);
-        transition: background 0.3s ease;
-      }
-      .floating-whatsapp:hover {
-        background: var(--accent-color);
-      }
-      .floating-whatsapp i {
-        font-size: 1.5rem;
-        color: white;
-      }
-      /* Dark mode variables */
-      .dark-mode {
-        --bg-color: #1e1e1e;
-        --text-color: #f5f5f5;
-        --highlight-color: #2a2a2a;
-        --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-        --section-bg: #2a2a2a;
-        --card-bg: #333333;
-        --notice-bg: #3a3a3a;
-      }
-      /* Theme toggle button */
-      .theme-wrapper {
-        position: static;
-      }
-      #theme-toggle {
-        background: rgba(255, 255, 255, 0.2);
-        border: none;
-        color: white;
-        font-size: 1.2rem;
-        cursor: pointer;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.3s ease;
-      }
-      #theme-toggle:hover {
-        background: rgba(255, 255, 255, 0.4);
-      }
-      #theme-toggle:focus {
-        outline: 2px solid var(--accent-color);
-      }
-      /* Accessibility helpers */
-      .sr-only {
-        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-        overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-      }
-      .skip-link {
-        position: absolute; top: -40px; left: 0;
-        background: var(--primary-color); color: white;
-        padding: 8px 16px; z-index: 1000;
-        transition: top 0.3s ease;
-      }
-      .skip-link:focus {
-        top: 0;
-      }
-      /* Language selector styling for dark/light modes */
-      #language-selector {
-        /* ensure select is wide enough for option text */
-        width: 160px;
-        background: var(--section-bg);
-        color: var(--text-color);
-        border: 1px solid var(--accent-color);
-        border-radius: 4px;
-        padding: 8px 12px;
-        font-size: 1rem;
-        cursor: pointer;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background-image: url("data:image/svg+xml;utf8,<svg fill='%231A1A1A' height='10' viewBox='0 0 20 10' width='20' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,10'/></svg>");
-        background-repeat: no-repeat;
-        background-position: right 12px center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-        transform: translateY(0);
-      }
-      #language-selector:hover {
-        background: var(--accent-color);
-        color: white;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transform: translateY(-2px);
-      }
-      #language-selector:focus {
-        outline: 2px solid var(--primary-color);
-      }
-      #language-selector option {
-        background: var(--section-bg);
-        color: var(--text-color);
-      }
-      /* Select2 overrides */
-      .select2-container--default .select2-selection--single {
-        background: var(--section-bg);
-        color: var(--text-color);
-        border: 1px solid var(--accent-color);
-      }
-      .select2-container--default .select2-selection--single .select2-selection__rendered {
-        color: var(--text-color);
-      }
-      .select2-container--default .select2-selection--single .select2-selection__arrow b {
-        border-color: var(--text-color) transparent transparent transparent;
-      }
-      .select2-container--default .select2-dropdown {
-        background: var(--section-bg);
-        color: var(--text-color);
-      }
-      .select2-container--default .select2-results__option {
-        color: var(--text-color);
-      }
-      .select2-container--default .select2-results__option--highlighted {
-        background: var(--accent-color);
-        color: var(--text-color);
-      }
-
-      /* Weather widget styles */
-      .weather-widget {
-        background: rgba(255, 255, 255, 0.2);
-        padding: 8px 12px;
-        border-radius: 20px;
-        margin-right: 10px;
-        display: flex;
-        align-items: center;
-        color: white;
-        font-size: 0.9rem;
-        position: relative;
-        cursor: pointer;
-      }
-
-      #weather-info {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      #weather-icon {
-        font-size: 1.2rem;
-      }
-
-      #weather-temp {
-        font-weight: 600;
-      }
-
-      #weather-desc {
-        display: none;
-      }
-
-      .weather-forecast {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 10px;
-        padding: 15px;
-        margin-top: 5px;
-        min-width: 200px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-      }
-
-      .weather-widget:hover .weather-forecast {
-        display: block;
-      }
-
-      .forecast-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 5px 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      }
-
-      .forecast-item:last-child {
-        border-bottom: none;
-      }
-
-      .forecast-day {
-        font-weight: 600;
-        color: var(--text-color);
-      }
-
-      .forecast-temp {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .dark-mode .weather-widget {
-        background: rgba(0, 0, 0, 0.2);
-      }
-
-      .dark-mode .weather-forecast {
-        background: rgba(30, 30, 30, 0.95);
-      }
-
-      .dark-mode .forecast-day {
-        color: var(--text-color);
-      }
-
-      @media (min-width: 768px) {
-        #weather-desc {
-          display: inline;
-        }
-      }
-    </style>
-  </head>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <title>Flat Jubarte</title>
+</head>
 <body>
-  <!-- Skip to content for accessibility -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-  <!-- Live announcer for accessibility -->
+  <!-- Skip to main content -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Accessibility announcer -->
   <div id="aria-announcer" aria-live="polite" class="sr-only"></div>
+
+  <!-- Header with language selector -->
   <header>
     <div class="header-inner">
       <div class="header-left">
-        <img src="logo3.png" alt="Logo Jubarte" class="logo" />
+        <img src="images/jubarte.png" alt="Flat Jubarte Logo" class="logo" />
         <div class="header-text">
           <h1>Flat Jubarte</h1>
-          <p id="subtitle-pt">Sua estadia aconchegante no Edifício Paulo Diniz</p>
-          <p id="subtitle-en" style="display:none;">Your cozy stay in Edifício Paulo Diniz</p>
-          <p id="subtitle-he" style="display:none;" class="rtl">השְּׁהִיָּה הנעימה שלך באדיפיסיו פאולו דיניז</p>
+          <p class="subtitle">Sua estadia em Itacaré</p>
         </div>
       </div>
       <div class="header-controls">
+        <!-- Weather Widget -->
         <div class="weather-widget">
-          <div id="weather-info">
-            <span id="weather-icon"></span>
-            <span id="weather-temp"></span>
-            <span id="weather-desc"></span>
+          <div class="weather-current">
+            <span id="weather-icon">☀️</span>
+            <span id="weather-temp">--°C</span>
+            <span id="weather-desc">Carregando...</span>
           </div>
-          <div class="weather-forecast" id="weather-forecast"></div>
+          <div id="weather-forecast" class="weather-forecast"></div>
         </div>
-        <div class="language-wrapper">
-          <select id="language-selector">
-            <option value="pt" data-flag="https://flagcdn.com/w80/br.png">Português</option>
-            <option value="en" data-flag="https://flagcdn.com/w80/us.png">English</option>
-            <option value="he" data-flag="https://flagcdn.com/w80/il.png">עברית</option>
-          </select>
+        <div class="language-selector">
+          <button class="lang-btn active" data-lang="pt" aria-label="Português">PT</button>
+          <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+          <button class="lang-btn" data-lang="he" aria-label="עברית">HE</button>
         </div>
-        <div class="theme-wrapper">
-          <button id="theme-toggle" aria-label="Switch to dark mode">
-            <i class="fas fa-moon" aria-hidden="true"></i>
-          </button>
-        </div>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
       </div>
     </div>
   </header>
-  <main id="main-content">
-  <div id="lang-pt">
-    <nav class="toc" aria-label="Índice">
-      <ul>
-        <li><a href="#about">Sobre</a></li>
-        <li><a href="#gallery">Galeria</a></li>
-        <li><a href="#rules">Regras da Casa</a></li>
-        <li><a href="#beaches">Praias</a></li>
-        <li><a href="#wifi">Wi-Fi</a></li>
-        <li><a href="#help">Ajuda</a></li>
-      </ul>
-    </nav>
-    <section id="about">
-      <h2><i class="fas fa-home" aria-hidden="true"></i> Sobre o Flat</h2>
-      <p><strong>FLAT Jubarte</strong>, localizado em Itacaré, é o refúgio perfeito para quem busca conforto e praticidade. Com uma decoração moderna e acolhedora, o flat oferece uma ampla gama de comodidades para garantir uma estadia agradável.</p>
-      <p>É a escolha ideal para curtir Itacaré com conforto e uma localização privilegiada.</p>
-      <ul>
-        <li><strong>Ar-condicionado:</strong> Para conforto o ano inteiro.</li>
-        <li><strong>Quarto:</strong> Cama queen size com roupas de cama de alta qualidade.</li>
-        <li><strong>Home Office & Wi-Fi:</strong> Espaço de trabalho dedicado com internet rápida.</li>
-        <li><strong>Cozinha Completa:</strong> Air fryer, geladeira, fogão e utensílios.</li>
-        <li><strong>Localização:</strong> Área tranquila, perto das praias e do comércio.</li>
-        <li><strong>Estacionamento Privativo:</strong> Para mais conveniência e segurança.</li>
-        <li><strong>Varanda:</strong> Com rede para relaxar.</li>
-        <li><strong>Ambientes Integrados:</strong> Sala, cozinha e varanda em harmonia.</li>
-      </ul>
-    </section>
 
-    <section id="gallery">
-      <h2><i class="fas fa-images" aria-hidden="true"></i> Galeria</h2>
-      <div class="gallery">
-        <img src="img1.jpg" alt="Sala de estar do Flat Maritaca">
-        <img src="img2.jpg" alt="Quarto com cama queen size">
-        <img src="img3.jpg" alt="Cozinha equipada">
-        <img src="img5.jpg" alt="Varanda com rede">
-        <img src="img6.jpg" alt="Banheiro moderno">
-        <img src="img7.jpg" alt="Vista externa do prédio Papagaios">
-      </div>
-    </section>
-
-    <section id="rules">
-      <h2><i class="fas fa-file-alt" aria-hidden="true"></i> Regras da Casa</h2>
-      <p>Por gentileza, cuide do apartamento como se fosse seu. Estas regras ajudam a garantir uma estadia tranquila para todos:</p>
-      <ul>
-        <li>👥 <strong>Hóspedes:</strong> Apenas o número de hóspedes aprovado é permitido. Consulte-nos previamente sobre visitas. Reuniões que causem incômodo aos vizinhos não são permitidas.</li>
-        <li>⏰ <strong>Check-in e Check-out:</strong> Respeite os horários combinados. Check-in fora do período definido precisa de autorização prévia.</li>
-        <li>🚭 <strong>Não Fumar Dentro do Apto:</strong> É permitido fumar apenas na varanda. Isso inclui cigarro comum, eletrônico e cannabis.</li>
-        <li>🐶 <strong>Animais de Estimação:</strong> São bem-vindos, salvo exceções informadas na sua reserva. Avise com antecedência.</li>
-        <li>🔇 <strong>Silêncio:</strong> Evite barulhos excessivos, especialmente após as 22h. Som alto não é permitido em nenhum horário.</li>
-        <li>⚠️ <strong>Danos:</strong> Qualquer dano causado deverá ser comunicado. Os hóspedes são responsáveis por reposição ou reparo.</li>
-        <li>🔌 <strong>Antes de Sair:</strong>
-          <ul>
-            <li>Desligue os eletrônicos (ar-condicionado, eletrodomésticos, luzes).</li>
-            <li>Deixe o apartamento organizado.</li>
-            <li>Lave a louça usada e limpe superfícies do banheiro e da cozinha.</li>
-            <li>Leve o lixo até a lixeira sinalizada próxima à entrada.</li>
-            <li>Devolva a chave na caixa indicada ao lado da porta.</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-    
-    <section id="beaches">
-      <h2><i class="fas fa-water" aria-hidden="true"></i> Praias e Cachoeiras Imperdíveis</h2>
-      <p>Se você veio pra Itacaré, prepare-se: tem natureza pra todos os gostos! Aqui vão nossas dicas imperdíveis de praias e cachoeiras pra curtir ao máximo:</p>
-    
-      <div class="beach-list">
-        <!-- Praia da Concha -->
-        <div class="beach-item">
-          <img src="concha.jpg" alt="Praia da Concha" />
-          <h3>🐚 Praia da Concha</h3>
-          <p>Bem no centrinho, tranquila e ótima pra ver o pôr do sol tomando uma água de coco ou uma caipirinha. Puro charme!</p>
-        </div>
-    
-        <!-- Resende / Tiririca / Costa / Ribeira -->
-        <div class="beach-item">
-          <img src="rezende.jpg" alt="Praia do Resende" />
-          <h3>🏄 Resende, Tiririca, Costa & Ribeira</h3>
-          <p>Um combo de praias conectadas por trilhas curtas. Tiririca é point dos surfistas. Ideal pra quem curte explorar e variar o visual.</p>
-        </div>
-    
-        <!-- Havaizinho / Engenhoca / Itacarezinho -->
-        <div class="beach-item">
-          <img src="engenhoca.jpg" alt="Praia de Itacarezinho" />
-          <h3>🌴 Havaizinho, Engenhoca & Itacarezinho</h3>
-          <p>Mais afastadas, com aquele visual selvagem e lindo. Itacarezinho mistura vibe rústica com beach club chique. Vale cada minuto.</p>
-        </div>
-    
-        <!-- Jeribucaçu -->
-        <div class="beach-item">
-          <img src="jeri.jpg" alt="Praia de Jeribucaçu" />
-          <h3>🌅 Jeribucaçu</h3>
-          <p>Natureza total! Uma trilha linda leva até onde o rio encontra o mar. Uma das paisagens mais incríveis da região.</p>
-        </div>
-    
-        <!-- Prainha -->
-        <div class="beach-item">
-          <img src="prainha.jpg" alt="Prainha" />
-          <h3>🥾 Prainha</h3>
-          <p>A queridinha dos aventureiros! Pra chegar, é preciso encarar uma trilha de uns 40 min — mas o visual compensa demais.</p>
-        </div>
-    
-        <!-- Cachoeira do Tijuípe -->
-        <div class="beach-item">
-          <img src="tijuipe.jpg" alt="Cachoeira do Tijuípe" />
-          <h3>💧 Cachoeira do Tijuípe</h3>
-          <p>Quer trocar o sal por água doce? Essa cachoeira é perfeita! Fácil acesso, restaurante gostoso e águas cristalinas pra relaxar depois da praia.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="wifi">
-      <h2><i class="fas fa-wifi" aria-hidden="true"></i> Wi-Fi</h2>
-      <div class="wifi-box">
-        <div>
-          <p><strong>Network:</strong> JubarteGuest</p>
-          <p>
-            <strong>Password:</strong>
-            <span id="wifi-password-en">•••••••••••</span>
-            <button id="toggle-password-en" onclick="togglePassword('en')" aria-label="Show password">
-              👁️
-            </button>
-          </p>
-        </div>
-        <img src="JubarteGuest-qrcode.png" alt="Wi-Fi QR Code" class="qr"/>
-      </div>
-    </section>
-    <section id="help">
-      <h2><i class="fas fa-headset" aria-hidden="true"></i> Precisa de ajuda?</h2>
-      <p>Para suporte imediato, clique no ícone do WhatsApp no canto inferior direito para iniciar um chat comigo a qualquer momento. Se preferir, você também pode usar o chat do Airbnb.</p>
-    </section>
-    
-  </div>
-  </main>
-  
-
-  <div id="lang-en" style="display:none;">
-    <nav class="toc" aria-label="Table of Contents">
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#rules">House Rules</a></li>
-        <li><a href="#beaches">Must-See Beaches & Waterfalls</a></li>
-        <li><a href="#wifi">Wi-Fi</a></li>
-        <li><a href="#help">Need Help?</a></li>
-      </ul>
-    </nav>
-    <section id="about">
-      <h2><i class="fas fa-home" aria-hidden="true"></i> About the Flat</h2>
-      <p><strong>FLAT Jubarte</strong>, located in Itacaré, is the perfect retreat for those seeking comfort and convenience. With a modern and cozy decor, the flat offers a wide range of amenities to ensure a pleasant stay.</p>
-      <p>It's the ideal choice for enjoying Itacaré with comfort and a privileged location.</p>
-      <ul>
-        <li><strong>Air Conditioning:</strong> For year-round comfort.</li>
-        <li><strong>Bedroom:</strong> Queen size bed with high-quality linens.</li>
-        <li><strong>Home Office & Wi-Fi:</strong> Dedicated workspace with fast internet.</li>
-        <li><strong>Fully Equipped Kitchen:</strong> Air fryer, fridge, stove, utensils.</li>
-        <li><strong>Location:</strong> Peaceful area, close to beaches and shops.</li>
-        <li><strong>Private Parking:</strong> For convenience and security.</li>
-        <li><strong>Balcony:</strong> With a relaxing hammock.</li>
-        <li><strong>Integrated Spaces:</strong> Living room, kitchen, and balcony flow together.</li>
-      </ul>
-    </section>
-
-    <section id="gallery">
-      <h2><i class="fas fa-images" aria-hidden="true"></i> Gallery</h2>
-      <div class="gallery">
-        <img src="img1.jpg" alt="Living room of the Jubarte flat">
-        <img src="img2.jpg" alt="Bedroom with queen size bed">
-        <img src="img3.jpg" alt="Fully equipped kitchen">
-        <img src="img5.jpg" alt="Balcony with hammock">
-        <img src="img6.jpg" alt="Modern bathroom">
-        <img src="img7.jpg" alt="External view of Edifício Paulo Diniz">
-      </div>
-    </section>
-
-    <section id="rules">
-      <h2><i class="fas fa-file-alt" aria-hidden="true"></i> House Rules</h2>
-      <p>Please treat the flat as if it were your own. These simple guidelines help ensure a smooth and pleasant stay for everyone:</p>
-      <ul>
-        <li>👥 <strong>Guests:</strong> Only the approved number of guests is allowed. Please consult us in advance for visits. Gatherings that disturb neighbors are not permitted.</li>
-        <li>⏰ <strong>Check-in & Check-out:</strong> Respect the agreed check-in and check-out times. Check-in outside the defined period requires prior approval.</li>
-        <li>🚭 <strong>No Smoking Indoors:</strong> Smoking is only allowed on the balcony. This includes tobacco, cannabis, and electronic cigarettes.</li>
-        <li>🐶 <strong>Pets:</strong> Pets are welcome unless otherwise stated in your reservation. Please inform us in advance.</li>
-        <li>🔇 <strong>Noise:</strong> Keep noise to a minimum, especially after 10 PM. Avoid loud music or disturbances at any time.</li>
-        <li>⚠️ <strong>Damages:</strong> Guests are responsible for any damage caused. Please report incidents so we can resolve them together.</li>
-        <li>🔌 <strong>Before You Leave:</strong> 
-          <ul>
-            <li>Turn off all electronics (AC, appliances, lights).</li>
-            <li>Keep things organized and tidy.</li>
-            <li>Wash used dishes and clean surfaces in kitchen and bathroom.</li>
-            <li>Take out the trash to the designated bin near the entrance.</li>
-            <li>Return the key to the lockbox by the door.</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-    
-    <section id="beaches">
-      <h2><i class="fas fa-water" aria-hidden="true"></i> Must-See Beaches & Waterfalls</h2>
-      <p>If you made it to Itacaré — get ready! This place is packed with natural beauty. From wild beaches to crystal-clear waterfalls, here are our favorite spots you really shouldn't miss:</p>
-    
-      <div class="beach-list">
-        <!-- Praia da Concha -->
-        <div class="beach-item">
-          <img src="concha.jpg" alt="Praia da Concha" />
-          <h3>🐚 Praia da Concha</h3>
-          <p>Right in town and super chill — perfect for watching the sunset with a coconut water or caipirinha in hand. Total vibe!</p>
-        </div>
-      
-    
-        <!-- Resende / Tiririca / Costa / Ribeira -->
-        <div class="beach-item">
-          <img src="rezende.jpg" alt="Praia do Resende" />
-          <h3>🏄 Resende, Tiririca, Costa & Ribeira</h3>
-          <p>A string of beaches connected by short trails. Tiririca is the go-to for surfers. Great for beach hopping and soaking in the views.</p>
-        </div>
-    
-        <!-- Havaizinho / Engenhoca / Itacarezinho -->
-        <div class="beach-item">
-          <img src="engenhoca.jpg" alt="Itacarezinho Beach" />
-          <h3>🌴 Havaizinho, Engenhoca & Itacarezinho</h3>
-          <p>A little further out and wilder — but totally worth it. Itacarezinho mixes tropical vibes with a fancy beach club feel.</p>
-        </div>
-    
-        <!-- Jeribucaçu -->
-        <div class="beach-item">
-          <img src="jeri.jpg" alt="Jeribucaçu Beach" />
-          <h3>🌅 Jeribucaçu</h3>
-          <p>Hidden paradise! Follow a scenic trail and you'll find where the river meets the ocean. Unreal scenery.</p>
-        </div>
-    
-        <!-- Prainha -->
-        <div class="beach-item">
-          <img src="prainha.jpg" alt="Prainha" />
-          <h3>🥾 Prainha</h3>
-          <p>The most iconic beach in Itacaré. Takes a 40-minute hike through the forest — but the reward? Pure magic.</p>
-        </div>
-    
-        <!-- Cachoeira do Tijuípe -->
-        <div class="beach-item">
-          <img src="tijuipe.jpg" alt="Cachoeira do Tijuípe" />
-          <h3>💧 Tijuípe Waterfall</h3>
-          <p>Need a break from the beach? Tijuípe is perfect. Easy access, warm and clear water, and even a cozy restaurant right by the falls. Chill mode: on.</p>
-        </div>
-      </div>
-    </section>
-    
-    
-    <section id="wifi">
-      <h2><i class="fas fa-wifi" aria-hidden="true"></i> Wi-Fi</h2>
-      <div class="wifi-box">
-        <div>
-          <p><strong>Network:</strong> JubarteGuest</p>
-          <p><strong>Password:</strong> wifiandwaves</p>
-        </div>
-        <img src="JubarteGuest-qrcode.png" alt="Wi-Fi QR Code" class="qr"/>
-      </div>
-    </section>
-    <section id="help">
-      <h2><i class="fas fa-headset" aria-hidden="true"></i> Need Help?</h2>
-      <p>For instant support, tap the WhatsApp icon at the bottom right corner of your screen to start a chat with me anytime. You can also use Airbnb messaging if you prefer.</p>
-      <div class="contact" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" style="width: 24px; height: 24px;">
-        <a href="https://wa.me/5511982964498" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-          +55 11 98296-4498
-        </a>
-      </div>
-    </section>
-    
-  </div>
-
-  <div id="lang-he" class="rtl" style="display:none;" dir="rtl">
-    <nav class="toc" aria-label="תוכן העניינים">
-      <ul>
-        <li><a href="#about">על הדירה</a></li>
-        <li><a href="#gallery">גלריה</a></li>
-        <li><a href="#rules">כללי הבית</a></li>
-        <li><a href="#beaches">חופים ומפלים שאסור לפספס</a></li>
-        <li><a href="#wifi">אינטרנט אלחוטי</a></li>
-        <li><a href="#help">עזרה</a></li>
-      </ul>
-    </nav>
-    <section id="about">
-      <h2><i class="fas fa-home" aria-hidden="true"></i> על הדירה</h2>
-      <p><strong>דירת ג'ובארט</strong> באיטאקארה היא מקום מפלט מושלם למי שמחפש נוחות ופרטיות. עם עיצוב מודרני ומזמין, הדירה מציעה את כל מה שצריך לשהייה מהנה.</p>
-      <ul>
-        <li><strong>מיזוג אוויר:</strong> לשהייה נוחה בכל עונה.</li>
-        <li><strong>חדר שינה:</strong> מיטת קווין עם מצעים איכותיים.</li>
-        <li><strong>אזור עבודה ואינטרנט:</strong> אינטרנט מהיר ואזור מותאם לעבודה.</li>
-        <li><strong>מטבח מאובזר:</strong> כולל טיגון באייר פרייר, מקרר, תנור וכלים.</li>
-        <li><strong>מיקום:</strong> שקט, קרוב לחופים ולמסעדות.</li>
-        <li><strong>חניה פרטית:</strong> לנוחות ובטיחות.</li>
-        <li><strong>מרפסת עם ערסל:</strong> מושלם להרגעות.</li>
-        <li><strong>מרחב פתוח:</strong> הסלון, המטבח והמרפסת מחוברים יחד.</li>
-      </ul>
-    </section>
-
-    <section id="gallery">
-      <h2><i class="fas fa-images" aria-hidden="true"></i> גלריה</h2>
-      <div class="gallery">
-        <img src="img1.jpg" alt="סלון של דירת ג'ובארט">
-        <img src="img2.jpg" alt="חדר שינה עם מיטת קווין">
-        <img src="img3.jpg" alt="מטבח מאובזר לגמרי">
-        <img src="img5.jpg" alt="מרפסת עם ערסל">
-        <img src="img6.jpg" alt="חדר רחצה מודרני">
-        <img src="img7.jpg" alt="מבט חיצוני של בניין אדיפיסיו פאולו דיניז">
-      </div>
-    </section>
-
-    <section id="rules">
-      <h2><i class="fas fa-file-alt" aria-hidden="true"></i> כללי הבית</h2>
-      <p>אנא התייחסו לדירה כאילו הייתה שלכם. הכללים הבאים עוזרים לשמור על חוויה נעימה ונוחה לכולם:</p>
-      <ul>
-        <li>👥 <strong>אורחים:</strong> ניתן לארח רק את מספר האורחים המאושר. נא לעדכן מראש על מבקרים. לא ניתן לערוך מסיבות או מפגשים שמפריעים לשכנים.</li>
-        <li>⏰ <strong>צ׳ק-אין וצ׳ק-אאוט:</strong> יש לעמוד בזמנים שנקבעו מראש. הגעה או עזיבה מחוץ לשעות אלה דורשת אישור מראש.</li>
-        <li>🚭 <strong>עישון:</strong> אין לעשן בדירה. עישון מותר רק במרפסת (כולל טבק, קנאביס וסיגריות אלקטרוניות).</li>
-        <li>🐶 <strong>חיות מחמד:</strong> מותר להביא חיות מחמד, כל עוד זה אושר במסגרת ההזמנה. אנא עדכנו אותנו מראש.</li>
-        <li>🔇 <strong>שקט:</strong> נא לשמור על שקט, במיוחד אחרי השעה 22:00. אין להשמיע מוזיקה רועשת בשום שעה.</li>
-        <li>⚠️ <strong>נזקים:</strong> במקרה של נזק, יש להודיע לנו. האורחים אחראים לתיקון או פיצוי בהתאם לצורך.</li>
-        <li>🔌 <strong>לפני העזיבה:</strong>
-          <ul>
-            <li>כבו את כל המכשירים החשמליים (מזגן, מכשירי חשמל, אורות).</li>
-            <li>השאירו את הדירה מסודרת ונקייה.</li>
-            <li>שטפו כלים והנקו את משטחי המטבח והאמבטיה.</li>
-            <li>זרקו את האשפה לפח המסומן בכניסה לבניין.</li>
-            <li>החזירו את המפתח לתיבת הנעילה שליד הדלת.</li>
-          </ul>
-        </li>
-      </ul>
-      <p>נשמח לשמוע את דעתכם – כל פידבק עוזר לנו להשתפר! תודה שבחרתם ב-Flat Jubarte Itacaré.</p>
-      <p>עקבו אחרינו באינסטגרם: <a href="https://instagram.com/flat_jubarte_itacare" target="_blank">@flat_jubarte_itacare</a></p>
-    </section>
-
-    <section id="beaches" dir="rtl" class="rtl">
-      <h2><i class="fas fa-water" aria-hidden="true"></i> חופים ומפלים שאסור לפספס</h2>
-      <p>הגעתם לאיטאקארה? אז תתכוננו להתאהב! הנה כמה מקומות מהממים שאסור לכם לוותר עליהם – חופים, טרקים ומפלים שכל אחד מהם קסום בדרכו:</p>
-
-      <div class="beach-list">
-        <!-- Praia da Concha -->
-        <div class="beach-item">
-          <img src="concha.jpg" alt="Praia da Concha" />
-          <h3>🐚 Praia da Concha</h3>
-          <p>חוף רגוע במרכז העיר – מושלם לשבת מול השקיעה עם קוקוס טרי או קאיפיריניה ביד. אווירה קסומה!</p>
-        </div>
-
-        <!-- Resende / Tiririca / Costa / Ribeira -->
-        <div class="beach-item">
-          <img src="rezende.jpg" alt="Praia do Resende" />
-          <h3>🏄 Resende, Tiririca, Costa & Ribeira</h3>
-          <p>קבוצה של חופים קרובים שמחוברים בשבילי הליכה קצרים. Tiririca הוא מקום לגלישה. מושלם לסיבוב חופים ביום אחד!</p>
-        </div>
-
-        <!-- Havaizinho / Engenhoca / Itacarezinho -->
-        <div class="beach-item">
-          <img src="engenhoca.jpg" alt="Praia de Itacarezinho" />
-          <h3>🌴 Havaizinho, Engenhoca & Itacarezinho</h3>
-          <p>טבע פראי עם אווירה יוקרתית. חופים מרוחקים, שקטים ומדהימים ביופיים. Itacarezinho כולל גם מסעדות וביץ' קלאב.</p>
-        </div>
-
-        <!-- Jeribucaçu -->
-        <div class="beach-item">
-          <img src="jeri.jpg" alt="Praia de Jeribucaçu" />
-          <h3>🌅 Jeribucaçu</h3>
-          <p>חוף נסתר שאליו מגיעים דרך טרק קסום בתוך יער. נחל זורם אל תוך הים – נוף שיגרום לכם לעצור הכל ולבהות.</p>
-        </div>
-
-        <!-- Prainha -->
-        <div class="beach-item">
-          <img src="prainha.jpg" alt="Prainha" />
-          <h3>🥾 Prainha</h3>
-          <p>החוף הכי אייקוני באיטאקארה. הולכים בערך 40 דקות בתוך יער עד שמגיעים לאחת הפינות הכי יפות שתראו בברזיל.</p>
-        </div>
-
-        <!-- Cachoeira do Tijuípe -->
-        <div class="beach-item">
-          <img src="tijuipe.jpg" alt="Cachoeira do Tijuípe" />
-          <h3>💧 מפל Tijuípe</h3>
-          <p>מחפשים להתפנק במים מתוקים? זה המקום! נגיש בקלות, מים חמימים וצלולים, ובצד מסעדה עם אווירה מקומית וטעמים מעולים.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="wifi" dir="rtl" class="rtl">
-      <h2><i class="fas fa-wifi" aria-hidden="true"></i> אינטרנט אלחוטי</h2>
-      <div class="wifi-box">
-        <div>
-          <p><strong>שם הרשת:</strong> JubarteGuest</p>
-          <p>
-            <strong>סיסמה:</strong>
-            <span id="wifi-password-he">•••••••••••</span>
-            <button id="toggle-password-he" onclick="togglePassword('he')" aria-label="הצג סיסמה">
-              👁️
-            </button>
-          </p>
-        </div>
-        <img src="JubarteGuest-qrcode.png" alt="קוד QR לרשת האינטרנט" class="qr"/>
-      </div>
-    </section>
-    <section id="help" dir="rtl" class="rtl">
-      <h2><i class="fas fa-headset" aria-hidden="true"></i> צריכים עזרה?</h2>
-      <p>לקבלת תמיכה מיידית, לחצו על סמל ה-WhatsApp בפינה הימנית התחתונה כדי לשוחח איתי בכל עת. ניתן גם להשתמש בהודעות Airbnb אם תעדיפו.</p>
-      <div class="contact" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="לוגו WhatsApp" style="width: 24px; height: 24px;">
-        <a href="https://wa.me/5511982964498" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-          +55 11 98296-4498
-        </a>
-      </div>
-    </section>
-    
-  </div>
-
-  <footer>
-    &copy; 2025 Jubarte @ Edifício Paulo Diniz – Obrigado, תודה רבה, and enjoy your stay! ☀️<br>
-    <a href="https://www.instagram.com/flat_jubarte_itacare" target="_blank" style="color: #388e3c; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width: 20px; height: 20px;">
-      @flat_jubarte_itacare
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="images/jubarte.png" alt="Flat Jubarte" class="hero-logo" />
+      <h1 class="hero-title">Bem-vindo ao Flat Jubarte</h1>
+      <p class="hero-subtitle">Seu refúgio à beira-mar em Itacaré, Bahia</p>
+    </div>
+    <a href="#about" class="hero-scroll" aria-label="Scroll down">
+      <i class="fas fa-chevron-down"></i>
     </a>
+  </section>
+
+  <!-- Navigation TOC -->
+  <nav class="toc" aria-label="Table of contents">
+    <ul></ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main">
+    <!-- About Section -->
+    <section id="about">
+      <div class="notice"></div>
+      <h2 class="section-title"></h2>
+      <p class="about-desc-1"></p>
+      <p class="about-desc-2"></p>
+      <ul class="amenities-list"></ul>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+      <h2 class="section-title"></h2>
+      <div class="gallery">
+        <img loading="lazy" src="images/apartment/img1.jpg" alt="Sala de estar do Flat Jubarte" />
+        <img loading="lazy" src="images/apartment/img2.jpg" alt="Quarto com cama queen size" />
+        <img loading="lazy" src="images/apartment/img3.jpg" alt="Cozinha equipada do flat" />
+        <img loading="lazy" src="images/apartment/img5.jpg" alt="Varanda com rede para relaxar" />
+        <img loading="lazy" src="images/apartment/img6.jpg" alt="Banheiro moderno do flat" />
+        <img loading="lazy" src="images/apartment/img7.jpg" alt="Vista externa do Flat Jubarte" />
+      </div>
+    </section>
+
+    <!-- Rules Section -->
+    <section id="rules">
+      <h2 class="section-title"></h2>
+      <p class="section-intro"></p>
+      <ul class="rules-list"></ul>
+    </section>
+
+    <!-- Beaches Section -->
+    <section id="beaches">
+      <h2 class="section-title"></h2>
+      <p class="section-intro"></p>
+      <div class="beach-list"></div>
+    </section>
+
+    <!-- Chefs Section -->
+    <section id="chefs">
+      <h2 class="section-title"></h2>
+      <p class="section-intro"></p>
+      <div class="beach-list"></div>
+    </section>
+
+    <!-- Sports Section -->
+    <section id="sports">
+      <h2 class="section-title"></h2>
+      <p class="section-intro"></p>
+      <div class="beach-list"></div>
+    </section>
+
+    <!-- WiFi Section -->
+    <section id="wifi">
+      <h2 class="section-title"></h2>
+      <div class="wifi-box"></div>
+      <img src="images/JubarteGuest-qrcode.png" alt="Wi-Fi QR Code" class="qr" />
+    </section>
+
+    <!-- Help Section -->
+    <section id="help">
+      <h2 class="section-title"></h2>
+      <p class="section-intro"></p>
+      <div class="contact-buttons"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p></p>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Weather widget functionality
-      const weatherWidget = {
-        latitude: -14.2786,  // Itacaré coordinates
-        longitude: -38.9958,
-        currentLang: 'pt',
-        
-        translations: {
-          pt: {
-            days: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-            weather: {
-              0: { icon: '☀️', desc: 'Céu limpo' },
-              1: { icon: '🌤️', desc: 'Parcialmente nublado' },
-              2: { icon: '⛅', desc: 'Parcialmente nublado' },
-              3: { icon: '☁️', desc: 'Nublado' },
-              45: { icon: '🌫️', desc: 'Neblina' },
-              48: { icon: '🌫️', desc: 'Neblina com geada' },
-              51: { icon: '🌦️', desc: 'Chuvisco leve' },
-              53: { icon: '🌦️', desc: 'Chuvisco moderado' },
-              55: { icon: '🌧️', desc: 'Chuvisco forte' },
-              61: { icon: '🌧️', desc: 'Chuva leve' },
-              63: { icon: '🌧️', desc: 'Chuva moderada' },
-              65: { icon: '🌧️', desc: 'Chuva forte' },
-              71: { icon: '🌨️', desc: 'Neve leve' },
-              73: { icon: '🌨️', desc: 'Neve moderada' },
-              75: { icon: '🌨️', desc: 'Neve forte' },
-              77: { icon: '🌨️', desc: 'Grãos de neve' },
-              80: { icon: '🌧️', desc: 'Pancadas de chuva leves' },
-              81: { icon: '🌧️', desc: 'Pancadas de chuva moderadas' },
-              82: { icon: '🌧️', desc: 'Pancadas de chuva fortes' },
-              85: { icon: '🌨️', desc: 'Pancadas de neve leves' },
-              86: { icon: '🌨️', desc: 'Pancadas de neve fortes' },
-              95: { icon: '⛈️', desc: 'Tempestade' },
-              96: { icon: '⛈️', desc: 'Tempestade com granizo leve' },
-              99: { icon: '⛈️', desc: 'Tempestade com granizo forte' }
-            }
-          },
-          en: {
-            days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-            weather: {
-              0: { icon: '☀️', desc: 'Clear sky' },
-              1: { icon: '🌤️', desc: 'Mainly clear' },
-              2: { icon: '⛅', desc: 'Partly cloudy' },
-              3: { icon: '☁️', desc: 'Overcast' },
-              45: { icon: '🌫️', desc: 'Foggy' },
-              48: { icon: '🌫️', desc: 'Depositing rime fog' },
-              51: { icon: '🌦️', desc: 'Light drizzle' },
-              53: { icon: '🌦️', desc: 'Moderate drizzle' },
-              55: { icon: '🌧️', desc: 'Dense drizzle' },
-              61: { icon: '🌧️', desc: 'Slight rain' },
-              63: { icon: '🌧️', desc: 'Moderate rain' },
-              65: { icon: '🌧️', desc: 'Heavy rain' },
-              71: { icon: '🌨️', desc: 'Slight snow' },
-              73: { icon: '🌨️', desc: 'Moderate snow' },
-              75: { icon: '🌨️', desc: 'Heavy snow' },
-              77: { icon: '🌨️', desc: 'Snow grains' },
-              80: { icon: '🌧️', desc: 'Slight rain showers' },
-              81: { icon: '🌧️', desc: 'Moderate rain showers' },
-              82: { icon: '🌧️', desc: 'Violent rain showers' },
-              85: { icon: '🌨️', desc: 'Slight snow showers' },
-              86: { icon: '🌨️', desc: 'Heavy snow showers' },
-              95: { icon: '⛈️', desc: 'Thunderstorm' },
-              96: { icon: '⛈️', desc: 'Thunderstorm with slight hail' },
-              99: { icon: '⛈️', desc: 'Thunderstorm with heavy hail' }
-            }
-          },
-          he: {
-            days: ['א\'', 'ב\'', 'ג\'', 'ד\'', 'ה\'', 'ו\'', 'ש\''],
-            weather: {
-              0: { icon: '☀️', desc: 'שמיים בהירים' },
-              1: { icon: '🌤️', desc: 'בעיקר בהיר' },
-              2: { icon: '⛅', desc: 'מעונן חלקית' },
-              3: { icon: '☁️', desc: 'מעונן' },
-              45: { icon: '🌫️', desc: 'ערפל' },
-              48: { icon: '🌫️', desc: 'ערפל עם קרח' },
-              51: { icon: '🌦️', desc: 'טפטוף קל' },
-              53: { icon: '🌦️', desc: 'טפטוף בינוני' },
-              55: { icon: '🌧️', desc: 'טפטוף כבד' },
-              61: { icon: '🌧️', desc: 'גשם קל' },
-              63: { icon: '🌧️', desc: 'גשם בינוני' },
-              65: { icon: '🌧️', desc: 'גשם כבד' },
-              71: { icon: '🌨️', desc: 'שלג קל' },
-              73: { icon: '🌨️', desc: 'שלג בינוני' },
-              75: { icon: '🌨️', desc: 'שלג כבד' },
-              77: { icon: '🌨️', desc: 'פתיתי שלג' },
-              80: { icon: '🌧️', desc: 'ממטרים קלים' },
-              81: { icon: '🌧️', desc: 'ממטרים בינוניים' },
-              82: { icon: '🌧️', desc: 'ממטרים כבדים' },
-              85: { icon: '🌨️', desc: 'ממטרי שלג קלים' },
-              86: { icon: '🌨️', desc: 'ממטרי שלג כבדים' },
-              95: { icon: '⛈️', desc: 'סופת רעמים' },
-              96: { icon: '⛈️', desc: 'סופת רעמים עם ברד קל' },
-              99: { icon: '⛈️', desc: 'סופת רעמים עם ברד כבד' }
-            }
-          }
-        },
-        
-        async fetchWeather() {
-          try {
-            console.log('Fetching weather data...');
-            const url = `https://api.open-meteo.com/v1/forecast?latitude=${this.latitude}&longitude=${this.longitude}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=America%2FBahia`;
-            console.log('API URL:', url);
-            
-            const response = await fetch(url);
-            console.log('API Response status:', response.status);
-            
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            console.log('Weather data received:', data);
-            
-            // Verify if we have the required elements
-            const weatherTemp = document.getElementById('weather-temp');
-            const weatherIcon = document.getElementById('weather-icon');
-            const weatherDesc = document.getElementById('weather-desc');
-            
-            if (!weatherTemp || !weatherIcon || !weatherDesc) {
-              throw new Error('Weather widget elements not found in the DOM');
-            }
-            
-            this.displayWeather(data);
-          } catch (error) {
-            console.error('Error in fetchWeather:', error);
-            // Display error state in the widget
-            const weatherTemp = document.getElementById('weather-temp');
-            const weatherIcon = document.getElementById('weather-icon');
-            const weatherDesc = document.getElementById('weather-desc');
-            
-            if (weatherTemp) weatherTemp.textContent = '--°C';
-            if (weatherIcon) weatherIcon.textContent = '❌';
-            if (weatherDesc) weatherDesc.textContent = 'Error';
-          }
-        },
+  <!-- Gallery Modal -->
+  <div id="modal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Visualizador de fotos">
+    <button type="button" class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+    <img id="modal-img" alt="" />
+  </div>
 
-        displayWeather(data) {
-          try {
-            console.log('Starting displayWeather with data:', data);
-            
-            // Verify if we have the required data
-            if (!data.current || !data.daily) {
-              throw new Error('Invalid weather data structure');
-            }
-            
-            // Display current weather
-            const currentTemp = data.current.temperature_2m;
-            const currentWeatherCode = data.current.weather_code;
-            
-            console.log('Current temperature:', currentTemp);
-            console.log('Current weather code:', currentWeatherCode);
-            
-            const weatherTemp = document.getElementById('weather-temp');
-            const weatherIcon = document.getElementById('weather-icon');
-            const weatherDesc = document.getElementById('weather-desc');
-            
-            if (weatherTemp) weatherTemp.textContent = `${Math.round(currentTemp)}°C`;
-            
-            // Set current weather icon and description
-            const weather = this.getWeatherInfo(currentWeatherCode);
-            console.log('Weather info:', weather);
-            
-            if (weatherIcon) weatherIcon.textContent = weather.icon;
-            if (weatherDesc) weatherDesc.textContent = weather.desc;
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
 
-            // Display 7-day forecast
-            const forecastContainer = document.getElementById('weather-forecast');
-            if (!forecastContainer) {
-              console.error('Forecast container not found');
-              return;
-            }
-            
-            forecastContainer.innerHTML = '';
-            
-            const days = this.translations[this.currentLang].days;
-            const today = new Date();
-            
-            for (let i = 0; i < 7; i++) {
-              const date = new Date(today);
-              date.setDate(today.getDate() + i);
-              const dayName = days[date.getDay()];
-              
-              const maxTemp = Math.round(data.daily.temperature_2m_max[i]);
-              const minTemp = Math.round(data.daily.temperature_2m_min[i]);
-              const weatherCode = data.daily.weather_code[i];
-              const weather = this.getWeatherInfo(weatherCode);
-              
-              const forecastItem = document.createElement('div');
-              forecastItem.className = 'forecast-item';
-              forecastItem.innerHTML = `
-                <span class="forecast-day">${dayName}</span>
-                <div class="forecast-temp">
-                  <span>${weather.icon}</span>
-                  <span>${maxTemp}°</span>
-                  <span style="opacity: 0.7">${minTemp}°</span>
-                </div>
-              `;
-              
-              forecastContainer.appendChild(forecastItem);
-            }
-          } catch (error) {
-            console.error('Error in displayWeather:', error);
-          }
-        },
-
-        getWeatherInfo(code) {
-          return this.translations[this.currentLang].weather[code] || { icon: '☀️', desc: this.translations[this.currentLang].weather[0].desc };
-        }
-      };
-
-      // Initialize weather widget
-      console.log('DOM loaded, initializing weather widget...');
-      
-      // Verify if the weather widget elements exist
-      const weatherWidgetEl = document.querySelector('.weather-widget');
-      if (!weatherWidgetEl) {
-        console.error('Weather widget container not found in the DOM');
-      } else {
-        console.log('Weather widget container found');
-        weatherWidget.fetchWeather();
-        
-        // Update weather every 30 minutes
-        setInterval(() => {
-          console.log('Updating weather data...');
-          weatherWidget.fetchWeather();
-        }, 1800000);
-      }
-
-      // Update weather language when site language changes
-      const languageSelector = document.getElementById('language-selector');
-      if (languageSelector) {
-        languageSelector.addEventListener('change', function() {
-          const selectedLang = this.value;
-          console.log('Language changed to:', selectedLang);
-          weatherWidget.setLanguage(selectedLang);
-        });
-      } else {
-        console.error('Language selector not found');
-      }
-
-      // Gallery modal functionality
-      const modal = document.getElementById('modal');
-      const modalImg = document.getElementById('modal-img');
-      const galleryImages = document.querySelectorAll('.gallery img');
-
-      if (modal && modalImg && galleryImages.length > 0) {
-        galleryImages.forEach(img => {
-          img.addEventListener('click', () => {
-            modal.style.display = 'flex';
-            modalImg.src = img.src;
-            modalImg.alt = img.alt;
-          });
-        });
-      }
-
-      // Theme toggle setup
-      const themeToggle = document.getElementById('theme-toggle');
-      if (themeToggle) {
-        // Determine initial theme: saved preference or OS setting
-        const savedTheme = localStorage.getItem('theme');
-        let currentTheme;
-        if (savedTheme) {
-          currentTheme = savedTheme;
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          currentTheme = 'dark';
-        } else {
-          currentTheme = 'light';
-        }
-
-        if (currentTheme === 'dark') {
-          document.documentElement.classList.add('dark-mode');
-          themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
-          themeToggle.setAttribute('aria-label', 'Switch to light mode');
-        } else {
-          document.documentElement.classList.remove('dark-mode');
-          themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
-          themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-        }
-
-        themeToggle.addEventListener('click', () => {
-          document.documentElement.classList.toggle('dark-mode');
-          const newMode = document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
-          localStorage.setItem('theme', newMode);
-          const ariaAnnouncer = document.getElementById('aria-announcer');
-          if (ariaAnnouncer) {
-            ariaAnnouncer.textContent = `Theme changed to ${newMode} mode`;
-          }
-          if (newMode === 'dark') {
-            themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
-            themeToggle.setAttribute('aria-label', 'Switch to light mode');
-          } else {
-            themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
-            themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-          }
-        });
-      }
-
-      // Smooth scrolling for navigation links
-      const navLinks = document.querySelectorAll('a[href^="#"]');
-      if (navLinks.length > 0) {
-        navLinks.forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
-            }
-          });
-        });
-      }
-
-      // Password toggle functionality
-      const actualPassword = 'wifiandwaves';
-      let visible = false;
-
-      function togglePassword(lang) {
-        const span = document.getElementById(`wifi-password-${lang}`);
-        const btn = document.getElementById(`toggle-password-${lang}`);
-        if (span && btn) {
-          visible = !visible;
-          span.textContent = visible ? actualPassword : '•••••••••••••••••';
-          btn.textContent = visible ? '🙈' : '👁️';
-          btn.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
-        }
-      }
-
-      // Add event listeners to all toggle buttons
-      ['pt', 'en', 'he'].forEach(lang => {
-        const toggleButton = document.getElementById(`toggle-password-${lang}`);
-        if (toggleButton) {
-          toggleButton.addEventListener('click', () => togglePassword(lang));
-        }
-      });
-
-      // Language selection
-      function switchLanguage(lang) {
-        const langs = ['pt', 'en', 'he'];
-        langs.forEach(l => {
-          document.getElementById('lang-' + l).style.display = l === lang ? 'block' : 'none';
-          document.getElementById('subtitle-' + l).style.display = l === lang ? 'block' : 'none';
-        });
-        document.documentElement.lang = lang;
-        document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
-        
-        // Reset password visibility when language changes
-        visible = false;
-        langs.forEach(l => {
-          const span = document.getElementById(`wifi-password-${l}`);
-          const btn = document.getElementById(`toggle-password-${l}`);
-          if (span && btn) {
-            span.textContent = '•••••••••••••••••';
-            btn.textContent = '👁️';
-            btn.setAttribute('aria-label', 'Show password');
-          }
-        });
-      }
-    });
-  </script>
-  <!-- Floating WhatsApp Chat Button -->
+  <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/5511982964498" class="floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp">
     <i class="fab fa-whatsapp" aria-hidden="true"></i>
   </a>
+
+  <!-- JavaScript Modules -->
+  <script src="js/i18n.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

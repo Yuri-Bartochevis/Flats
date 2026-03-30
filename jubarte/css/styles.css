@@ -1,28 +1,28 @@
 /* ==========================================================================
-   Flat Maritaca - Styles
-   Maritaca Beach Palette - Tropical & Coastal
+   Flat Jubarte - Styles
+   Jubarte (Humpback Whale) Palette - Deep Ocean & Coastal
    ========================================================================== */
 
 /* CSS Variables */
 :root {
   /* Colors */
-  --primary-color: #0891B2;
-  --primary-dark: #0E7490;
-  --accent-color: #059669;
-  --accent-light: #6EE7B7;
-  --warm-accent: #F59E0B;
-  --bg-color: #FEFDFB;
-  --text-color: #1E293B;
-  --text-muted: #64748B;
-  --highlight-color: #ECFEFF;
+  --primary-color: #0077B6;
+  --primary-dark: #005F92;
+  --accent-color: #0096C7;
+  --accent-light: #90E0EF;
+  --warm-accent: #F77F00;
+  --bg-color: #F0F8FF;
+  --text-color: #0D1B2A;
+  --text-muted: #4A6B8A;
+  --highlight-color: #E0F4FF;
   --section-bg: #FFFFFF;
   --card-bg: #FFFFFF;
-  --card-border: rgba(8, 145, 178, 0.1);
-  --notice-bg: #F0FDFA;
+  --card-border: rgba(0, 119, 182, 0.1);
+  --notice-bg: #E8F4FD;
 
   /* Shadows */
-  --box-shadow: 0 2px 12px rgba(8, 145, 178, 0.08);
-  --box-shadow-hover: 0 8px 30px rgba(8, 145, 178, 0.15);
+  --box-shadow: 0 2px 12px rgba(0, 119, 182, 0.08);
+  --box-shadow-hover: 0 8px 30px rgba(0, 119, 182, 0.15);
 
   /* Spacing & Radius */
   --border-radius: 16px;
@@ -34,20 +34,20 @@
 
 /* Dark Mode */
 .dark-mode {
-  --bg-color: #0F172A;
-  --text-color: #E2E8F0;
-  --text-muted: #94A3B8;
-  --highlight-color: #1E293B;
-  --box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
-  --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.5);
-  --section-bg: #1E293B;
-  --card-bg: #334155;
-  --card-border: rgba(148, 163, 184, 0.1);
-  --notice-bg: #1E293B;
-  --notice-bg-accent: #164E63;
-  --primary-color: #22D3EE;
-  --accent-color: #34D399;
-  --accent-light: #6EE7B7;
+  --bg-color: #071B2E;
+  --text-color: #E8F1F8;
+  --text-muted: #8FAFC8;
+  --highlight-color: #0F2D48;
+  --box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.6);
+  --section-bg: #0F2D48;
+  --card-bg: #163A5F;
+  --card-border: rgba(144, 224, 239, 0.1);
+  --notice-bg: #0F2D48;
+  --notice-bg-accent: #0A3054;
+  --primary-color: #48CAE4;
+  --accent-color: #52B6D4;
+  --accent-light: #90E0EF;
 }
 
 /* ==========================================================================
@@ -140,14 +140,14 @@ ul li strong {
    ========================================================================== */
 
 header {
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  background: linear-gradient(135deg, #023E8A, #0077B6);
   color: white;
   position: sticky;
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
 }
 
 header .header-inner {
@@ -204,7 +204,7 @@ header .header-inner {
   height: 70vh;
   min-height: 500px;
   max-height: 800px;
-  background: linear-gradient(135deg, rgba(8, 145, 178, 0.85), rgba(5, 150, 105, 0.75)),
+  background: linear-gradient(135deg, rgba(2, 62, 138, 0.85), rgba(0, 119, 182, 0.75)),
               url('../images/apartment/img1.jpg');
   background-size: cover;
   background-position: center;
@@ -327,7 +327,7 @@ h2 i {
    ========================================================================== */
 
 .notice {
-  background: linear-gradient(135deg, #ECFEFF, #F0FDFA);
+  background: linear-gradient(135deg, #E0F4FF, #E8F4FD);
   padding: 24px;
   border-radius: var(--border-radius);
   margin-bottom: 28px;
@@ -344,7 +344,7 @@ h2 i {
   right: -20px;
   width: 120px;
   height: 120px;
-  background: radial-gradient(circle, rgba(8, 145, 178, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 119, 182, 0.15) 0%, transparent 70%);
   opacity: 0.5;
 }
 
@@ -367,7 +367,7 @@ h2 i {
 }
 
 .dark-mode .notice {
-  background: linear-gradient(135deg, var(--notice-bg-accent), #1E293B);
+  background: linear-gradient(135deg, var(--notice-bg-accent), #0F2D48);
 }
 
 /* ==========================================================================
@@ -419,7 +419,7 @@ h2 i {
   background: var(--primary-color);
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(8, 145, 178, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.25);
 }
 
 /* ==========================================================================
@@ -681,7 +681,7 @@ h2 i {
   margin-top: 8px;
   padding: 10px 16px;
   border-radius: 100px;
-  background: #ECFDF5;
+  background: #E0F4FF;
   transition: var(--transition);
   border: 1px solid transparent;
 }
@@ -690,7 +690,7 @@ h2 i {
   background: var(--accent-color);
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 150, 199, 0.3);
 }
 
 .instagram-link i {
@@ -709,7 +709,7 @@ h2 i {
   margin-right: 8px;
   padding: 10px 16px;
   border-radius: 100px;
-  background: #ECFEFF;
+  background: #E0F4FF;
   transition: var(--transition);
   border: 1px solid transparent;
 }
@@ -718,7 +718,7 @@ h2 i {
   background: var(--primary-color);
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
 }
 
 .address-link i {
@@ -767,7 +767,7 @@ h2 i {
 .btn:hover {
   opacity: 0.88;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
 }
 
 .btn:focus {
@@ -1099,7 +1099,7 @@ h2 i {
 footer {
   text-align: center;
   padding: 48px 24px;
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  background: linear-gradient(135deg, #023E8A, #0077B6);
   color: white;
   margin-top: 60px;
 }
