@@ -30,6 +30,9 @@ const App = {
     // Render dynamic content
     this.renderContent();
 
+    // Initialize TOC active tracking
+    this.initTocTracking();
+
     // Set initial active language button
     const savedLang = localStorage.getItem('language') || 'pt';
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -388,6 +391,7 @@ const App = {
           <p>${beach.desc}</p>
         </div>
       `).join('');
+      this.setCardIndices(list);
     }
   },
 
@@ -426,6 +430,7 @@ const App = {
           <a href="${chef.instagram}" target="_blank" class="instagram-link"><i class="fab fa-instagram"></i> ${chef.instagramHandle}</a>
         </div>
       `).join('');
+      this.setCardIndices(list);
     }
   },
 
@@ -453,6 +458,7 @@ const App = {
           <a href="${sport.instagram}" target="_blank" class="instagram-link"><i class="fab fa-instagram"></i> ${sport.instagramHandle}</a>
         </div>
       `).join('');
+      this.setCardIndices(list);
     }
   },
 
@@ -468,17 +474,21 @@ const App = {
     const wifiBox = document.querySelector('#wifi .wifi-box');
     if (wifiBox) {
       wifiBox.innerHTML = `
-        <div>
-          <p><strong>${wifi.networkLabel}:</strong> ${wifi.network}</p>
-          <p>
-            <strong>${wifi.passwordLabel}:</strong>
-            <span id="wifi-password">${'•'.repeat(11)}</span>
-            <span id="wifi-password-revealed" style="display: none;">${wifi.password}</span>
-          </p>
+        <div class="wifi-card">
+          <div class="wifi-field">
+            <span class="wifi-label">${wifi.networkLabel}</span>
+            <span class="wifi-value">${wifi.network}</span>
+          </div>
+          <div class="wifi-divider" aria-hidden="true"></div>
+          <div class="wifi-field">
+            <span class="wifi-label">${wifi.passwordLabel}</span>
+            <span class="wifi-value" id="wifi-password">${'•'.repeat(11)}</span>
+            <span class="wifi-value" id="wifi-password-revealed" style="display: none;">${wifi.password}</span>
+          </div>
+          <button class="btn" onclick="App.toggleWifiPassword()">
+            <i class="fas fa-eye"></i> ${wifi.showButton}
+          </button>
         </div>
-        <button class="btn" onclick="App.toggleWifiPassword()">
-          <i class="fas fa-eye"></i> ${wifi.showButton}
-        </button>
       `;
     }
   },
@@ -486,7 +496,7 @@ const App = {
   toggleWifiPassword() {
     const hidden = document.getElementById('wifi-password');
     const revealed = document.getElementById('wifi-password-revealed');
-    const btn = document.querySelector('#wifi .wifi-box .btn');
+    const btn = document.querySelector('#wifi .wifi-card .btn');
     const wifi = window.i18n.t('wifi');
 
     if (revealed.style.display === 'none') {
@@ -525,6 +535,32 @@ const App = {
     if (!footer) return;
 
     this.updateElement('footer p', footer.copyright);
+  },
+
+  setCardIndices(list) {
+    if (!list) return;
+    list.querySelectorAll('.beach-item').forEach((item, i) => {
+      item.style.setProperty('--card-index', i);
+    });
+  },
+
+  initTocTracking() {
+    const sections = document.querySelectorAll('main section[id]');
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const link = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+        if (link) {
+          link.classList.toggle('active', entry.isIntersecting);
+        }
+      });
+    }, {
+      threshold: 0.25,
+      rootMargin: '-80px 0px -55% 0px'
+    });
+
+    sections.forEach(section => observer.observe(section));
   }
 };
 
