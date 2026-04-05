@@ -553,7 +553,7 @@ h2 i {
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 220px 220px 180px;
+  grid-template-rows: 220px 220px 180px 280px;
   gap: 10px;
   margin-top: 8px;
 }
@@ -568,7 +568,7 @@ h2 i {
   filter: saturate(0.92);
 }
 .gallery img:nth-child(1) { grid-row: span 2; }
-.gallery img:nth-child(6) { grid-column: 1 / -1; }
+.gallery img:nth-child(8) { grid-column: 1 / -1; }
 
 .gallery img:hover {
   transform: scale(1.02);
@@ -1189,7 +1189,7 @@ footer a:hover {
   }
   .gallery img { height: 148px; }
   .gallery img:nth-child(1),
-  .gallery img:nth-child(6) {
+  .gallery img:nth-child(8) {
     grid-row: auto;
     grid-column: auto;
   }

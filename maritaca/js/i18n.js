@@ -57,11 +57,13 @@ const translations = {
       title: "Galeria",
       images: [
         { src: "images/apartment/img1.jpg", alt: "Sala de estar do Flat Maritaca" },
-        { src: "images/apartment/img2.jpg", alt: "Quarto com cama queen size" },
-        { src: "images/apartment/img3.jpg", alt: "Cozinha equipada" },
-        { src: "images/apartment/img5.jpg", alt: "Varanda com rede" },
-        { src: "images/apartment/img6.jpg", alt: "Banheiro moderno" },
-        { src: "images/apartment/img7.jpg", alt: "Vista externa do prédio Papagaios" }
+        { src: "images/apartment/img2.jpg", alt: "Quarto com cama de casal e ar-condicionado" },
+        { src: "images/apartment/img3.jpg", alt: "Banheiro moderno com mármore escuro" },
+        { src: "images/apartment/img4.jpg", alt: "Corredor com detalhes decorativos" },
+        { src: "images/apartment/img5.jpg", alt: "Cozinha americana e área de serviço" },
+        { src: "images/apartment/img7.jpg", alt: "Almofadas tropicais no sofá" },
+        { src: "images/apartment/img8.jpg", alt: "QR Code do Flat Maritaca" },
+        { src: "images/apartment/img6.jpg", alt: "Varanda com espreguiçadeiras e jardim" }
       ]
     },
 
@@ -255,11 +257,13 @@ const translations = {
       title: "Gallery",
       images: [
         { src: "images/apartment/img1.jpg", alt: "Living room of Flat Maritaca" },
-        { src: "images/apartment/img2.jpg", alt: "Bedroom with queen-size bed" },
-        { src: "images/apartment/img3.jpg", alt: "Equipped kitchen" },
-        { src: "images/apartment/img5.jpg", alt: "Balcony with hammock" },
-        { src: "images/apartment/img6.jpg", alt: "Modern bathroom" },
-        { src: "images/apartment/img7.jpg", alt: "External view of Papagaios building" }
+        { src: "images/apartment/img2.jpg", alt: "Bedroom with double bed and AC" },
+        { src: "images/apartment/img3.jpg", alt: "Modern bathroom with dark marble" },
+        { src: "images/apartment/img4.jpg", alt: "Hallway with decorative details" },
+        { src: "images/apartment/img5.jpg", alt: "Kitchen bar and laundry area" },
+        { src: "images/apartment/img7.jpg", alt: "Tropical cushion detail on sofa" },
+        { src: "images/apartment/img8.jpg", alt: "Flat Maritaca QR Code" },
+        { src: "images/apartment/img6.jpg", alt: "Balcony with deck chairs and garden" }
       ]
     },
 
@@ -453,11 +457,13 @@ const translations = {
       title: "גלריה",
       images: [
         { src: "images/apartment/img1.jpg", alt: "סלון של דירת מריטקה" },
-        { src: "images/apartment/img2.jpg", alt: "חדר שינה עם מיטת קווין" },
-        { src: "images/apartment/img3.jpg", alt: "מטבח מאובזר לגמרי" },
-        { src: "images/apartment/img5.jpg", alt: "מרפסת עם ערסל" },
-        { src: "images/apartment/img6.jpg", alt: "חדר רחצה מודרני" },
-        { src: "images/apartment/img7.jpg", alt: "מבט חיצוני של בניין פפגאיוס" }
+        { src: "images/apartment/img2.jpg", alt: "חדר שינה עם מיטה זוגית ומיזוג אוויר" },
+        { src: "images/apartment/img3.jpg", alt: "חדר רחצה מודרני עם שיש כהה" },
+        { src: "images/apartment/img4.jpg", alt: "מסדרון עם פרטים עיצוביים" },
+        { src: "images/apartment/img5.jpg", alt: "מטבח ואזור כביסה" },
+        { src: "images/apartment/img7.jpg", alt: "פרט כריות טרופיות על הספה" },
+        { src: "images/apartment/img8.jpg", alt: "קוד QR של דירת מריטקה" },
+        { src: "images/apartment/img6.jpg", alt: "מרפסת עם כיסאות נוח וגינה" }
       ]
     },
 
