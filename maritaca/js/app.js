@@ -60,7 +60,7 @@ const App = {
     window.openModal = function(img) {
       lastFocused = document.activeElement;
       modal.style.display = 'flex';
-      modalImg.src = img.src;
+      modalImg.src = img.dataset.full || img.currentSrc || img.src;
       modalImg.alt = img.alt;
       if (modalClose) modalClose.focus();
     };
