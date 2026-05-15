@@ -1,105 +1,111 @@
-# Flat Maritaca — Guest Guide
+# Flat Maritaca
 
-A progressive web app (PWA) guest guide for **Flat Maritaca**, a vacation rental in Itacaré, Bahia, Brazil. Guests scan a QR code on arrival and get instant access to house rules, Wi-Fi credentials, local beach & restaurant recommendations, and direct host contact — in their preferred language.
+Static site for **Flat Maritaca**, a vacation rental in Itacaré, Bahia. Two surfaces:
 
----
+- **`/`** — public marketing landing (PT/EN/HE), JSON-LD `LodgingBusiness`, WhatsApp CTAs.
+- **`/guide`** — private guest guide. The Wi-Fi password is gated behind a stay code that is validated by `/api/unlock` against an env var on Vercel; it never ships in the JS bundle.
 
-## Features
-
-- **Multi-language** — Portuguese, English, and Hebrew (with full RTL support for HE)
-- **Dark mode** — respects `prefers-color-scheme`; toggle persisted in `localStorage`
-- **Live weather widget** — current conditions + 7-day forecast via [Open-Meteo](https://open-meteo.com/), with automatic retry on failure
-- **Photo gallery** — grid layout with full-screen modal viewer and keyboard/focus trap
-- **Image carousels** — swipeable multi-photo cards for restaurants
-- **PWA** — installable via `manifest.json`, works offline after first load
-- **Accessible** — skip link, `aria-label` on all interactive elements, focus management in modal, keyboard navigation throughout
-
----
-
-## Project Structure
+## Project layout
 
 ```
 maritaca/
-├── index.html          # Single-page app shell
+├── index.html          # Public marketing landing
+├── guide.html          # Guest-only guide (noindex)
+├── privacy.html        # LGPD privacy notice
+├── 404.html            # Branded not-found page
 ├── manifest.json       # PWA manifest
-├── css/
-│   └── styles.css      # Design system + all component styles
+├── robots.txt
+├── sitemap.xml
+├── vercel.json         # Headers, redirects, clean URLs
+├── api/
+│   └── unlock.js       # Serverless fn: validates stay code, returns Wi-Fi password
+├── css/styles.css      # Design system + landing additions
 ├── js/
-│   ├── i18n.js         # Translations (PT / EN / HE) + language helpers
-│   ├── app.js          # Main app: renders content, modal, dark mode, TOC
-│   ├── weather.js      # Weather widget (Open-Meteo API)
-│   └── carousel.js     # Image carousel for restaurant cards
+│   ├── i18n.js         # PT / EN / HE translations
+│   ├── landing.js      # Public landing logic (slim)
+│   ├── app.js          # Guest guide logic
+│   ├── weather.js      # Open-Meteo widget (guide only)
+│   └── carousel.js     # Restaurant card carousels
 └── images/
-    ├── maritaca.png           # Logo / favicon
-    ├── MaritacaGuest-qrcode.png  # Wi-Fi QR code
-    ├── apartment/             # Gallery photos
-    ├── must-see/              # Beach photos
-    ├── restaurants/           # Restaurant photos
-    └── sports/                # Sports activity photos
+    ├── apartment/      # Gallery (640 / 1280 / 1920 widths)
+    ├── must-see/       # Beach photos
+    ├── restaurants/    # Restaurant photos
+    ├── sports/         # Sports photos
+    ├── favicons/       # 32 / 180 / 192 / 512
+    ├── og-image.jpg    # 1200x630 social preview
+    └── maritaca.png    # Logo
 ```
 
----
-
-## Getting Started
-
-No build step required. Open `index.html` directly in a browser or serve with any static file server:
+## Local dev
 
 ```bash
-# Python
 python3 -m http.server 8080
-
-# Node (npx)
+# or
 npx serve .
 ```
 
----
+For the `/api/unlock` route, run with the Vercel CLI:
 
-## Content Sections
-
-| Section | Description |
-|---|---|
-| About | Flat overview, amenities list, welcome notice |
-| Gallery | 6-photo apartment gallery with modal viewer |
-| House Rules | Check-in/out times, noise policy, waste sorting |
-| Beaches | Top beaches near Itacaré with photos and descriptions |
-| Chef's Picks | Recommended restaurants with carousels, maps, and Instagram links |
-| Sports | Surf schools, yoga, and outdoor activities with maps |
-| Wi-Fi | Network name, reveal-on-tap password, and QR code |
-| Help | Direct WhatsApp link to the host |
-
----
-
-## Adding / Editing Content
-
-All user-facing text lives in **`js/i18n.js`**. Each top-level key mirrors a section (`about`, `beaches`, `chefs`, etc.) and has three language variants (`pt`, `en`, `he`).
-
-To add a new beach, for example, append an entry to `beaches.items` in all three language objects:
-
-```js
-{
-  name: "Praia de Itacarezinho",
-  desc: "Quiet beach with natural pools.",
-  image: "images/must-see/itacarezinho.jpg"
-}
+```bash
+npm i -g vercel
+vercel dev
+# set local env vars in .env (gitignored): STAY_CODES, WIFI_PASSWORD
 ```
 
-Images go in the corresponding subfolder under `images/`.
+## Deploy to Vercel
 
----
+### 1. Create the Vercel project
 
-## Tech Stack
+```bash
+vercel link        # connects this folder to a new/existing project
+```
 
-| Concern | Solution |
-|---|---|
-| Styling | Vanilla CSS with custom properties (no framework) |
-| Icons | Font Awesome 6.5.1 |
-| Typography | Google Fonts — Quicksand |
-| Weather | Open-Meteo (free, no API key) |
-| Translations | Inline JS object (`i18n.js`) |
-| PWA | `manifest.json` |
+### 2. Set environment variables
 
----
+In the Vercel dashboard → **Settings → Environment Variables**, add:
 
-## Browser Support
+| Name           | Value                              | Notes                                        |
+|----------------|------------------------------------|----------------------------------------------|
+| `STAY_CODES`   | e.g. `MAR2026,VIP-ABCDE`           | Comma-separated. Issue a unique one per booking. |
+| `WIFI_PASSWORD`| `wifiandwaves`                     | Current Wi-Fi password.                      |
 
-Targets modern mobile browsers (Chrome/Safari on iOS and Android). The primary use case is a guest opening a QR code link on their phone at check-in.
+Apply to **Production** and **Preview** environments.
+
+### 3. Custom domain
+
+1. Vercel dashboard → **Domains** → add `flatmaritaca.com.br` and `www.flatmaritaca.com.br`.
+2. Vercel will show DNS records. Two options on Registro.br:
+   - **Easiest:** point Registro.br nameservers to Vercel-suggested NS (look up Vercel's nameserver instructions when adding the domain — they appear inline).
+   - **Or via DNS records on Registro.br:**
+     - `A` record `@` → `76.76.21.21`
+     - `CNAME` `www` → `cname.vercel-dns.com`
+3. The `vercel.json` already redirects `www` → apex (HTTP 308).
+
+### 4. After deploy
+
+- Submit `https://flatmaritaca.com.br/sitemap.xml` to Google Search Console.
+- (Optional) Enable Vercel Web Analytics in the project dashboard — cookieless, LGPD-friendly.
+- Test the stay-code unlock with a code from `STAY_CODES`.
+
+## Adding/editing content
+
+All copy lives in `js/i18n.js`, organised by language (`pt`, `en`, `he`). Each top-level key (`landing`, `about`, `beaches`, `chefs`, `sports`, `rules`, `wifi`, `help`, `footer`) has the same shape across languages.
+
+Images for new beaches/restaurants/sports go in the matching `images/` subfolder.
+
+## Security
+
+- Wi-Fi credentials never leave the server unless a valid stay code is supplied.
+- `/api/unlock` rate-limits per IP and uses constant-time string comparison.
+- HSTS preload, strict CSP, `X-Frame-Options: DENY`, minimal Permissions-Policy — see `vercel.json`.
+- `/guide` is `noindex,nofollow` (also enforced via response header).
+
+## What's intentionally missing
+
+- **Email forwarding** — contact is WhatsApp only by design.
+- **Booking platform integrations** (Airbnb/Booking widgets) — the WhatsApp CTA is the booking funnel today; add later if desired.
+- **Map embed** — `/` uses a static location card with an "Open in Google Maps" button to keep CSP tight and avoid third-party iframes.
+
+## Browser support
+
+Modern Chrome/Safari/Firefox on mobile and desktop. The PWA install path works on iOS Safari and Chrome Android.

@@ -472,42 +472,145 @@ const App = {
       `<i class="fas fa-wifi" aria-hidden="true"></i> ${wifi.title}`);
 
     const wifiBox = document.querySelector('#wifi .wifi-box');
-    if (wifiBox) {
-      wifiBox.innerHTML = `
-        <div class="wifi-card">
-          <div class="wifi-field">
-            <span class="wifi-label">${wifi.networkLabel}</span>
-            <span class="wifi-value">${wifi.network}</span>
-          </div>
-          <div class="wifi-divider" aria-hidden="true"></div>
-          <div class="wifi-field">
-            <span class="wifi-label">${wifi.passwordLabel}</span>
-            <span class="wifi-value" id="wifi-password">${'•'.repeat(11)}</span>
-            <span class="wifi-value" id="wifi-password-revealed" style="display: none;">${wifi.password}</span>
-          </div>
-          <button class="btn" onclick="App.toggleWifiPassword()">
-            <i class="fas fa-eye"></i> ${wifi.showButton}
-          </button>
-        </div>
-      `;
+    if (!wifiBox) return;
+
+    const cached = this.getUnlockedWifiPassword();
+
+    if (cached) {
+      wifiBox.innerHTML = this.renderUnlockedWifi(wifi, cached, false);
+    } else {
+      wifiBox.innerHTML = this.renderLockedWifi(wifi);
+      const form = wifiBox.querySelector('#wifi-unlock-form');
+      if (form) {
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          this.unlockWifi();
+        });
+      }
     }
   },
 
-  toggleWifiPassword() {
-    const hidden = document.getElementById('wifi-password');
-    const revealed = document.getElementById('wifi-password-revealed');
+  renderLockedWifi(wifi) {
+    return `
+      <div class="wifi-card wifi-card--locked">
+        <div class="wifi-field">
+          <span class="wifi-label">${wifi.networkLabel}</span>
+          <span class="wifi-value">${wifi.network}</span>
+        </div>
+        <div class="wifi-divider" aria-hidden="true"></div>
+        <form id="wifi-unlock-form" class="wifi-unlock">
+          <span class="wifi-label"><i class="fas fa-lock" aria-hidden="true"></i> ${wifi.stayCodeLabel}</span>
+          <div class="wifi-unlock-row">
+            <input
+              id="wifi-unlock-input"
+              type="text"
+              autocomplete="off"
+              autocapitalize="characters"
+              spellcheck="false"
+              placeholder="${wifi.stayCodePlaceholder}"
+              aria-label="${wifi.stayCodeLabel}"
+              required
+            />
+            <button type="submit" class="btn">${wifi.unlockButton}</button>
+          </div>
+          <p class="wifi-unlock-hint">${wifi.lockedHint}</p>
+          <p class="wifi-unlock-error" id="wifi-unlock-error" hidden></p>
+        </form>
+      </div>
+    `;
+  },
+
+  renderUnlockedWifi(wifi, password, masked = true) {
+    const dots = '•'.repeat(Math.max(8, password.length));
+    return `
+      <div class="wifi-card">
+        <div class="wifi-field">
+          <span class="wifi-label">${wifi.networkLabel}</span>
+          <span class="wifi-value">${wifi.network}</span>
+        </div>
+        <div class="wifi-divider" aria-hidden="true"></div>
+        <div class="wifi-field">
+          <span class="wifi-label">${wifi.passwordLabel}</span>
+          <span class="wifi-value" id="wifi-password-display">${masked ? dots : password}</span>
+        </div>
+        <button class="btn" type="button" onclick="App.toggleWifiPasswordView()">
+          <i class="fas ${masked ? 'fa-eye' : 'fa-eye-slash'}"></i>
+          <span>${masked ? wifi.showButton : wifi.hideButton}</span>
+        </button>
+      </div>
+    `;
+  },
+
+  toggleWifiPasswordView() {
+    const display = document.getElementById('wifi-password-display');
     const btn = document.querySelector('#wifi .wifi-card .btn');
     const wifi = window.i18n.t('wifi');
+    const password = this.getUnlockedWifiPassword();
+    if (!display || !btn || !password) return;
 
-    if (revealed.style.display === 'none') {
-      revealed.style.display = 'inline';
-      hidden.style.display = 'none';
-      btn.innerHTML = `<i class="fas fa-eye-slash"></i> ${wifi.hideButton}`;
+    const masked = display.dataset.masked !== 'false';
+    if (masked) {
+      display.textContent = password;
+      display.dataset.masked = 'false';
+      btn.innerHTML = `<i class="fas fa-eye-slash"></i><span>${wifi.hideButton}</span>`;
     } else {
-      revealed.style.display = 'none';
-      hidden.style.display = 'inline';
-      btn.innerHTML = `<i class="fas fa-eye"></i> ${wifi.showButton}`;
+      display.textContent = '•'.repeat(Math.max(8, password.length));
+      display.dataset.masked = 'true';
+      btn.innerHTML = `<i class="fas fa-eye"></i><span>${wifi.showButton}</span>`;
     }
+  },
+
+  async unlockWifi() {
+    const wifi = window.i18n.t('wifi');
+    const input = document.getElementById('wifi-unlock-input');
+    const errorEl = document.getElementById('wifi-unlock-error');
+    const form = document.getElementById('wifi-unlock-form');
+    const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+
+    const code = (input?.value || '').trim();
+    if (!code) return;
+    if (errorEl) { errorEl.hidden = true; errorEl.textContent = ''; }
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = wifi.unlockingButton; }
+
+    try {
+      const res = await fetch(`/api/unlock?code=${encodeURIComponent(code)}`, {
+        headers: { Accept: 'application/json' }
+      });
+      if (!res.ok) throw new Error('invalid');
+      const data = await res.json();
+      if (!data || !data.password) throw new Error('invalid');
+
+      this.setUnlockedWifiPassword(data.password, code);
+
+      const wifiBox = document.querySelector('#wifi .wifi-box');
+      if (wifiBox) {
+        wifiBox.innerHTML = this.renderUnlockedWifi(wifi, data.password, false);
+      }
+      const announcer = document.getElementById('aria-announcer');
+      if (announcer) announcer.textContent = wifi.title;
+    } catch (e) {
+      if (errorEl) {
+        errorEl.textContent = wifi.unlockError;
+        errorEl.hidden = false;
+      }
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = wifi.unlockButton; }
+      if (input) input.focus();
+    }
+  },
+
+  getUnlockedWifiPassword() {
+    try {
+      return localStorage.getItem('wifi_password') || null;
+    } catch (e) {
+      return null;
+    }
+  },
+
+  setUnlockedWifiPassword(password, code) {
+    try {
+      localStorage.setItem('wifi_password', password);
+      if (code) localStorage.setItem('stay_code', code);
+    } catch (e) { /* private mode */ }
   },
 
   updateHelpSection() {

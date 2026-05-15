@@ -1,60 +1,105 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
-  <!-- SEO & PWA -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Flat Maritaca in Itacaré offers modern and cozy accommodation with full amenities, gallery, house rules, and top beaches & waterfalls." />
-  <meta property="og:title" content="Flat Maritaca" />
-  <meta property="og:description" content="Cozy flat in Itacaré with modern decor, full amenities, gallery, house rules, and best local spots." />
+  <meta name="description" content="Flat Maritaca em Itacaré, Bahia: cama queen, varanda com rede, cozinha completa e estacionamento privativo. Reservas direto pelo WhatsApp." />
+  <meta name="keywords" content="flat itacaré, hospedagem itacaré, aluguel temporada bahia, flat maritaca, airbnb itacaré, pousada itacaré" />
+  <meta name="author" content="Flat Maritaca" />
+  <meta name="theme-color" content="#1A9494" />
+  <meta name="geo.region" content="BR-BA" />
+  <meta name="geo.placename" content="Itacaré" />
+  <meta name="geo.position" content="-14.2786;-38.9958" />
+  <meta name="ICBM" content="-14.2786, -38.9958" />
+
+  <link rel="canonical" href="https://flatmaritaca.com.br/" />
+  <link rel="alternate" hreflang="pt-BR" href="https://flatmaritaca.com.br/" />
+  <link rel="alternate" hreflang="en" href="https://flatmaritaca.com.br/?lang=en" />
+  <link rel="alternate" hreflang="he" href="https://flatmaritaca.com.br/?lang=he" />
+  <link rel="alternate" hreflang="x-default" href="https://flatmaritaca.com.br/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Flat Maritaca — Estadia em Itacaré, Bahia" />
+  <meta property="og:description" content="Flat aconchegante a poucos passos das praias e do centrinho de Itacaré." />
+  <meta property="og:url" content="https://flatmaritaca.com.br/" />
   <meta property="og:image" content="https://flatmaritaca.com.br/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:url" content="https://flatmaritaca.com.br/" />
-  <meta property="og:type" content="website" />
+  <meta property="og:image:alt" content="Vista da varanda do Flat Maritaca" />
   <meta property="og:locale" content="pt_BR" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Flat Maritaca" />
-  <meta name="twitter:description" content="Flat aconchegante em Itacaré, Bahia." />
-  <meta name="twitter:image" content="https://flatmaritaca.com.br/images/og-image.jpg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png" />
-  <link rel="manifest" href="manifest.json" />
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <!-- Typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css" />
-  <title>Flat Maritaca</title>
-</head>
-<body>
-  <!-- Skip to main content -->
-  <a href="#main" class="skip-link">Skip to main content</a>
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="he_IL" />
+  <meta property="og:site_name" content="Flat Maritaca" />
 
-  <!-- Accessibility announcer -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Flat Maritaca — Itacaré, Bahia" />
+  <meta name="twitter:description" content="Estadia tranquila a poucos passos das praias de Itacaré." />
+  <meta name="twitter:image" content="https://flatmaritaca.com.br/images/og-image.jpg" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <title>Flat Maritaca — Estadia em Itacaré, Bahia</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "@id": "https://flatmaritaca.com.br/#lodging",
+    "name": "Flat Maritaca",
+    "description": "Flat aconchegante em Itacaré, Bahia. Cama queen, varanda com rede, cozinha completa e estacionamento privativo.",
+    "url": "https://flatmaritaca.com.br/",
+    "image": "https://flatmaritaca.com.br/images/og-image.jpg",
+    "telephone": "+55 11 98296 4498",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Itacaré",
+      "addressRegion": "BA",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -14.2786,
+      "longitude": -38.9958
+    },
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Air conditioning", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Free parking", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Kitchen", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Balcony", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Workspace", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Pets allowed", "value": true }
+    ],
+    "potentialAction": {
+      "@type": "ReserveAction",
+      "target": "https://wa.me/5511982964498"
+    }
+  }
+  </script>
+</head>
+<body class="is-landing">
+  <a href="#main" class="skip-link">Skip to main content</a>
   <div id="aria-announcer" aria-live="polite" class="sr-only"></div>
 
-  <!-- Header with language selector -->
   <header>
     <div class="header-inner">
-      <div class="header-left">
-        <img src="images/maritaca.png" alt="Flat Maritaca Logo" class="logo" />
+      <a href="/" class="header-left header-home" aria-label="Flat Maritaca">
+        <img src="/images/maritaca.png" alt="" class="logo" />
         <div class="header-text">
           <h1>Flat Maritaca</h1>
-          <p class="subtitle">Sua estadia em Itacaré</p>
+          <p class="subtitle" data-i18n="subtitle">Sua estadia em Itacaré</p>
         </div>
-      </div>
+      </a>
       <div class="header-controls">
-        <!-- Weather Widget -->
-        <div class="weather-widget">
-          <div class="weather-current">
-            <span id="weather-icon">☀️</span>
-            <span id="weather-temp">--°C</span>
-            <span id="weather-desc">Carregando...</span>
-          </div>
-          <div id="weather-forecast" class="weather-forecast"></div>
-        </div>
         <div class="language-selector">
           <button class="lang-btn active" data-lang="pt" aria-label="Português">PT</button>
           <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
@@ -67,117 +112,167 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
+  <!-- Hero -->
+  <section class="hero hero--landing">
     <div class="hero-content">
-      <img src="images/maritaca.png" alt="Flat Maritaca" class="hero-logo" />
-      <h1 class="hero-title">Bem-vindo ao Flat Maritaca</h1>
-      <p class="hero-subtitle">Seu refúgio aconchegante em Itacaré, Bahia</p>
+      <p class="hero-eyebrow" data-i18n="landing.hero.eyebrow">Itacaré · Bahia</p>
+      <h1 class="hero-title" data-i18n="landing.hero.title">Onde o mar encontra o silêncio</h1>
+      <p class="hero-subtitle hero-subtitle--lead" data-i18n="landing.hero.subtitle">Um flat sereno e bem equipado, a poucos minutos das praias e do centrinho.</p>
+      <div class="hero-ctas">
+        <a id="hero-primary-cta" href="https://wa.me/5511982964498?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Flat%20Maritaca." class="btn btn-cta btn-whatsapp" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          <span data-i18n="landing.hero.primaryCta">Reservar pelo WhatsApp</span>
+        </a>
+        <a href="#about" class="btn btn-cta btn-cta--ghost">
+          <span data-i18n="landing.hero.secondaryCta">Conhecer o flat</span>
+          <i class="fas fa-arrow-down" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
-    <a href="#about" class="hero-scroll" aria-label="Scroll down">
+    <a href="#highlights" class="hero-scroll" aria-label="Scroll down">
       <i class="fas fa-chevron-down"></i>
     </a>
   </section>
 
-  <!-- Navigation TOC -->
-  <nav class="toc" aria-label="Table of contents">
-    <ul></ul>
-  </nav>
-
-  <!-- Main Content -->
   <main id="main">
-    <!-- About Section -->
-    <section id="about">
-      <div class="notice"></div>
-      <h2 class="section-title"></h2>
-      <p class="about-desc-1"></p>
-      <p class="about-desc-2"></p>
-      <ul class="amenities-list"></ul>
+    <!-- Highlights strip -->
+    <section id="highlights" class="highlights">
+      <div class="highlights-grid" id="highlights-grid"></div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- About -->
+    <section id="about" class="about-landing">
+      <p class="eyebrow" data-i18n="landing.about.eyebrow">O flat</p>
+      <h2 class="section-title display-title" data-i18n="landing.about.title">Conforto descomplicado, à sombra dos coqueiros</h2>
+      <div class="about-prose" id="about-prose"></div>
+
+      <h3 class="amenities-heading" data-i18n="landing.amenitiesTitle">O que o flat oferece</h3>
+      <ul class="amenities-list amenities-list--landing" id="amenities-list"></ul>
+    </section>
+
+    <!-- Gallery -->
     <section id="gallery">
-      <h2 class="section-title"></h2>
+      <h2 class="section-title">
+        <i class="fas fa-images" aria-hidden="true"></i>
+        <span data-i18n="landing.galleryTitle">Galeria</span>
+      </h2>
       <div class="gallery">
-        <img loading="lazy" src="images/apartment/img1.jpg" srcset="images/apartment/img1-640.jpg 640w, images/apartment/img1.jpg 1280w, images/apartment/img1-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img1-1920.jpg" alt="Sala de estar com sofá e acesso à varanda" />
-        <img loading="lazy" src="images/apartment/img2.jpg" srcset="images/apartment/img2-640.jpg 640w, images/apartment/img2.jpg 1280w, images/apartment/img2-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img2-1920.jpg" alt="Quarto com cama de casal e ar-condicionado" />
-        <img loading="lazy" src="images/apartment/img3.jpg" srcset="images/apartment/img3-640.jpg 640w, images/apartment/img3.jpg 1280w, images/apartment/img3-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img3-1920.jpg" alt="Banheiro com mármore escuro e box de vidro" />
-        <img loading="lazy" src="images/apartment/img4.jpg" srcset="images/apartment/img4-640.jpg 640w, images/apartment/img4.jpg 1280w, images/apartment/img4-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img4-1920.jpg" alt="Corredor com detalhes decorativos" />
-        <img loading="lazy" src="images/apartment/img5.jpg" srcset="images/apartment/img5-640.jpg 640w, images/apartment/img5.jpg 1280w, images/apartment/img5-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img5-1920.jpg" alt="Cozinha americana com bancada e área de serviço" />
-        <img loading="lazy" src="images/apartment/img7.jpg" srcset="images/apartment/img7-640.jpg 640w, images/apartment/img7.jpg 1280w, images/apartment/img7-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img7-1920.jpg" alt="Almofadas tropicais no sofá" />
-        <img loading="lazy" src="images/apartment/img8.jpg" srcset="images/apartment/img8-640.jpg 640w, images/apartment/img8.jpg 1280w, images/apartment/img8-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img8-1920.jpg" alt="QR Code do Flat Maritaca" />
-        <img loading="lazy" src="images/apartment/img6.jpg" srcset="images/apartment/img6-640.jpg 640w, images/apartment/img6.jpg 1280w, images/apartment/img6-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img6-1920.jpg" alt="Varanda com espreguiçadeiras e jardim" />
+        <img loading="lazy" src="/images/apartment/img1.jpg" srcset="/images/apartment/img1-640.jpg 640w, /images/apartment/img1.jpg 1280w, /images/apartment/img1-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="/images/apartment/img1-1920.jpg" alt="Sala de estar com sofá e acesso à varanda" />
+        <img loading="lazy" src="/images/apartment/img2.jpg" srcset="/images/apartment/img2-640.jpg 640w, /images/apartment/img2.jpg 1280w, /images/apartment/img2-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="/images/apartment/img2-1920.jpg" alt="Quarto com cama de casal e ar-condicionado" />
+        <img loading="lazy" src="/images/apartment/img3.jpg" srcset="/images/apartment/img3-640.jpg 640w, /images/apartment/img3.jpg 1280w, /images/apartment/img3-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="/images/apartment/img3-1920.jpg" alt="Banheiro com mármore escuro e box de vidro" />
+        <img loading="lazy" src="/images/apartment/img5.jpg" srcset="/images/apartment/img5-640.jpg 640w, /images/apartment/img5.jpg 1280w, /images/apartment/img5-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="/images/apartment/img5-1920.jpg" alt="Cozinha americana com bancada e área de serviço" />
+        <img loading="lazy" src="/images/apartment/img7.jpg" srcset="/images/apartment/img7-640.jpg 640w, /images/apartment/img7.jpg 1280w, /images/apartment/img7-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="/images/apartment/img7-1920.jpg" alt="Almofadas tropicais no sofá" />
+        <img loading="lazy" src="/images/apartment/img4.jpg" srcset="/images/apartment/img4-640.jpg 640w, /images/apartment/img4.jpg 1280w, /images/apartment/img4-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="/images/apartment/img4-1920.jpg" alt="Corredor com detalhes decorativos" />
+        <img loading="lazy" src="/images/apartment/img6.jpg" srcset="/images/apartment/img6-640.jpg 640w, /images/apartment/img6.jpg 1280w, /images/apartment/img6-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="/images/apartment/img6-1920.jpg" alt="Varanda com espreguiçadeiras e jardim" />
       </div>
     </section>
 
-    <!-- Rules Section -->
-    <section id="rules">
-      <h2 class="section-title"></h2>
-      <p class="section-intro"></p>
-      <ul class="rules-list"></ul>
+    <!-- Location -->
+    <section id="location" class="location-section">
+      <h2 class="section-title">
+        <i class="fas fa-location-dot" aria-hidden="true"></i>
+        <span data-i18n="landing.location.title">Onde fica</span>
+      </h2>
+      <p class="section-intro" data-i18n="landing.location.desc">Bairro tranquilo de Itacaré, na Bahia. Pertinho das praias da Concha, Resende e Tiririca, e a poucos passos do centrinho gastronômico.</p>
+      <div class="location-card">
+        <div class="location-card-text">
+          <p class="location-line"><i class="fas fa-location-dot"></i> Itacaré, Bahia, Brasil</p>
+          <p class="location-coords">14.2786° S, 38.9958° W</p>
+          <a id="location-cta" class="btn" target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/J7kpLEEcDKL9JLV28">
+            <i class="fas fa-map-location-dot"></i>
+            <span data-i18n="landing.location.cta">Abrir no Google Maps</span>
+          </a>
+        </div>
+        <div class="location-card-art" aria-hidden="true">
+          <i class="fas fa-water"></i>
+          <i class="fas fa-tree"></i>
+          <i class="fas fa-umbrella-beach"></i>
+        </div>
+      </div>
     </section>
 
-    <!-- Beaches Section -->
-    <section id="beaches">
-      <h2 class="section-title"></h2>
-      <p class="section-intro"></p>
-      <div class="beach-list"></div>
+    <!-- Activities preview -->
+    <section id="activities">
+      <h2 class="section-title">
+        <i class="fas fa-compass" aria-hidden="true"></i>
+        <span data-i18n="landing.activities.title">O que fazer por aqui</span>
+      </h2>
+      <p class="section-intro" data-i18n="landing.activities.desc">Praias paradisíacas, cachoeiras, surfe, jiu-jitsu e uma cena gastronômica de respeito. Os hóspedes recebem o guia completo com mapas e dicas.</p>
+      <div class="activities-grid">
+        <a href="/guide#beaches" class="activity-card">
+          <img loading="lazy" src="/images/must-see/concha.jpg" alt="Praia da Concha em Itacaré" />
+          <div class="activity-card-body">
+            <h3>Praias &amp; cachoeiras</h3>
+            <span class="activity-arrow"><i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+        <a href="/guide#chefs" class="activity-card">
+          <img loading="lazy" src="/images/restaurants/Nuuh/peixe-grelhado-com-batatas.jpg" alt="Prato do Nuuh Bistrô" />
+          <div class="activity-card-body">
+            <h3>Gastronomia</h3>
+            <span class="activity-arrow"><i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+        <a href="/guide#sports" class="activity-card">
+          <img loading="lazy" src="/images/sports/surf/image.png" alt="Surfe em Itacaré" />
+          <div class="activity-card-body">
+            <h3>Esportes &amp; aventura</h3>
+            <span class="activity-arrow"><i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+      </div>
     </section>
 
-    <!-- Chefs Section -->
-    <section id="chefs">
-      <h2 class="section-title"></h2>
-      <p class="section-intro"></p>
-      <div class="beach-list"></div>
+    <!-- Booking CTA -->
+    <section id="booking" class="booking-cta">
+      <p class="eyebrow" data-i18n="landing.booking.eyebrow">Reservas</p>
+      <h2 class="section-title display-title centered" data-i18n="landing.booking.title">Vamos combinar sua estadia?</h2>
+      <p class="section-intro centered" data-i18n="landing.booking.desc">Mande uma mensagem e respondo em poucas horas. Atendimento direto comigo, sem intermediários.</p>
+      <div class="booking-actions">
+        <a id="booking-cta" href="https://wa.me/5511982964498?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Flat%20Maritaca." class="btn btn-cta btn-whatsapp" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          <span data-i18n="landing.booking.cta">Conversar no WhatsApp</span>
+        </a>
+      </div>
     </section>
 
-    <!-- Sports Section -->
-    <section id="sports">
-      <h2 class="section-title"></h2>
-      <p class="section-intro"></p>
-      <div class="beach-list"></div>
-    </section>
-
-    <!-- WiFi Section -->
-    <section id="wifi">
-      <h2 class="section-title"></h2>
-      <div class="wifi-box"></div>
-      <img src="images/MaritacaGuest-qrcode.png" alt="Wi-Fi QR Code" class="qr" />
-    </section>
-
-    <!-- Help Section -->
-    <section id="help">
-      <h2 class="section-title"></h2>
-      <p class="section-intro"></p>
-      <div class="contact-buttons"></div>
+    <!-- FAQ -->
+    <section id="faq" class="faq-section">
+      <h2 class="section-title">
+        <i class="fas fa-circle-question" aria-hidden="true"></i>
+        <span data-i18n="landing.faq.title">Perguntas frequentes</span>
+      </h2>
+      <div class="faq-list" id="faq-list"></div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
-    <p></p>
+    <div class="footer-inner">
+      <div class="footer-brand">Flat Maritaca</div>
+      <p class="footer-tagline" data-i18n="subtitle">Sua estadia em Itacaré</p>
+      <div class="footer-links">
+        <a href="https://wa.me/5511982964498" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="/guide"><span data-i18n="landing.footer.guide">Guia do hóspede</span></a>
+        <a href="/privacy"><span data-i18n="landing.footer.privacy">Privacidade</span></a>
+      </div>
+      <p class="footer-copy" data-i18n="footer.copyright">Flat Maritaca Itacaré. Feito com carinho para você.</p>
+    </div>
   </footer>
 
-  <!-- Gallery Modal -->
-  <div id="modal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Visualizador de fotos">
-    <button type="button" class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
-    <img id="modal-img" alt="" />
-  </div>
-
-  <!-- Back to Top Button -->
-  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- Floating WhatsApp Button -->
+  <!-- Floating WhatsApp -->
   <a href="https://wa.me/5511982964498" class="floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp">
     <i class="fab fa-whatsapp" aria-hidden="true"></i>
   </a>
 
-  <!-- JavaScript Modules -->
-  <script src="js/i18n.js"></script>
-  <script src="js/weather.js"></script>
-  <script src="js/carousel.js"></script>
-  <script src="js/app.js"></script>
+  <!-- Gallery Modal -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Visualizador de fotos">
+    <button type="button" class="modal-close" aria-label="Close">&times;</button>
+    <img id="modal-img" alt="" />
+  </div>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/landing.js"></script>
 </body>
 </html>

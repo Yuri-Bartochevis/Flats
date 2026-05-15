@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Guia do hóspede do Flat Maritaca em Itacaré." />
+  <link rel="canonical" href="https://flatmaritaca.com.br/guide" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.open-meteo.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css" />
+  <title>Guia do Hóspede · Flat Maritaca</title>
+</head>
+<body>
+  <!-- Skip to main content -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Accessibility announcer -->
+  <div id="aria-announcer" aria-live="polite" class="sr-only"></div>
+
+  <!-- Header with language selector -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="header-left header-home" aria-label="Flat Maritaca">
+        <img src="/images/maritaca.png" alt="Flat Maritaca Logo" class="logo" />
+        <div class="header-text">
+          <h1>Flat Maritaca</h1>
+          <p class="subtitle">Sua estadia em Itacaré</p>
+        </div>
+      </a>
+      <div class="header-controls">
+        <!-- Weather Widget -->
+        <div class="weather-widget">
+          <div class="weather-current">
+            <span id="weather-icon">☀️</span>
+            <span id="weather-temp">--°C</span>
+            <span id="weather-desc">Carregando...</span>
+          </div>
+          <div id="weather-forecast" class="weather-forecast"></div>
+        </div>
+        <div class="language-selector">
+          <button class="lang-btn active" data-lang="pt" aria-label="Português">PT</button>
+          <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+          <button class="lang-btn" data-lang="he" aria-label="עברית">HE</button>
+        </div>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="images/maritaca.png" alt="Flat Maritaca" class="hero-logo" />
+      <h1 class="hero-title">Bem-vindo ao Flat Maritaca</h1>
+      <p class="hero-subtitle">Seu refúgio aconchegante em Itacaré, Bahia</p>
+    </div>
+    <a href="#about" class="hero-scroll" aria-label="Scroll down">
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- Navigation TOC -->
+  <nav class="toc" aria-label="Table of contents">
+    <ul></ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main">
+    <!-- About Section -->
+    <section id="about">
+      <div class="notice"></div>
+      <h2 class="section-title"></h2>
+      <p class="about-desc-1"></p>
+      <p class="about-desc-2"></p>
+      <ul class="amenities-list"></ul>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+      <h2 class="section-title"></h2>
+      <div class="gallery">
+        <img loading="lazy" src="images/apartment/img1.jpg" srcset="images/apartment/img1-640.jpg 640w, images/apartment/img1.jpg 1280w, images/apartment/img1-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img1-1920.jpg" alt="Sala de estar com sofá e acesso à varanda" />
+        <img loading="lazy" src="images/apartment/img2.jpg" srcset="images/apartment/img2-640.jpg 640w, images/apartment/img2.jpg 1280w, images/apartment/img2-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img2-1920.jpg" alt="Quarto com cama de casal e ar-condicionado" />
+        <img loading="lazy" src="images/apartment/img3.jpg" srcset="images/apartment/img3-640.jpg 640w, images/apartment/img3.jpg 1280w, images/apartment/img3-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img3-1920.jpg" alt="Banheiro com mármore escuro e box de vidro" />
+        <img loading="lazy" src="images/apartment/img4.jpg" srcset="images/apartment/img4-640.jpg 640w, images/apartment/img4.jpg 1280w, images/apartment/img4-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img4-1920.jpg" alt="Corredor com detalhes decorativos" />
+        <img loading="lazy" src="images/apartment/img5.jpg" srcset="images/apartment/img5-640.jpg 640w, images/apartment/img5.jpg 1280w, images/apartment/img5-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img5-1920.jpg" alt="Cozinha americana com bancada e área de serviço" />
+        <img loading="lazy" src="images/apartment/img7.jpg" srcset="images/apartment/img7-640.jpg 640w, images/apartment/img7.jpg 1280w, images/apartment/img7-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img7-1920.jpg" alt="Almofadas tropicais no sofá" />
+        <img loading="lazy" src="images/apartment/img8.jpg" srcset="images/apartment/img8-640.jpg 640w, images/apartment/img8.jpg 1280w, images/apartment/img8-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img8-1920.jpg" alt="QR Code do Flat Maritaca" />
+        <img loading="lazy" src="images/apartment/img6.jpg" srcset="images/apartment/img6-640.jpg 640w, images/apartment/img6.jpg 1280w, images/apartment/img6-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 33vw" data-full="images/apartment/img6-1920.jpg" alt="Varanda com espreguiçadeiras e jardim" />
+      </div>
+    </section>
+
+    <!-- Rules Section -->
+    <section id="rules">
+      <h2 class="section-title"></h2>
+      <p class="section-intro"></p>
+      <ul class="rules-list"></ul>
+    </section>
+
+    <!-- Beaches Section -->
+    <section id="beaches">
+      <h2 class="section-title"></h2>
+      <p class="section-intro"></p>
+      <div class="beach-list"></div>
+    </section>
+
+    <!-- Chefs Section -->
+    <section id="chefs">
+      <h2 class="section-title"></h2>
+      <p class="section-intro"></p>
+      <div class="beach-list"></div>
+    </section>
+
+    <!-- Sports Section -->
+    <section id="sports">
+      <h2 class="section-title"></h2>
+      <p class="section-intro"></p>
+      <div class="beach-list"></div>
+    </section>
+
+    <!-- WiFi Section -->
+    <section id="wifi">
+      <h2 class="section-title"></h2>
+      <div class="wifi-box"></div>
+    </section>
+
+    <!-- Help Section -->
+    <section id="help">
+      <h2 class="section-title"></h2>
+      <p class="section-intro"></p>
+      <div class="contact-buttons"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p></p>
+  </footer>
+
+  <!-- Gallery Modal -->
+  <div id="modal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Visualizador de fotos">
+    <button type="button" class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+    <img id="modal-img" alt="" />
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/5511982964498" class="floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- JavaScript Modules -->
+  <script src="js/i18n.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

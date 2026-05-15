@@ -153,9 +153,14 @@ const translations = {
       networkLabel: "Rede",
       network: "MaritacaGuest",
       passwordLabel: "Senha",
-      password: "wifiandwaves",
-      showButton: "Mostrar Senha",
-      hideButton: "Esconder"
+      lockedHint: "A senha está protegida. Use o código da sua reserva para desbloquear.",
+      stayCodeLabel: "Código da estadia",
+      stayCodePlaceholder: "Digite o código",
+      unlockButton: "Desbloquear",
+      unlockingButton: "Desbloqueando...",
+      unlockError: "Código inválido. Verifique a mensagem da sua reserva.",
+      hideButton: "Esconder",
+      showButton: "Mostrar"
     },
 
     // Help
@@ -171,6 +176,69 @@ const translations = {
     // Footer
     footer: {
       copyright: "Flat Maritaca Itacaré. Feito com carinho para você."
+    },
+
+    // Public landing page
+    landing: {
+      meta: {
+        title: "Flat Maritaca — Estadia em Itacaré, Bahia",
+        description: "Flat aconchegante em Itacaré: cama queen, varanda com rede, cozinha completa e estacionamento privativo. Reservas direto pelo WhatsApp."
+      },
+      hero: {
+        eyebrow: "Itacaré · Bahia",
+        title: "Onde o mar encontra o silêncio",
+        subtitle: "Um flat sereno e bem equipado, a poucos minutos das praias e do centrinho.",
+        primaryCta: "Reservar pelo WhatsApp",
+        secondaryCta: "Conhecer o flat"
+      },
+      highlights: [
+        { icon: "fa-location-dot", title: "Localização", desc: "No centrinho · 5 min das praias" },
+        { icon: "fa-bed", title: "Quarto", desc: "Cama queen · ar-condicionado" },
+        { icon: "fa-wifi", title: "Home Office", desc: "Internet rápida · espaço dedicado" },
+        { icon: "fa-square-parking", title: "Estacionamento", desc: "Privativo · uma vaga" }
+      ],
+      about: {
+        eyebrow: "O flat",
+        title: "Conforto descomplicado, à sombra dos coqueiros",
+        paragraphs: [
+          "<strong>Flat Maritaca</strong> foi pensado pra ser o lugar onde você descansa de verdade — entre uma praia e outra, antes do pôr do sol, depois da trilha.",
+          "Decoração moderna, ambientes integrados e uma varanda com rede pra fechar o dia em paz."
+        ]
+      },
+      amenitiesTitle: "O que o flat oferece",
+      galleryTitle: "Galeria",
+      galleryCta: "Ver mais detalhes no guia do hóspede",
+      location: {
+        title: "Onde fica",
+        desc: "Bairro tranquilo de Itacaré, na Bahia. Pertinho das praias da Concha, Resende e Tiririca, e a poucos passos do centrinho gastronômico.",
+        cta: "Abrir no Google Maps",
+        mapsUrl: "https://maps.app.goo.gl/J7kpLEEcDKL9JLV28"
+      },
+      activities: {
+        title: "O que fazer por aqui",
+        desc: "Praias paradisíacas, cachoeiras, surfe, jiu-jitsu e uma cena gastronômica de respeito. Os hóspedes recebem o guia completo com mapas e dicas.",
+        cta: "Conhecer as dicas"
+      },
+      booking: {
+        eyebrow: "Reservas",
+        title: "Vamos combinar sua estadia?",
+        desc: "Mande uma mensagem e respondo em poucas horas. Atendimento direto comigo, sem intermediários.",
+        cta: "Conversar no WhatsApp"
+      },
+      faq: {
+        title: "Perguntas frequentes",
+        items: [
+          { q: "Aceitam pets?", a: "Sim, com aviso prévio. Avise na hora da reserva pra eu deixar tudo certinho." },
+          { q: "Tem estacionamento?", a: "Sim, vaga privativa para um carro." },
+          { q: "Quantos hóspedes cabem?", a: "Confortavelmente até 2 pessoas." },
+          { q: "Qual o horário de check-in?", a: "Ideal a partir das 14h. Posso combinar antecipado se o flat estiver livre." },
+          { q: "Aceitam fumantes?", a: "Permitido apenas na varanda — incluindo cigarro eletrônico e cannabis." }
+        ]
+      },
+      footer: {
+        privacy: "Privacidade",
+        guide: "Guia do hóspede"
+      }
     },
 
     // Common
@@ -353,9 +421,14 @@ const translations = {
       networkLabel: "Network",
       network: "MaritacaGuest",
       passwordLabel: "Password",
-      password: "wifiandwaves",
-      showButton: "Show Password",
-      hideButton: "Hide"
+      lockedHint: "Password is protected. Use your booking stay code to unlock.",
+      stayCodeLabel: "Stay code",
+      stayCodePlaceholder: "Enter code",
+      unlockButton: "Unlock",
+      unlockingButton: "Unlocking...",
+      unlockError: "Invalid code. Check the message from your booking.",
+      hideButton: "Hide",
+      showButton: "Show"
     },
 
     // Help
@@ -371,6 +444,69 @@ const translations = {
     // Footer
     footer: {
       copyright: "Flat Maritaca Itacaré. Made with love for you."
+    },
+
+    // Public landing page
+    landing: {
+      meta: {
+        title: "Flat Maritaca — Stay in Itacaré, Bahia",
+        description: "Cozy flat in Itacaré: queen-size bedroom, hammock balcony, full kitchen and private parking. Book directly via WhatsApp."
+      },
+      hero: {
+        eyebrow: "Itacaré · Bahia",
+        title: "Where the sea meets stillness",
+        subtitle: "A serene, well-equipped flat, just minutes from the beaches and downtown.",
+        primaryCta: "Book on WhatsApp",
+        secondaryCta: "Discover the flat"
+      },
+      highlights: [
+        { icon: "fa-location-dot", title: "Location", desc: "Downtown · 5 min from beaches" },
+        { icon: "fa-bed", title: "Bedroom", desc: "Queen bed · air conditioning" },
+        { icon: "fa-wifi", title: "Home Office", desc: "Fast Wi-Fi · dedicated workspace" },
+        { icon: "fa-square-parking", title: "Parking", desc: "Private · one spot included" }
+      ],
+      about: {
+        eyebrow: "The flat",
+        title: "Easy comfort, in the shade of palm trees",
+        paragraphs: [
+          "<strong>Flat Maritaca</strong> was designed as the place where you actually rest — between one beach and the next, before sunset, after the hike.",
+          "Modern decor, open layout, and a hammock-equipped balcony to wind the day down in peace."
+        ]
+      },
+      amenitiesTitle: "What the flat offers",
+      galleryTitle: "Gallery",
+      galleryCta: "See more in the guest guide",
+      location: {
+        title: "Where it is",
+        desc: "Quiet neighborhood in Itacaré, Bahia. Close to Concha, Resende, and Tiririca beaches, and steps away from the food scene downtown.",
+        cta: "Open in Google Maps",
+        mapsUrl: "https://maps.app.goo.gl/J7kpLEEcDKL9JLV28"
+      },
+      activities: {
+        title: "Things to do nearby",
+        desc: "Stunning beaches, waterfalls, surfing, jiu-jitsu, and a serious food scene. Guests get the full guide with maps and curated tips.",
+        cta: "See the tips"
+      },
+      booking: {
+        eyebrow: "Booking",
+        title: "Want to book your stay?",
+        desc: "Send a message and I'll reply within hours. Direct contact with me, no middlemen.",
+        cta: "Chat on WhatsApp"
+      },
+      faq: {
+        title: "Frequently asked",
+        items: [
+          { q: "Are pets allowed?", a: "Yes, with prior notice. Let me know when booking so I can prepare." },
+          { q: "Is there parking?", a: "Yes, one private spot for one car." },
+          { q: "How many guests fit?", a: "Comfortably up to 2 people." },
+          { q: "What's the check-in time?", a: "Ideally from 2 PM. Earlier is possible if the flat is available." },
+          { q: "Smoking allowed?", a: "Only on the balcony — including e-cigarettes and cannabis." }
+        ]
+      },
+      footer: {
+        privacy: "Privacy",
+        guide: "Guest guide"
+      }
     },
 
     // Common
@@ -553,9 +689,14 @@ const translations = {
       networkLabel: "שם הרשת",
       network: "MaritacaGuest",
       passwordLabel: "סיסמה",
-      password: "wifiandwaves",
-      showButton: "הצג סיסמה",
-      hideButton: "הסתר"
+      lockedHint: "הסיסמה מוגנת. השתמשו בקוד השהייה מההזמנה כדי לפתוח.",
+      stayCodeLabel: "קוד שהייה",
+      stayCodePlaceholder: "הזינו קוד",
+      unlockButton: "פתח",
+      unlockingButton: "פותח...",
+      unlockError: "קוד לא תקין. בדקו את ההודעה מההזמנה שלכם.",
+      hideButton: "הסתר",
+      showButton: "הצג"
     },
 
     // Help
@@ -571,6 +712,69 @@ const translations = {
     // Footer
     footer: {
       copyright: "Flat Maritaca Itacaré. נוצר באהבה עבורכם."
+    },
+
+    // Public landing page
+    landing: {
+      meta: {
+        title: "Flat Maritaca — שהייה באיטקרה, באהיה",
+        description: "דירה נעימה באיטקרה: חדר שינה זוגי, מרפסת עם ערסל, מטבח מאובזר וחניה פרטית. הזמנות ישירות בוואטסאפ."
+      },
+      hero: {
+        eyebrow: "איטקרה · באהיה",
+        title: "המקום שבו הים פוגש את השקט",
+        subtitle: "דירה רגועה ומאובזרת, במרחק דקות מהחופים וממרכז העיר.",
+        primaryCta: "להזמין בוואטסאפ",
+        secondaryCta: "להכיר את הדירה"
+      },
+      highlights: [
+        { icon: "fa-location-dot", title: "מיקום", desc: "במרכז · 5 דקות מהחופים" },
+        { icon: "fa-bed", title: "חדר שינה", desc: "מיטה זוגית · מיזוג אוויר" },
+        { icon: "fa-wifi", title: "עבודה מהבית", desc: "אינטרנט מהיר · פינת עבודה" },
+        { icon: "fa-square-parking", title: "חניה", desc: "פרטית · מקום אחד" }
+      ],
+      about: {
+        eyebrow: "על הדירה",
+        title: "נוחות פשוטה, בצל עצי הקוקוס",
+        paragraphs: [
+          "<strong>Flat Maritaca</strong> תוכננה להיות המקום שבו באמת נחים — בין חוף לחוף, לפני השקיעה, אחרי הטיול.",
+          "עיצוב מודרני, חללים פתוחים ומרפסת עם ערסל לסיים את היום בנחת."
+        ]
+      },
+      amenitiesTitle: "מה כוללת הדירה",
+      galleryTitle: "גלריה",
+      galleryCta: "פרטים נוספים במדריך לאורח",
+      location: {
+        title: "המיקום",
+        desc: "שכונה שקטה באיטקרה, באהיה. סמוך לחופי קונשה, רזנדה וטיריריקה ובמרחק קצר מסצנת האוכל המקומית.",
+        cta: "פתיחה ב-Google Maps",
+        mapsUrl: "https://maps.app.goo.gl/J7kpLEEcDKL9JLV28"
+      },
+      activities: {
+        title: "מה עושים באזור",
+        desc: "חופים מדהימים, מפלים, גלישה, ג'יו-ג'יטסו וסצנת אוכל איכותית. אורחים מקבלים מדריך מלא עם מפות והמלצות.",
+        cta: "לצפות בטיפים"
+      },
+      booking: {
+        eyebrow: "הזמנות",
+        title: "נסכם את השהייה?",
+        desc: "שלחו הודעה ואחזור בתוך שעות. תקשורת ישירה איתי, ללא מתווכים.",
+        cta: "לכתוב בוואטסאפ"
+      },
+      faq: {
+        title: "שאלות נפוצות",
+        items: [
+          { q: "מותר חיות מחמד?", a: "כן, עם הודעה מראש. ספרו לי בעת ההזמנה כדי שאוכל להתכונן." },
+          { q: "יש חניה?", a: "כן, מקום חניה פרטי אחד." },
+          { q: "כמה אורחים נכנסים?", a: "בנוחות עד 2 אנשים." },
+          { q: "מה שעת הצ'ק-אין?", a: "אידיאלי מ-14:00. אפשר מוקדם יותר אם הדירה פנויה." },
+          { q: "מותר לעשן?", a: "רק במרפסת — כולל סיגריות אלקטרוניות וקנאביס." }
+        ]
+      },
+      footer: {
+        privacy: "פרטיות",
+        guide: "מדריך לאורח"
+      }
     },
 
     // Common

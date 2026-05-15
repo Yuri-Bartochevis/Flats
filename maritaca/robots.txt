@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /guide
+Disallow: /guide.html
+Disallow: /api/
+
+Sitemap: https://flatmaritaca.com.br/sitemap.xml
