@@ -111,10 +111,10 @@ const translations = {
           name: "🍽️ Nuuh Bistrô",
           desc: "Cozinha contemporânea com fusão de sabores do Brasil e do mundo. Saladas, carnes, peixes, massas e opções vegetarianas/veganas. Cafeteria com espresso 100% arábica e carta de vinhos.",
           images: [
-            { src: "images/restaurants/Nuuh/logo.jpeg", alt: "Nuuh - Logo" },
-            { src: "images/restaurants/Nuuh/peixe-grelhado-com-batatas.jpg", alt: "Nuuh - Peixe grelhado com batatas" },
-            { src: "images/restaurants/Nuuh/camaroes-na-mini-moranga.jpg", alt: "Nuuh - Camarões na mini moranga" },
-            { src: "images/restaurants/Nuuh/polvo-grelhado-com-pure.jpg", alt: "Nuuh - Polvo grelhado com purê" }
+            { src: "images/restaurants/Nuuh/logo.png", alt: "Nuuh - Logo" },
+            { src: "images/restaurants/Nuuh/Gemini_Generated_Image_38iswl38iswl38is.png", alt: "Nuuh - Prato em destaque" },
+            { src: "images/restaurants/Nuuh/Gemini_Generated_Image_7akx537akx537akx.png", alt: "Nuuh - Prato em destaque" },
+            { src: "images/restaurants/Nuuh/Gemini_Generated_Image_mwlez4mwlez4mwle.png", alt: "Nuuh - Prato em destaque" }
           ],
           mapLink: "https://maps.app.goo.gl/HmY5nLCPUfktjEeu6",
           instagram: "https://www.instagram.com/nuuhbistro",
@@ -125,8 +125,8 @@ const translations = {
           desc: "Culinária árabe-brasileira com esfihas abertas e fechadas em sabores salgados e doces. Também serve kibes tradicional e vegetariano, beirutes e pizzas.",
           images: [
             { src: "images/restaurants/esfiharia/logo.png", alt: "Esfiharia Itacaré - Logo" },
-            { src: "images/restaurants/esfiharia/1.png", alt: "Esfiharia Itacaré - Esfihas" },
-            { src: "images/restaurants/esfiharia/2.png", alt: "Esfiharia Itacaré - Ambiente" }
+            { src: "images/restaurants/esfiharia/Gemini_Generated_Image_bezsqmbezsqmbezs.png", alt: "Esfiharia Itacaré - Esfihas" },
+            { src: "images/restaurants/esfiharia/Gemini_Generated_Image_d7goiad7goiad7go.png", alt: "Esfiharia Itacaré - Ambiente" }
           ],
           mapLink: "https://maps.app.goo.gl/d8mAqnn4RvoG5tvQ8",
           instagram: "https://www.instagram.com/esfihariaitacare/",
@@ -379,10 +379,10 @@ const translations = {
           name: "🍽️ Nuuh Bistrô",
           desc: "Contemporary cuisine with a fusion of flavors from Brazil and the world. Salads, meats, fish, pasta, and vegetarian/vegan options. Coffee shop with 100% arabica espresso and wine list.",
           images: [
-            { src: "images/restaurants/Nuuh/logo.jpeg", alt: "Nuuh - Logo" },
-            { src: "images/restaurants/Nuuh/peixe-grelhado-com-batatas.jpg", alt: "Nuuh - Grilled fish with potatoes" },
-            { src: "images/restaurants/Nuuh/camaroes-na-mini-moranga.jpg", alt: "Nuuh - Shrimp in mini pumpkin" },
-            { src: "images/restaurants/Nuuh/polvo-grelhado-com-pure.jpg", alt: "Nuuh - Grilled octopus with puree" }
+            { src: "images/restaurants/Nuuh/logo.png", alt: "Nuuh - Logo" },
+            { src: "images/restaurants/Nuuh/Gemini_Generated_Image_38iswl38iswl38is.png", alt: "Nuuh - Featured dish" },
+            { src: "images/restaurants/Nuuh/Gemini_Generated_Image_7akx537akx537akx.png", alt: "Nuuh - Featured dish" },
+            { src: "images/restaurants/Nuuh/Gemini_Generated_Image_mwlez4mwlez4mwle.png", alt: "Nuuh - Featured dish" }
           ],
           mapLink: "https://maps.app.goo.gl/HmY5nLCPUfktjEeu6",
           instagram: "https://www.instagram.com/nuuhbistro",
@@ -393,8 +393,8 @@ const translations = {
           desc: "Arab-Brazilian cuisine with open and closed esfihas in savory and sweet flavors. Also serves traditional and vegetarian kibes, beirutes, and pizzas.",
           images: [
             { src: "images/restaurants/esfiharia/logo.png", alt: "Esfiharia Itacaré - Logo" },
-            { src: "images/restaurants/esfiharia/1.png", alt: "Esfiharia Itacaré - Esfihas" },
-            { src: "images/restaurants/esfiharia/2.png", alt: "Esfiharia Itacaré - Ambiance" }
+            { src: "images/restaurants/esfiharia/Gemini_Generated_Image_bezsqmbezsqmbezs.png", alt: "Esfiharia Itacaré - Esfihas" },
+            { src: "images/restaurants/esfiharia/Gemini_Generated_Image_d7goiad7goiad7go.png", alt: "Esfiharia Itacaré - Ambiance" }
           ],
           mapLink: "https://maps.app.goo.gl/d8mAqnn4RvoG5tvQ8",
           instagram: "https://www.instagram.com/esfihariaitacare/",
@@ -647,10 +647,10 @@ const translations = {
           name: "🍽️ נווה ביסטרו",
           desc: "מטבח עכשווי עם מיזוג טעמים מברזיל ומהעולם. סלטים, בשרים, דגים, פסטה ואפשרויות צמחוניות/טבעוניות. בית קפה עם אספרסו ערביקה 100% ורשימת יינות.",
           images: [
-            { src: "images/restaurants/Nuuh/logo.jpeg", alt: "נווה - לוגו" },
-            { src: "images/restaurants/Nuuh/peixe-grelhado-com-batatas.jpg", alt: "נווה - דג צלוי עם תפוחי אדמה" },
-            { src: "images/restaurants/Nuuh/camaroes-na-mini-moranga.jpg", alt: "נווה - שרימפס בדלעת מיני" },
-            { src: "images/restaurants/Nuuh/polvo-grelhado-com-pure.jpg", alt: "נווה - תמנון צלוי עם פירה" }
+            { src: "images/restaurants/Nuuh/logo.png", alt: "נווה - לוגו" },
+            { src: "images/restaurants/Nuuh/Gemini_Generated_Image_38iswl38iswl38is.png", alt: "נווה - מנה מומלצת" },
+            { src: "images/restaurants/Nuuh/Gemini_Generated_Image_7akx537akx537akx.png", alt: "נווה - מנה מומלצת" },
+            { src: "images/restaurants/Nuuh/Gemini_Generated_Image_mwlez4mwlez4mwle.png", alt: "נווה - מנה מומלצת" }
           ],
           mapLink: "https://maps.app.goo.gl/HmY5nLCPUfktjEeu6",
           instagram: "https://www.instagram.com/nuuhbistro",
@@ -661,8 +661,8 @@ const translations = {
           desc: "מטבח ערבי-ברזילאי עם אספיהות פתוחות וסגורות בטעמים מלוחים ומתוקים. מגישים גם קיבה מסורתית וצמחונית, ביירוטס ופיצות.",
           images: [
             { src: "images/restaurants/esfiharia/logo.png", alt: "אספיהריה איטקרה - לוגו" },
-            { src: "images/restaurants/esfiharia/1.png", alt: "אספיהריה איטקרה - אספיהות" },
-            { src: "images/restaurants/esfiharia/2.png", alt: "אספיהריה איטקרה - אווירה" }
+            { src: "images/restaurants/esfiharia/Gemini_Generated_Image_bezsqmbezsqmbezs.png", alt: "אספיהריה איטקרה - אספיהות" },
+            { src: "images/restaurants/esfiharia/Gemini_Generated_Image_d7goiad7goiad7go.png", alt: "אספיהריה איטקרה - אווירה" }
           ],
           mapLink: "https://maps.app.goo.gl/d8mAqnn4RvoG5tvQ8",
           instagram: "https://www.instagram.com/esfihariaitacare/",
